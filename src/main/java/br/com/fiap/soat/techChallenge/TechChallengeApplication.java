@@ -15,6 +15,6 @@ public class TechChallengeApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Test endpoint 444";
+		return "Test endpoint";
 	}
 }
