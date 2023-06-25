@@ -1,26 +1,19 @@
-package br.com.fiap.soat.techChallenge.core.domain;
+package br.com.fiap.soat.techChallenge.adapter.driven.entities;
+
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
-public class Cliente {
-
+@Entity
+@Table(name = "clientes")
+public class ClienteEntity {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
+
     private String nome;
     private String cpf;
     private String telefone;
-
-    public Cliente() {}
-
-    public Cliente(String nome, String cpf, String telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-    }
-
-    public Cliente(UUID id, String nome, String cpf, String telefone) {
-        this(nome, cpf, telefone);
-        this.id = id;
-    }
 
     public UUID getId() {
         return id;
