@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.adapter.driven.entities;
 
+import br.com.fiap.soat.techChallenge.core.domain.Cliente;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -14,6 +15,10 @@ public class ClienteEntity {
     private String nome;
     private String cpf;
     private String telefone;
+
+    public Cliente toDomain() {
+        return new Cliente(id, nome, cpf, telefone);
+    }
 
     public UUID getId() {
         return id;

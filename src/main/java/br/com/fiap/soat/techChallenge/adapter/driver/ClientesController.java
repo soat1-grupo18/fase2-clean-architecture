@@ -2,11 +2,15 @@ package br.com.fiap.soat.techChallenge.adapter.driver;
 
 import br.com.fiap.soat.techChallenge.adapter.driver.request.CadastraClienteRequest;
 import br.com.fiap.soat.techChallenge.adapter.driver.response.ClienteResponse;
+import br.com.fiap.soat.techChallenge.core.domain.Cliente;
 import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaClienteUseCasePort;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/clientes")
@@ -23,9 +27,12 @@ public class ClientesController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<ClienteResponse> identificaCliente(@PathVariable String cpf) {
-        // TODO tratar retorno quando cpf não for encontrado
-        return ResponseEntity.ok(ClienteResponse.fromDomain(identificaClienteUseCase.execute(cpf)));
+    public ResponseEntity<Object> identificaCliente(@PathVariable String cpf) {
+        Optional<Cliente> clienteO = identificaClienteUseCase.execute(cpf);
+        if (clienteO.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não identificado.");
+        }
+        return ResponseEntity.ok(ClienteResponse.fromDomain(clienteO.get()));
     }
 
     @PostMapping()
