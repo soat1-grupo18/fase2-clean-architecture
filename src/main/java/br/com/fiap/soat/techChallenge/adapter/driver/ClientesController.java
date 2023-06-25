@@ -35,7 +35,7 @@ public class ClientesController {
         return ResponseEntity.ok(ClienteResponse.fromDomain(clienteO.get()));
     }
 
-    @PostMapping()
+    @PostMapping("")
     public ResponseEntity<ClienteResponse> cadastraCliente(@Valid @RequestBody CadastraClienteRequest cadastraClienteRequest) {
         return ResponseEntity.ok(ClienteResponse.fromDomain(cadastraClienteUseCase.execute(cadastraClienteRequest.toDomain())));
     }
