@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Swagger Tech Challenge - OpenAPI 3.0
   description: |-
-    APIs do projeto Tech Challange.
+    APIs do projeto Tech Challenge.
     
     Criado com [Swagger Editor](https://editor.swagger.io/).
   version: 0.0.1
