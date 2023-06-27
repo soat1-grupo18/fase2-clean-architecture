@@ -28,3 +28,8 @@ Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
 ## Especificação da API
 
 Para renderizar o Swagger, jogue o conteúdo do arquivo [openapi-spec.yaml](openapi-spec.yaml) no [Swagger Editor](https://editor.swagger.io/).
+
+## Event Storming
+
+Novo *event storming* está disponível em um [board do Miro](https://miro.com/app/board/uXjVMHS5nec=/).
+
