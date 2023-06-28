@@ -25,6 +25,10 @@ Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
 
 `docker compose up`
 
+## Swagger
+
+Para acessar o Swagger da aplicação, acesse [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
+
 ## Especificação da API
 
 Para renderizar o Swagger, jogue o conteúdo do arquivo [openapi-spec.yaml](openapi-spec.yaml) no [Swagger Editor](https://editor.swagger.io/).
