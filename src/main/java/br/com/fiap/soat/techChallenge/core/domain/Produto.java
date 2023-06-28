@@ -1,7 +1,22 @@
 package br.com.fiap.soat.techChallenge.core.domain;
+import br.com.fiap.soat.techChallenge.adapter.driven.entities.ProdutoEntity;
+
 import java.util.UUID;
 
 public class Produto {
+    public static Produto toDomain(ProdutoEntity produtoEntity) {
+        // Replace the placeholders (nome, categoria, preço, descrição, imagem)
+        // with the actual attributes of the ProdutoEntity object
+        String nome = produtoEntity.getNome();
+        TipoDeProduto categoria = produtoEntity.getCategoria();
+        Float preço = produtoEntity.getPreço();
+        String descrição = produtoEntity.getDescrição();
+        String imagem = produtoEntity.getImagem();
+
+        // Create and return the domain object
+        return new Produto(nome, categoria, preço, descrição, imagem);
+    }
+
     public enum TipoDeProduto {
         LANCHE,
         ACOMPANHAMENTO,

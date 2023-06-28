@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
@@ -28,11 +29,11 @@ public class ProdutosController {
 
     @GetMapping("/{nome}")
     public ResponseEntity<Object> identificaProduto(@PathVariable String categoria) {
-        Optional<Produto> produtoO = identificaProdutoUseCase.execute(categoria);
-        if (produtoO.isEmpty()) {
+        List<Produto> produtos = identificaProdutoUseCase.execute(categoria);
+        if (produtos.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foram encontrados produtos nessa categoria.");
         }
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(produtoO.get()));
+        return ResponseEntity.ok(produtos.stream().map(ProdutoResponse::fromDomain).collect(Collectors.toList()));
     }
 
     @PostMapping("")

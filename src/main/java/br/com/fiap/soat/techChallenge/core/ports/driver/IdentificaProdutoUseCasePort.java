@@ -2,8 +2,8 @@ package br.com.fiap.soat.techChallenge.core.ports.driver;
 
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface IdentificaProdutoUseCasePort {
-    Optional<Produto> execute(String categoria);
+    List<Produto> execute(String categoria);
 }
