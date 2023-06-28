@@ -16,8 +16,8 @@ public class IdentificaProdutoAdapter implements IdentificaProdutoAdapterPort {
         this.produtoRepository = produtoRepository;
     }
     @Override
-    public Optional<Produto> identificaPor(String nome) {
-        var produtos = produtoRepository.findByNome(nome);
+    public Optional<Produto> identificaPor(String categoria) {
+        var produtos = produtoRepository.findByCategoria(categoria);
         if (produtos.isEmpty()) {
             return Optional.empty();
         }

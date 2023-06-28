@@ -27,10 +27,10 @@ public class ProdutosController {
     }
 
     @GetMapping("/{nome}")
-    public ResponseEntity<Object> identificaProduto(@PathVariable String nome) {
-        Optional<Produto> produtoO = identificaProdutoUseCase.execute(nome);
+    public ResponseEntity<Object> identificaProduto(@PathVariable String categoria) {
+        Optional<Produto> produtoO = identificaProdutoUseCase.execute(categoria);
         if (produtoO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não identificado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foram encontrados produtos nessa categoria.");
         }
         return ResponseEntity.ok(ProdutoResponse.fromDomain(produtoO.get()));
     }
