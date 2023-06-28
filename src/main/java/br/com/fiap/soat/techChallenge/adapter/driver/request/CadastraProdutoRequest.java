@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.adapter.driver.request;
-
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import jakarta.validation.constraints.NotNull;
+
 public class CadastraProdutoRequest {
     @NotNull(message = "O campo Nome é obrigatório.")
     private String nome;
@@ -18,7 +18,6 @@ public class CadastraProdutoRequest {
     public Produto toDomain() {
         return new Produto(nome, categoria, preço, descrição, imagem);
     }
-
     public String getNome() {
         return nome;
     }

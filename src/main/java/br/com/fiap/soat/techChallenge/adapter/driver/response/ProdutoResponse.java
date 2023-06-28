@@ -1,5 +1,4 @@
 package br.com.fiap.soat.techChallenge.adapter.driver.response;
-
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 
 import java.util.UUID;
@@ -20,6 +19,7 @@ public class ProdutoResponse {
         this.preço = preço;
         this.categoria = categoria;
     }
+
     public static ProdutoResponse fromDomain(Produto produto) {
         return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescrição(), produto.getImagem(), produto.getPreço(), produto.getCategoria());
     }

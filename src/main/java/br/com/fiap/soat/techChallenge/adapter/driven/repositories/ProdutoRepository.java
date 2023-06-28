@@ -1,5 +1,4 @@
 package br.com.fiap.soat.techChallenge.adapter.driven.repositories;
-
 import br.com.fiap.soat.techChallenge.adapter.driven.entities.ProdutoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

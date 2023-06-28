@@ -1,5 +1,4 @@
 package br.com.fiap.soat.techChallenge.adapter.driven.adapter;
-
 import br.com.fiap.soat.techChallenge.adapter.driven.entities.ProdutoEntity;
 import br.com.fiap.soat.techChallenge.adapter.driven.repositories.ProdutoRepository;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
@@ -26,7 +25,6 @@ public class CadastraProdutoAdapter implements CadastraProdutoAdapterPort {
         produto.setPreço(produto.getPreço());
         produto.setDescrição(produto.getDescrição());
         produto.setImagem(produto.getImagem());
-
         produto.setId(produtoRepository.save(produtoEntity).getId());
 
         return produto;

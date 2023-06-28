@@ -82,6 +82,3 @@ public class Produto {
         return imagem;
     }
 }
-
-
-
