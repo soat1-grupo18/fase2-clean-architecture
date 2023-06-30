@@ -1,13 +1,13 @@
-package br.com.fiap.soat.techChallenge.core.domain;
+package br.com.fiap.soat.techChallenge.core.model;
 
 import java.util.List;
 import java.util.UUID;
 
-public class NovoPedido {
+public class ComandoDeNovoPedido {
     private UUID clienteId;
-    private List<ItemDoNovoPedido> itens;
+    private List<ItemDoComandoDeNovoPedido> itens;
 
-    public NovoPedido(UUID clienteId, List<ItemDoNovoPedido> itens) {
+    public ComandoDeNovoPedido(UUID clienteId, List<ItemDoComandoDeNovoPedido> itens) {
         this.clienteId = clienteId;
         this.itens = itens;
     }
@@ -20,11 +20,11 @@ public class NovoPedido {
         this.clienteId = clienteId;
     }
 
-    public List<ItemDoNovoPedido> getItens() {
+    public List<ItemDoComandoDeNovoPedido> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemDoNovoPedido> itens) {
+    public void setItens(List<ItemDoComandoDeNovoPedido> itens) {
         this.itens = itens;
     }
 }

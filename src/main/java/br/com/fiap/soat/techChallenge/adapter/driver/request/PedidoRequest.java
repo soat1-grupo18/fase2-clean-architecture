@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.adapter.driver.request;
 
-import br.com.fiap.soat.techChallenge.core.domain.ItemDoNovoPedido;
-import br.com.fiap.soat.techChallenge.core.domain.NovoPedido;
+import br.com.fiap.soat.techChallenge.core.model.ItemDoComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.model.ComandoDeNovoPedido;
 
 import java.util.List;
 import java.util.UUID;
@@ -27,10 +27,10 @@ public class PedidoRequest {
         this.itens = itens;
     }
 
-    public NovoPedido toDomain() {
-        return new NovoPedido(
+    public ComandoDeNovoPedido toDomain() {
+        return new ComandoDeNovoPedido(
             this.clienteId,
-            this.itens.stream().map(item -> new ItemDoNovoPedido(item.getProdutoId(), item.getQuantidade())).collect(Collectors.toList())
+            this.itens.stream().map(item -> new ItemDoComandoDeNovoPedido(item.getProdutoId(), item.getQuantidade())).collect(Collectors.toList())
         );
     }
 }

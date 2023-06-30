@@ -1,8 +1,8 @@
 package br.com.fiap.soat.techChallenge.core.ports.driver;
 
-import br.com.fiap.soat.techChallenge.core.domain.NovoPedido;
-import br.com.fiap.soat.techChallenge.core.domain.PedidoProcessado;
+import br.com.fiap.soat.techChallenge.core.model.ComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.domain.Pedido;
 
 public interface FazerPedidoUseCasePort {
-    PedidoProcessado execute(NovoPedido novoPedido);
+    Pedido execute(ComandoDeNovoPedido comandoDeNovoPedido);
 }

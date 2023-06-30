@@ -1,25 +1,38 @@
 package br.com.fiap.soat.techChallenge.core.usecases;
 
-import br.com.fiap.soat.techChallenge.core.domain.NovoPedido;
-import br.com.fiap.soat.techChallenge.core.domain.PedidoProcessado;
+import br.com.fiap.soat.techChallenge.core.domain.ItemDoPedido;
+import br.com.fiap.soat.techChallenge.core.domain.Pedido;
+import br.com.fiap.soat.techChallenge.core.domain.StatusDoPedido;
+import br.com.fiap.soat.techChallenge.core.model.ComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.model.ItemDoComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.ports.driven.PedidoRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.ports.driver.FazerPedidoUseCasePort;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Component
 public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
+    private PedidoRepositoryPort pedidoRepositoryPort;
+
+    public FazerPedidoUseCase(PedidoRepositoryPort pedidoRepositoryPort) {
+        this.pedidoRepositoryPort = pedidoRepositoryPort;
+    }
 
     @Override
-    public PedidoProcessado execute(NovoPedido novoPedido) {
-        PedidoProcessado pedidoProcessado = new PedidoProcessado();
+    public Pedido execute(ComandoDeNovoPedido comandoDeNovoPedido) {
+        Pedido pedido = new Pedido();
 
-        // TODO: fazer integração com produtos
+        for (ItemDoComandoDeNovoPedido itemSolicitado : comandoDeNovoPedido.getItens()) {
+            // TODO: pesquisar item na base de dados
+            ItemDoPedido item = new ItemDoPedido(UUID.randomUUID(), "item fake", "descricao fake", 1, new BigDecimal(10));
 
-        pedidoProcessado.setId(UUID.randomUUID());
-        pedidoProcessado.setValor(new BigDecimal("25.00"));
+            pedido.adicionarItem(item);
+        }
 
-        return pedidoProcessado;
+        pedido.setStatus(StatusDoPedido.PAGAMENTO_PENDENTE);
+
+        pedidoRepositoryPort.inserirPedido(pedido);
+
+        return pedido;
     }
 }

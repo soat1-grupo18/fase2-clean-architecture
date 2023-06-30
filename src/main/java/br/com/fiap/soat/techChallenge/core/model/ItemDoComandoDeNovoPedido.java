@@ -1,12 +1,12 @@
-package br.com.fiap.soat.techChallenge.core.domain;
+package br.com.fiap.soat.techChallenge.core.model;
 
 import java.util.UUID;
 
-public class ItemDoNovoPedido {
+public class ItemDoComandoDeNovoPedido {
     private UUID produtoId;
     private int quantidade;
 
-    public ItemDoNovoPedido(UUID produtoId, int quantidade) {
+    public ItemDoComandoDeNovoPedido(UUID produtoId, int quantidade) {
         this.produtoId = produtoId;
         this.quantidade = quantidade;
     }
