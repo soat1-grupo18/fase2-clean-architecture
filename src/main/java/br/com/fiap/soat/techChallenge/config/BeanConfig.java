@@ -2,19 +2,21 @@ package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.CadastraClienteAdapter;
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.CadastraProdutoAdapter;
-
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaClienteAdapter;
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaProdutoAdapter;
 
+import br.com.fiap.soat.techChallenge.core.ports.driven.PedidoRepositoryPort;
+
 import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraProdutoUseCasePort;
-
+import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.driver.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaProdutoUseCasePort;
 
 import br.com.fiap.soat.techChallenge.core.usecases.CadastraClienteUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.CadastraProdutoUseCase;
-
+import br.com.fiap.soat.techChallenge.core.usecases.FazerPedidoUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.IdentificaClienteUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.IdentificaProdutoUseCase;
 
@@ -42,5 +44,10 @@ public class BeanConfig {
     @Bean
     public IdentificaProdutoUseCasePort identificaProdutoUseCasePort(IdentificaProdutoAdapter identificaProdutoAdapter) {
         return new IdentificaProdutoUseCase(identificaProdutoAdapter);
+    }
+
+    @Bean
+    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort) {
+        return new FazerPedidoUseCase(pedidoRepositoryPort);
     }
 }
