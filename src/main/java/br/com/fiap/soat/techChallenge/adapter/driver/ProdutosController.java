@@ -25,7 +25,7 @@ public class ProdutosController {
     }
 
     @GetMapping("/{categoria}")
-    public ResponseEntity<Object> identificaProduto(@PathVariable String categoria) {
+    public ResponseEntity<Object> identificaProduto(@PathVariable Produto.TipoDeProduto categoria) {
         List<Produto> produtos = identificaProdutoUseCase.execute(categoria);
 
         if (produtos.isEmpty()) {

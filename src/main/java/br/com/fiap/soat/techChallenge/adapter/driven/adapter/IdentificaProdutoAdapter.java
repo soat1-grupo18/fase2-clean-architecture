@@ -17,7 +17,7 @@ public class IdentificaProdutoAdapter implements IdentificaProdutoAdapterPort {
     }
 
     @Override
-    public List<Produto> identificaPor(String categoria) {
+    public List<Produto> identificaPor(Produto.TipoDeProduto categoria) {
         var produtos = produtoRepository.findByCategoria(categoria);
         if (produtos.isEmpty()) {
             return Collections.emptyList();
