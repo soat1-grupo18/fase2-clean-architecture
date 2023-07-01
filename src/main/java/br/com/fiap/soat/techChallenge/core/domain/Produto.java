@@ -5,13 +5,16 @@ import java.util.UUID;
 
 public class Produto {
     public static Produto toDomain(ProdutoEntity produtoEntity) {
+        UUID id = produtoEntity.getId();
         String nome = produtoEntity.getNome();
         TipoDeProduto categoria = produtoEntity.getCategoria();
         Float preço = produtoEntity.getPreço();
         String descrição = produtoEntity.getDescrição();
         String imagem = produtoEntity.getImagem();
 
-        return new Produto(nome, categoria, preço, descrição, imagem);
+        Produto produto = new Produto(id, nome, categoria, preço, descrição, imagem);
+
+        return produto;
     }
 
     public enum TipoDeProduto {
@@ -28,7 +31,8 @@ public class Produto {
     private String descrição;
     private String imagem;
 
-    public Produto(String nome, TipoDeProduto categoria, Float preço, String descrição, String imagem) {
+    public Produto(UUID id, String nome, TipoDeProduto categoria, Float preço, String descrição, String imagem) {
+        this.id = id;
         this.nome = nome;
         this.categoria = categoria;
         this.preço = preço;

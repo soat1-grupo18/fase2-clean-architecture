@@ -14,7 +14,7 @@ public class IdentificaProdutoUseCase implements IdentificaProdutoUseCasePort {
     }
 
     @Override
-    public List<Produto> execute(String categoria) {
+    public List<Produto> execute(Produto.TipoDeProduto categoria) {
         return identificaProdutoAdapterPort.identificaPor(categoria);
     }
 }

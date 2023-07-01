@@ -18,7 +18,7 @@ public class ProdutoEntity {
     private String imagem;
 
     public Produto toDomain() {
-        return new Produto(nome, categoria, preço, descrição, imagem);
+        return new Produto(id, nome, categoria, preço, descrição, imagem);
     }
 
     public UUID getId() {

@@ -16,7 +16,7 @@ public class CadastraProdutoRequest {
     private String imagem;
 
     public Produto toDomain() {
-        return new Produto(nome, categoria, preço, descrição, imagem);
+        return new Produto(null, nome, categoria, preço, descrição, imagem);
     }
     public String getNome() {
         return nome;
