@@ -20,12 +20,15 @@ public class CadastraProdutoAdapter implements CadastraProdutoAdapterPort {
     public Produto cadastra (Produto produto) {
         ProdutoEntity produtoEntity = new ProdutoEntity();
 
-        produto.setNome(produto.getNome());
-        produto.setCategoria(produto.getCategoria());
-        produto.setPreço(produto.getPreço());
-        produto.setDescrição(produto.getDescrição());
-        produto.setImagem(produto.getImagem());
-        produto.setId(produtoRepository.save(produtoEntity).getId());
+        produtoEntity.setNome(produto.getNome());
+        produtoEntity.setCategoria(produto.getCategoria());
+        produtoEntity.setPreço(produto.getPreço());
+        produtoEntity.setDescrição(produto.getDescrição());
+        produtoEntity.setImagem(produto.getImagem());
+
+        produtoRepository.save(produtoEntity);
+
+        produto.setId(produtoEntity.getId());
 
         return produto;
     }
