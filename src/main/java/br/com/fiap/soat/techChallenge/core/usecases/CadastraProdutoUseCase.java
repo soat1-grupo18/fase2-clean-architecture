@@ -1,17 +1,17 @@
 package br.com.fiap.soat.techChallenge.core.usecases;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
-import br.com.fiap.soat.techChallenge.core.ports.driven.CadastraProdutoAdapterPort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
 
 public class CadastraProdutoUseCase implements CadastraProdutoUseCasePort {
-    private final CadastraProdutoAdapterPort cadastraProdutoAdapterPort;
+    private final ProdutoRepositoryPort produtoRepositoryPort;
 
-    public CadastraProdutoUseCase(CadastraProdutoAdapterPort cadastraProdutoAdapterPort) {
-        this.cadastraProdutoAdapterPort = cadastraProdutoAdapterPort;
+    public CadastraProdutoUseCase(ProdutoRepositoryPort produtoRepositoryPort) {
+        this.produtoRepositoryPort = produtoRepositoryPort;
     }
 
     @Override
     public Produto execute(Produto produto) {
-        return cadastraProdutoAdapterPort.cadastra(produto);
+        return produtoRepositoryPort.cadastra(produto);
     }
 }

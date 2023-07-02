@@ -1,20 +1,20 @@
 package br.com.fiap.soat.techChallenge.core.usecases;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
-import br.com.fiap.soat.techChallenge.core.ports.driven.IdentificaProdutoAdapterPort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificaProdutoUseCasePort;
 
 import java.util.List;
 
 public class IdentificaProdutoUseCase implements IdentificaProdutoUseCasePort {
-    private final IdentificaProdutoAdapterPort identificaProdutoAdapterPort;
+    private final ProdutoRepositoryPort produtoRepositoryPort;
 
-    public IdentificaProdutoUseCase(IdentificaProdutoAdapterPort identificaProdutoAdapterPort) {
+    public IdentificaProdutoUseCase(ProdutoRepositoryPort produtoRepositoryPort) {
 
-        this.identificaProdutoAdapterPort = identificaProdutoAdapterPort;
+        this.produtoRepositoryPort = produtoRepositoryPort;
     }
 
     @Override
     public List<Produto> execute(Produto.TipoDeProduto categoria) {
-        return identificaProdutoAdapterPort.identificaPor(categoria);
+        return produtoRepositoryPort.identificaPor(categoria);
     }
 }

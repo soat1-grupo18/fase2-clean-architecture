@@ -1,18 +1,18 @@
 package br.com.fiap.soat.techChallenge.core.usecases;
 
 import br.com.fiap.soat.techChallenge.core.domain.Cliente;
-import br.com.fiap.soat.techChallenge.core.ports.driven.CadastraClienteAdapterPort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ClienteRepositoryPort;
 
 public class CadastraClienteUseCase implements CadastraClienteUseCasePort {
-    private final CadastraClienteAdapterPort cadastraClienteAdapterPort;
+    private final ClienteRepositoryPort clienteRepositoryPort;
 
-    public CadastraClienteUseCase(CadastraClienteAdapterPort cadastraClienteAdapterPort) {
-        this.cadastraClienteAdapterPort = cadastraClienteAdapterPort;
+    public CadastraClienteUseCase(ClienteRepositoryPort clienteRepositoryPort) {
+        this.clienteRepositoryPort = clienteRepositoryPort;
     }
 
     @Override
     public Cliente execute(Cliente cliente) {
-        return cadastraClienteAdapterPort.cadastra(cliente);
+        return clienteRepositoryPort.cadastra(cliente);
     }
 }
