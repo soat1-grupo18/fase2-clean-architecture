@@ -7,9 +7,18 @@ import java.util.UUID;
 
 public class Pedido {
     private UUID id;
+    private UUID clienteId;
     private BigDecimal preco;
     private StatusDoPedido status;
     private List<ItemDoPedido> itens;
+
+    public Pedido(UUID id, UUID clienteId, BigDecimal preco, StatusDoPedido status, List<ItemDoPedido> itens) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.preco = preco;
+        this.status = status;
+        this.itens = itens;
+    }
 
     public Pedido() {
         this.preco = BigDecimal.ZERO;
@@ -22,6 +31,14 @@ public class Pedido {
 
     public UUID getId() {
         return id;
+    }
+
+    public UUID getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(UUID clienteId) {
+        this.clienteId = clienteId;
     }
 
     public void adicionarItem(ItemDoPedido item) {

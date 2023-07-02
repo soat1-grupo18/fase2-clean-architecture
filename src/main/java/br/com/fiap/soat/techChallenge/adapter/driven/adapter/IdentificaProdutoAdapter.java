@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -26,5 +28,10 @@ public class IdentificaProdutoAdapter implements IdentificaProdutoAdapterPort {
         return produtos.stream()
                 .map(Produto::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Produto> identificaPorId(UUID id) {
+        return produtoRepository.findById(id).map(Produto::toDomain);
     }
 }
