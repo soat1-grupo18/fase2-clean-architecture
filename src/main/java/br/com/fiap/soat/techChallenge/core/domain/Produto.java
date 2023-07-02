@@ -1,5 +1,5 @@
 package br.com.fiap.soat.techChallenge.core.domain;
-import br.com.fiap.soat.techChallenge.adapter.driven.entities.ProdutoEntity;
+import br.com.fiap.soat.techChallenge.adapter.outbound.entities.ProdutoEntity;
 
 import java.util.UUID;
 

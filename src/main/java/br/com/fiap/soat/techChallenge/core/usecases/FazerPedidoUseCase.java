@@ -5,22 +5,21 @@ import br.com.fiap.soat.techChallenge.core.domain.Pedido;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import br.com.fiap.soat.techChallenge.core.domain.StatusDoPedido;
 import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.core.ports.driven.IdentificaProdutoAdapterPort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.usecases.models.ComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.core.usecases.models.ItemDoComandoDeNovoPedido;
-import br.com.fiap.soat.techChallenge.core.ports.driven.PedidoRepositoryPort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.PedidoRepositoryPort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.FazerPedidoUseCasePort;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
     private PedidoRepositoryPort pedidoRepositoryPort;
-    private IdentificaProdutoAdapterPort identificaProdutoAdapterPort;
+    private ProdutoRepositoryPort produtoRepositoryPort;
 
-    public FazerPedidoUseCase(PedidoRepositoryPort pedidoRepositoryPort, IdentificaProdutoAdapterPort identificaProdutoAdapterPort) {
+    public FazerPedidoUseCase(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort) {
         this.pedidoRepositoryPort = pedidoRepositoryPort;
-        this.identificaProdutoAdapterPort = identificaProdutoAdapterPort;
+        this.produtoRepositoryPort = produtoRepositoryPort;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
         pedido.setStatus(StatusDoPedido.PAGAMENTO_PENDENTE);
 
         for (ItemDoComandoDeNovoPedido itemSolicitado : comandoDeNovoPedido.getItens()) {
-            Produto produto = identificaProdutoAdapterPort.identificaPorId(itemSolicitado.getProdutoId()).orElseThrow(() -> new ProdutoNaoEncontradoException());
+            Produto produto = produtoRepositoryPort.identificaPorId(itemSolicitado.getProdutoId()).orElseThrow(() -> new ProdutoNaoEncontradoException());
 
             ItemDoPedido item = new ItemDoPedido(
                     null,

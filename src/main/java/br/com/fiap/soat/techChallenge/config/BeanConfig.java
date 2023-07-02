@@ -1,19 +1,16 @@
 package br.com.fiap.soat.techChallenge.config;
 
-import br.com.fiap.soat.techChallenge.adapter.driven.adapter.CadastraClienteAdapter;
-import br.com.fiap.soat.techChallenge.adapter.driven.adapter.CadastraProdutoAdapter;
-import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaClienteAdapter;
-import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaProdutoAdapter;
+import br.com.fiap.soat.techChallenge.adapter.outbound.adapter.ClienteRepositoryAdapter;
+import br.com.fiap.soat.techChallenge.adapter.outbound.adapter.ProdutoRepositoryAdapter;
 
-import br.com.fiap.soat.techChallenge.core.ports.driven.IdentificaProdutoAdapterPort;
-import br.com.fiap.soat.techChallenge.core.ports.driven.PedidoRepositoryPort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ClienteRepositoryPort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.core.ports.outbound.PedidoRepositoryPort;
 
-import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.FazerPedidoUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.driver.IdentificaProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificaClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificaProdutoUseCasePort;
 
 import br.com.fiap.soat.techChallenge.core.usecases.CadastraClienteUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.CadastraProdutoUseCase;
@@ -28,27 +25,27 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfig {
 
     @Bean
-    public CadastraClienteUseCasePort cadastraClienteUseCasePort(CadastraClienteAdapter cadastraClienteAdapter) {
-        return new CadastraClienteUseCase(cadastraClienteAdapter);
+    public CadastraClienteUseCasePort cadastraClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+        return new CadastraClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public IdentificaClienteUseCasePort identificaClienteUseCasePort(IdentificaClienteAdapter identificaClienteAdapter) {
-        return new IdentificaClienteUseCase(identificaClienteAdapter);
+    public IdentificaClienteUseCasePort identificaClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+        return new IdentificaClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public CadastraProdutoUseCase cadastraProdutoUseCasePort(CadastraProdutoAdapter cadastraProdutoAdapter) {
-        return new CadastraProdutoUseCase(cadastraProdutoAdapter);
+    public CadastraProdutoUseCase cadastraProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+        return new CadastraProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public IdentificaProdutoUseCasePort identificaProdutoUseCasePort(IdentificaProdutoAdapter identificaProdutoAdapter) {
-        return new IdentificaProdutoUseCase(identificaProdutoAdapter);
+    public IdentificaProdutoUseCasePort identificaProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+        return new IdentificaProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, IdentificaProdutoAdapterPort identificaProdutoAdapterPort) {
-        return new FazerPedidoUseCase(pedidoRepositoryPort, identificaProdutoAdapterPort);
+    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort) {
+        return new FazerPedidoUseCase(pedidoRepositoryPort, produtoRepositoryPort);
     }
 }
