@@ -75,7 +75,7 @@ public class PedidoEntity {
     public static PedidoEntity fromDomain(Pedido pedido) {
         PedidoEntity pedidoEntity = new PedidoEntity();
 
-        pedido.setId(pedidoEntity.getId());
+        pedidoEntity.setId(pedido.getId());
         pedidoEntity.setClienteId(pedido.getClienteId());
         pedidoEntity.setPreco(pedido.getPreco());
         pedidoEntity.setStatus(pedido.getStatus());
