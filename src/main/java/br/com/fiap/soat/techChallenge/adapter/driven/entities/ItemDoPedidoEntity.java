@@ -100,6 +100,7 @@ public class ItemDoPedidoEntity {
     public static ItemDoPedidoEntity fromDomain(ItemDoPedido itemDoPedido) {
         ItemDoPedidoEntity itemEntity = new ItemDoPedidoEntity();
 
+        itemEntity.setId(itemDoPedido.getId());
         itemEntity.setNome(itemDoPedido.getNome());
         itemEntity.setDescricao(itemDoPedido.getDescricao());
         itemEntity.setCategoria(itemDoPedido.getCategoria());
