@@ -24,7 +24,7 @@ public class PedidoController {
         try {
             Pedido pedido = fazerPedidoUseCasePort.execute(pedidoRequest.toDomain());
 
-            PedidoResponse response = new PedidoResponse(pedido.getId(), pedido.getPreco(), pedido.getStatus());
+            PedidoResponse response = PedidoResponse.fromDomain(pedido);
 
             return ResponseEntity.ok(response);
         }
