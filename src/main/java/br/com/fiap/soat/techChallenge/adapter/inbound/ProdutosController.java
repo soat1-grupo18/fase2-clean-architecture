@@ -3,7 +3,7 @@ import br.com.fiap.soat.techChallenge.adapter.inbound.request.CadastraProdutoReq
 import br.com.fiap.soat.techChallenge.adapter.inbound.response.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificaProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/produtos")
 public class ProdutosController {
 
-    private final IdentificaProdutoUseCasePort identificaProdutoUseCase;
+    private final ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase;
     private final CadastraProdutoUseCasePort cadastraProdutoUseCase;
 
-    public ProdutosController(CadastraProdutoUseCasePort cadastraProdutoUseCase, IdentificaProdutoUseCasePort identificaProdutoUseCase) {
+    public ProdutosController(CadastraProdutoUseCasePort cadastraProdutoUseCase, ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
         this.cadastraProdutoUseCase = cadastraProdutoUseCase;
-        this.identificaProdutoUseCase = identificaProdutoUseCase;
+        this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
     }
 
     @GetMapping("/{categoria}")
-    public ResponseEntity<Object> identificaProduto(@PathVariable Produto.TipoDeProduto categoria) {
-        List<Produto> produtos = identificaProdutoUseCase.execute(categoria);
+    public ResponseEntity<Object> obterProdutosPorCategoria(@PathVariable Produto.TipoDeProduto categoria) {
+        List<Produto> produtos = obterProdutosPorCategoriaUseCase.execute(categoria);
 
         if (produtos.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foram encontrados produtos nessa categoria.");

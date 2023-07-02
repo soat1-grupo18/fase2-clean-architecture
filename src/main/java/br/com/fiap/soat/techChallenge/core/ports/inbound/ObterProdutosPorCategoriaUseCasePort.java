@@ -3,6 +3,6 @@ import br.com.fiap.soat.techChallenge.core.domain.Produto;
 
 import java.util.List;
 
-public interface IdentificaProdutoUseCasePort {
+public interface ObterProdutosPorCategoriaUseCasePort {
     List<Produto> execute(Produto.TipoDeProduto categoria);
 }

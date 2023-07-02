@@ -39,7 +39,7 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     }
 
     @Override
-    public List<Produto> identificaPor(Produto.TipoDeProduto categoria) {
+    public List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria) {
         var produtos = produtoJpaRepository.findByCategoria(categoria);
         if (produtos.isEmpty()) {
             return Collections.emptyList();

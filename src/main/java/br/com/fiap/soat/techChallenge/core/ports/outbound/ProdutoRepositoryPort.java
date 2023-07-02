@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface ProdutoRepositoryPort {
     Produto cadastra(Produto produto);
-    List<Produto> identificaPor(Produto.TipoDeProduto categoria);
+    List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria);
     Optional<Produto> identificaPorId(UUID id);
 }
