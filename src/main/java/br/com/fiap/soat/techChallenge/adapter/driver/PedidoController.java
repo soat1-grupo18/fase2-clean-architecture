@@ -3,6 +3,7 @@ package br.com.fiap.soat.techChallenge.adapter.driver;
 import br.com.fiap.soat.techChallenge.adapter.driver.request.PedidoRequest;
 import br.com.fiap.soat.techChallenge.adapter.driver.response.PedidoResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Pedido;
+import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.core.ports.driver.FazerPedidoUseCasePort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +21,15 @@ public class PedidoController {
 
     @PostMapping("/pedidos")
     public ResponseEntity<PedidoResponse> checkout(@RequestBody PedidoRequest pedidoRequest) {
-        Pedido pedido = fazerPedidoUseCasePort.execute(pedidoRequest.toDomain());
+        try {
+            Pedido pedido = fazerPedidoUseCasePort.execute(pedidoRequest.toDomain());
 
-        PedidoResponse response = new PedidoResponse(pedido.getId(), pedido.getPreco(), pedido.getStatus());
+            PedidoResponse response = new PedidoResponse(pedido.getId(), pedido.getPreco(), pedido.getStatus());
 
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
+        }
+        catch (ProdutoNaoEncontradoException ex) {
+            return  ResponseEntity.badRequest().build();
+        }
     }
 }

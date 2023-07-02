@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.core.model;
+package br.com.fiap.soat.techChallenge.core.usecases.models;
 
 import java.util.List;
 import java.util.UUID;

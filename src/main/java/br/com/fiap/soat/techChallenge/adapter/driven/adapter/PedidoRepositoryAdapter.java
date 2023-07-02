@@ -20,24 +20,11 @@ public class PedidoRepositoryAdapter implements PedidoRepositoryPort {
 
     @Override
     @Transactional
-    public void inserirPedido(Pedido pedido) {
-        PedidoEntity pedidoEntity = new PedidoEntity();
-
-        pedidoEntity.setPreco(pedido.getPreco());
-        pedidoEntity.setStatus(pedido.getStatus());
-        pedidoEntity.setItens(pedido.getItens().stream().map(item -> {
-            ItemDoPedidoEntity itemEntity = new ItemDoPedidoEntity();
-
-            itemEntity.setNome(item.getNome());
-            itemEntity.setDescricao(item.getDescricao());
-            itemEntity.setQuantidade(item.getQuantidade());
-            itemEntity.setPrecoUnitario(item.getPrecoUnitario());
-
-            return itemEntity;
-        }).collect(Collectors.toList()));
+    public Pedido inserirPedido(Pedido pedido) {
+        PedidoEntity pedidoEntity = PedidoEntity.fromDomain(pedido);
 
         pedidoRepository.save(pedidoEntity);
 
-        pedido.setId(pedidoEntity.getId());
+        return pedidoEntity.toDomain();
     }
 }

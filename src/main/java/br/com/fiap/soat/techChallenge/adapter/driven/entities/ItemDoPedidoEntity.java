@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.adapter.driven.entities;
 
+import br.com.fiap.soat.techChallenge.core.domain.ItemDoPedido;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -13,8 +14,12 @@ public class ItemDoPedidoEntity {
     private UUID id;
     private String nome;
     private String descricao;
+    private String categoria;
+    private String imagem;
     private int quantidade;
     private BigDecimal precoUnitario;
+    @ManyToOne
+    private PedidoEntity pedido;
 
     public UUID getId() {
         return id;
@@ -40,6 +45,22 @@ public class ItemDoPedidoEntity {
         this.descricao = descricao;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
     public int getQuantidade() {
         return quantidade;
     }
@@ -54,5 +75,38 @@ public class ItemDoPedidoEntity {
 
     public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
+    }
+
+    public PedidoEntity getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoEntity pedido) {
+        this.pedido = pedido;
+    }
+
+    public ItemDoPedido toDomain() {
+        return new ItemDoPedido(
+            id,
+            nome,
+            descricao,
+            categoria,
+            imagem,
+            quantidade,
+            precoUnitario
+        );
+    }
+
+    public static ItemDoPedidoEntity fromDomain(ItemDoPedido itemDoPedido) {
+        ItemDoPedidoEntity itemEntity = new ItemDoPedidoEntity();
+
+        itemEntity.setNome(itemDoPedido.getNome());
+        itemEntity.setDescricao(itemDoPedido.getDescricao());
+        itemEntity.setCategoria(itemDoPedido.getCategoria());
+        itemEntity.setImagem(itemDoPedido.getImagem());
+        itemEntity.setQuantidade(itemDoPedido.getQuantidade());
+        itemEntity.setPrecoUnitario(itemDoPedido.getPrecoUnitario());
+
+        return itemEntity;
     }
 }

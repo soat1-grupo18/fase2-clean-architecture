@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.adapter.driver.request;
 
-import br.com.fiap.soat.techChallenge.core.model.ItemDoComandoDeNovoPedido;
-import br.com.fiap.soat.techChallenge.core.model.ComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.usecases.models.ItemDoComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.core.usecases.models.ComandoDeNovoPedido;
 
 import java.util.List;
 import java.util.UUID;

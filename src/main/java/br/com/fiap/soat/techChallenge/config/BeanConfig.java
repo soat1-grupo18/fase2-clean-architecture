@@ -5,6 +5,7 @@ import br.com.fiap.soat.techChallenge.adapter.driven.adapter.CadastraProdutoAdap
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaClienteAdapter;
 import br.com.fiap.soat.techChallenge.adapter.driven.adapter.IdentificaProdutoAdapter;
 
+import br.com.fiap.soat.techChallenge.core.ports.driven.IdentificaProdutoAdapterPort;
 import br.com.fiap.soat.techChallenge.core.ports.driven.PedidoRepositoryPort;
 
 import br.com.fiap.soat.techChallenge.core.ports.driver.CadastraClienteUseCasePort;
@@ -47,7 +48,7 @@ public class BeanConfig {
     }
 
     @Bean
-    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort) {
-        return new FazerPedidoUseCase(pedidoRepositoryPort);
+    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, IdentificaProdutoAdapterPort identificaProdutoAdapterPort) {
+        return new FazerPedidoUseCase(pedidoRepositoryPort, identificaProdutoAdapterPort);
     }
 }

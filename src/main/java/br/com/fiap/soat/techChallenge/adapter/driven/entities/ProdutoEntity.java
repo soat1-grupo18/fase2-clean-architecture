@@ -1,4 +1,5 @@
 package br.com.fiap.soat.techChallenge.adapter.driven.entities;
+import br.com.fiap.soat.techChallenge.core.domain.Pedido;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import jakarta.persistence.*;
 
