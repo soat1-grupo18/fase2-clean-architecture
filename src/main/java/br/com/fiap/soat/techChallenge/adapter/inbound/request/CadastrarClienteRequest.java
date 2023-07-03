@@ -3,7 +3,7 @@ package br.com.fiap.soat.techChallenge.adapter.inbound.request;
 import br.com.fiap.soat.techChallenge.core.domain.Cliente;
 import jakarta.validation.constraints.NotNull;
 
-public class CadastraClienteRequest {
+public class CadastrarClienteRequest {
 
     @NotNull(message = "O campo Nome é obrigatório.")
     private String nome;

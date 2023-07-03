@@ -1,8 +1,8 @@
 package br.com.fiap.soat.techChallenge.adapter.inbound;
-import br.com.fiap.soat.techChallenge.adapter.inbound.request.CadastraProdutoRequest;
+import br.com.fiap.soat.techChallenge.adapter.inbound.request.CadastrarProdutoRequest;
 import br.com.fiap.soat.techChallenge.adapter.inbound.response.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
-public class ProdutosController {
+public class ProdutoController {
 
     private final ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase;
-    private final CadastraProdutoUseCasePort cadastraProdutoUseCase;
+    private final CadastrarProdutoUseCasePort cadastrarProdutoUseCase;
 
-    public ProdutosController(CadastraProdutoUseCasePort cadastraProdutoUseCase, ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
-        this.cadastraProdutoUseCase = cadastraProdutoUseCase;
+    public ProdutoController(CadastrarProdutoUseCasePort cadastrarProdutoUseCase, ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
+        this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
         this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
     }
 
@@ -36,7 +36,7 @@ public class ProdutosController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ProdutoResponse> cadastraProduto(@Valid @RequestBody CadastraProdutoRequest cadastraProdutoRequest) {
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(cadastraProdutoUseCase.execute(cadastraProdutoRequest.toDomain())));
+    public ResponseEntity<ProdutoResponse> cadastrarProduto(@Valid @RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(cadastrarProdutoUseCase.execute(cadastrarProdutoRequest.toDomain())));
     }
 }

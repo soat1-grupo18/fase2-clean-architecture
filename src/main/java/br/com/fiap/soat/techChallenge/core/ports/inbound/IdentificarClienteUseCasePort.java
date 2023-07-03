@@ -4,6 +4,6 @@ import br.com.fiap.soat.techChallenge.core.domain.Cliente;
 
 import java.util.Optional;
 
-public interface IdentificaClienteUseCasePort {
+public interface IdentificarClienteUseCasePort {
     Optional<Cliente> execute(String cpf);
 }

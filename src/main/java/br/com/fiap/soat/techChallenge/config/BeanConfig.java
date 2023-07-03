@@ -4,15 +4,15 @@ import br.com.fiap.soat.techChallenge.core.ports.outbound.ClienteRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.PedidoRepositoryPort;
 
-import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastraClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.FazerPedidoUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificaClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 
-import br.com.fiap.soat.techChallenge.core.usecases.CadastraClienteUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.CadastraProdutoUseCase;
+import br.com.fiap.soat.techChallenge.core.usecases.CadastrarClienteUseCase;
+import br.com.fiap.soat.techChallenge.core.usecases.CadastrarProdutoUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.FazerPedidoUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.IdentificaClienteUseCase;
+import br.com.fiap.soat.techChallenge.core.usecases.IdentificarClienteUseCase;
 import br.com.fiap.soat.techChallenge.core.usecases.ObterProdutosPorCategoriaUseCase;
 
 import org.springframework.context.annotation.Bean;
@@ -22,22 +22,22 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfig {
 
     @Bean
-    public CadastraClienteUseCasePort cadastraClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
-        return new CadastraClienteUseCase(clienteRepositoryPort);
+    public CadastrarClienteUseCasePort cadastrarClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+        return new CadastrarClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public IdentificaClienteUseCasePort identificaClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
-        return new IdentificaClienteUseCase(clienteRepositoryPort);
+    public IdentificarClienteUseCasePort identificarClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+        return new IdentificarClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public CadastraProdutoUseCase cadastraProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
-        return new CadastraProdutoUseCase(produtoRepositoryPort);
+    public CadastrarProdutoUseCase cadastrarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+        return new CadastrarProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public ObterProdutosPorCategoriaUseCasePort identificaProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+    public ObterProdutosPorCategoriaUseCasePort identificarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
         return new ObterProdutosPorCategoriaUseCase(produtoRepositoryPort);
     }
 
