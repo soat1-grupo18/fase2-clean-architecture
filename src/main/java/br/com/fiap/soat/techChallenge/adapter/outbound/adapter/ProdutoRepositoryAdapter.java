@@ -46,12 +46,12 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
         }
 
         return produtos.stream()
-                .map(Produto::toDomain)
+                .map(Produto.ProdutoMapper::fromEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Produto> identificaPorId(UUID id) {
-        return produtoJpaRepository.findById(id).map(Produto::toDomain);
+        return produtoJpaRepository.findById(id).map(Produto.ProdutoMapper::fromEntity);
     }
 }

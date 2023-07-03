@@ -4,19 +4,11 @@ import br.com.fiap.soat.techChallenge.adapter.outbound.entities.ProdutoEntity;
 import java.util.UUID;
 
 public class Produto {
-    public static Produto toDomain(ProdutoEntity produtoEntity) {
-        UUID id = produtoEntity.getId();
-        String nome = produtoEntity.getNome();
-        TipoDeProduto categoria = produtoEntity.getCategoria();
-        Float preço = produtoEntity.getPreço();
-        String descrição = produtoEntity.getDescrição();
-        String imagem = produtoEntity.getImagem();
-
-        Produto produto = new Produto(id, nome, categoria, preço, descrição, imagem);
-
-        return produto;
+    public class ProdutoMapper {
+        public static Produto fromEntity(ProdutoEntity entity) {
+            return new Produto(entity.getId(), entity.getNome(), entity.getCategoria(), entity.getPreço(), entity.getDescrição(), entity.getImagem());
+        }
     }
-
     public enum TipoDeProduto {
         LANCHE,
         ACOMPANHAMENTO,
