@@ -10,13 +10,13 @@ public class CadastraProdutoRequest {
     private Produto.TipoDeProduto categoria;
 
     @NotNull(message = "O campo Preço é obrigatório.")
-    private Float preço;
+    private Float preco;
 
-    private String descrição;
+    private String descricao;
     private String imagem;
 
     public Produto toDomain() {
-        return new Produto(null, nome, categoria, preço, descrição, imagem);
+        return new Produto(null, nome, categoria, preco, descricao, imagem);
     }
     public String getNome() {
         return nome;
@@ -24,11 +24,11 @@ public class CadastraProdutoRequest {
     public Produto.TipoDeProduto getCategoria() {
         return categoria;
     }
-    public Float getPreço() {
-        return preço;
+    public Float getPreco() {
+        return preco;
     }
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
     public String getImagem() {
         return imagem;
@@ -37,14 +37,14 @@ public class CadastraProdutoRequest {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-    public void setPreço(Float preço) {
-        this.preço = preço;
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
     public void setCategoria(Produto.TipoDeProduto categoria) {
         this.categoria = categoria;

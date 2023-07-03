@@ -6,22 +6,22 @@ import java.util.UUID;
 public class ProdutoResponse {
     private UUID id;
     private String nome;
-    private String descrição;
+    private String descricao;
     private String imagem;
-    private Float preço;
+    private Float preco;
     private Produto.TipoDeProduto categoria;
 
-    public ProdutoResponse(UUID id, String nome, String descrição, String imagem, Float preço, Produto.TipoDeProduto categoria) {
+    public ProdutoResponse(UUID id, String nome, String descricao, String imagem, Float preco, Produto.TipoDeProduto categoria) {
         this.id = id;
         this.nome = nome;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.imagem = imagem;
-        this.preço = preço;
+        this.preco = preco;
         this.categoria = categoria;
     }
 
     public static ProdutoResponse fromDomain(Produto produto) {
-        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescrição(), produto.getImagem(), produto.getPreço(), produto.getCategoria());
+        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getImagem(), produto.getPreco(), produto.getCategoria());
     }
 
     public UUID getId() {
@@ -40,12 +40,12 @@ public class ProdutoResponse {
         this.nome = nome;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getImagem() {
@@ -56,12 +56,12 @@ public class ProdutoResponse {
         this.imagem = imagem;
     }
 
-    public Float getPreço() {
-        return preço;
+    public Float getPreco() {
+        return preco;
     }
 
-    public void setPreço(Float preço) {
-        this.preço = preço;
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
 
     public Produto.TipoDeProduto getCategoria() {

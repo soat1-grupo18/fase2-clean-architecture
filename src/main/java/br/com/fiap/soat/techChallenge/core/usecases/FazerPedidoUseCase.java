@@ -35,11 +35,11 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
             ItemDoPedido item = new ItemDoPedido(
                     null,
                     produto.getNome(),
-                    produto.getDescrição(),
+                    produto.getDescricao(),
                     produto.getCategoria().toString(),
                     produto.getImagem(),
                     itemSolicitado.getQuantidade(),
-                    new BigDecimal(produto.getPreço())
+                    new BigDecimal(produto.getPreco())
             );
 
             pedido.adicionarItem(item);

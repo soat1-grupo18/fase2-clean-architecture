@@ -27,8 +27,8 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
 
         produtoEntity.setNome(produto.getNome());
         produtoEntity.setCategoria(produto.getCategoria());
-        produtoEntity.setPreço(produto.getPreço());
-        produtoEntity.setDescrição(produto.getDescrição());
+        produtoEntity.setPreco(produto.getPreco());
+        produtoEntity.setDescricao(produto.getDescricao());
         produtoEntity.setImagem(produto.getImagem());
 
         produtoJpaRepository.save(produtoEntity);
@@ -46,12 +46,12 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
         }
 
         return produtos.stream()
-                .map(Produto::toDomain)
+                .map(ProdutoEntity::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Produto> identificaPorId(UUID id) {
-        return produtoJpaRepository.findById(id).map(Produto::toDomain);
+        return produtoJpaRepository.findById(id).map(ProdutoEntity::toDomain);
     }
 }
