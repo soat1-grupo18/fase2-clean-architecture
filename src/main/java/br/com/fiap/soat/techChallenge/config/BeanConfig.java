@@ -38,6 +38,11 @@ public class BeanConfig {
     }
 
     @Bean
+    public ExcluirProdutoUseCase excluirProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+        return new ExcluirProdutoUseCase(produtoRepositoryPort);
+    }
+
+    @Bean
     public ObterProdutosPorCategoriaUseCasePort identificarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
         return new ObterProdutosPorCategoriaUseCase(produtoRepositoryPort);
     }

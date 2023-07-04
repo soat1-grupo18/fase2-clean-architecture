@@ -2,6 +2,7 @@ package br.com.fiap.soat.techChallenge.adapter.outbound.adapter;
 import br.com.fiap.soat.techChallenge.adapter.outbound.entities.ProdutoEntity;
 import br.com.fiap.soat.techChallenge.adapter.outbound.repositories.ProdutoJpaRepository;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
+import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
@@ -50,13 +51,22 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     }
 
     @Override
-    public Optional<Produto> editar(Produto produto) {
+    public Produto editar(Produto produto) {
         var produtoO = produtoJpaRepository.findById(produto.getId());
         if (produtoO.isEmpty()) {
-            return Optional.empty();
+            throw new ProdutoNaoEncontradoException();
         }
         ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
         produtoJpaRepository.save(produtoEntity);
-        return Optional.of(produto);
+        return produto;
+    }
+
+    @Override
+    public void excluir(UUID id) {
+        var produtoO = produtoJpaRepository.findById(id);
+        if (produtoO.isEmpty()) {
+            throw new ProdutoNaoEncontradoException();
+        }
+        produtoJpaRepository.deleteById(id);
     }
 }

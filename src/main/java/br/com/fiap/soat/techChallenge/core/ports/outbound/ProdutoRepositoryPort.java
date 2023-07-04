@@ -10,5 +10,7 @@ public interface ProdutoRepositoryPort {
     List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria);
     Optional<Produto> identificarPorId(UUID id);
 
-    Optional<Produto>  editar(Produto produto);
+    Produto editar(Produto produto);
+
+    void excluir(UUID id);
 }
