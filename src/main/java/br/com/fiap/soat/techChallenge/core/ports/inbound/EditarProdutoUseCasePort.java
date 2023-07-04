@@ -5,5 +5,5 @@ import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import java.util.Optional;
 
 public interface EditarProdutoUseCasePort {
-    Optional<Produto> execute(Produto produto);
+    Produto execute(Produto produto);
 }

@@ -3,8 +3,10 @@ import br.com.fiap.soat.techChallenge.adapter.inbound.request.CadastrarProdutoRe
 import br.com.fiap.soat.techChallenge.adapter.inbound.request.EditarProdutoRequest;
 import br.com.fiap.soat.techChallenge.adapter.inbound.response.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
+import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.EditarProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.core.ports.inbound.ExcluirProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -19,16 +21,19 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
     private final ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase;
     private final CadastrarProdutoUseCasePort cadastrarProdutoUseCase;
     private final EditarProdutoUseCasePort editarProdutoUseCase;
 
+    private final ExcluirProdutoUseCasePort excluirProdutoUseCase;
+
     public ProdutoController(CadastrarProdutoUseCasePort cadastrarProdutoUseCase,
                              EditarProdutoUseCasePort editarProdutoUseCase,
+                             ExcluirProdutoUseCasePort excluirProdutoUseCase,
                              ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
         this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
         this.editarProdutoUseCase = editarProdutoUseCase;
+        this.excluirProdutoUseCase = excluirProdutoUseCase;
         this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
     }
 
@@ -52,10 +57,21 @@ public class ProdutoController {
     public ResponseEntity<Object> editarProduto(@PathVariable(value="id") UUID id,
                                                 @Valid @RequestBody EditarProdutoRequest editarProdutoRequest) {
 
-        Optional<Produto> produtoO = editarProdutoUseCase.execute(editarProdutoRequest.toDomain());
-        if (produtoO.isEmpty()) {
+        try {
+            var produto = editarProdutoUseCase.execute(editarProdutoRequest.toDomain());
+            return ResponseEntity.ok(ProdutoResponse.fromDomain(produto));
+        } catch (ProdutoNaoEncontradoException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(produtoO.get()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> excluirProduto(@PathVariable(value="id") UUID id) {
+        try {
+            excluirProdutoUseCase.execute(id);
+            return ResponseEntity.ok("Produto excluído com sucesso.");
+        } catch (ProdutoNaoEncontradoException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
+        }
     }
 }
