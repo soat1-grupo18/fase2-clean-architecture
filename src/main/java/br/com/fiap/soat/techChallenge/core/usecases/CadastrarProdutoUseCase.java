@@ -12,6 +12,6 @@ public class CadastrarProdutoUseCase implements CadastrarProdutoUseCasePort {
 
     @Override
     public Produto execute(Produto produto) {
-        return produtoRepositoryPort.cadastra(produto);
+        return produtoRepositoryPort.cadastrar(produto);
     }
 }

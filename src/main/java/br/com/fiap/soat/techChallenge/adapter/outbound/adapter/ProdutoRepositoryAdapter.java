@@ -22,14 +22,8 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
 
     @Override
     @Transactional
-    public Produto cadastra (Produto produto) {
-        ProdutoEntity produtoEntity = new ProdutoEntity();
-
-        produtoEntity.setNome(produto.getNome());
-        produtoEntity.setCategoria(produto.getCategoria());
-        produtoEntity.setPreco(produto.getPreco());
-        produtoEntity.setDescricao(produto.getDescricao());
-        produtoEntity.setImagem(produto.getImagem());
+    public Produto cadastrar(Produto produto) {
+        ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
 
         produtoJpaRepository.save(produtoEntity);
 
@@ -51,7 +45,18 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     }
 
     @Override
-    public Optional<Produto> identificaPorId(UUID id) {
+    public Optional<Produto> identificarPorId(UUID id) {
         return produtoJpaRepository.findById(id).map(ProdutoEntity::toDomain);
+    }
+
+    @Override
+    public Optional<Produto> editar(Produto produto) {
+        var produtoO = produtoJpaRepository.findById(produto.getId());
+        if (produtoO.isEmpty()) {
+            return Optional.empty();
+        }
+        ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
+        produtoJpaRepository.save(produtoEntity);
+        return Optional.of(produto);
     }
 }

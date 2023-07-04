@@ -1,19 +1,23 @@
-package br.com.fiap.soat.techChallenge.adapter.outbound.entities;
+package br.com.fiap.soat.techChallenge.adapter.inbound.request;
+
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "produtos")
-public class ProdutoEntity {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-
+public class EditarProdutoRequest {
+    @NotNull(message = "O campo ID é obrigatório.")
     private UUID id;
+
+    @NotNull(message = "O campo Nome é obrigatório.")
     private String nome;
+
+    @NotNull(message = "O campo Categoria é obrigatório.")
     private Produto.TipoDeProduto categoria;
+
+    @NotNull(message = "O campo Preço é obrigatório.")
     private Float preco;
+
     private String descricao;
     private String imagem;
 
@@ -21,64 +25,42 @@ public class ProdutoEntity {
         return new Produto(id, nome, categoria, preco, descricao, imagem);
     }
 
-    public static ProdutoEntity fromDomain(Produto produto) {
-        ProdutoEntity produtoEntity = new ProdutoEntity();
-
-        produtoEntity.setId(produto.getId());
-        produtoEntity.setNome(produto.getNome());
-        produtoEntity.setCategoria(produto.getCategoria());
-        produtoEntity.setPreco(produto.getPreco());
-        produtoEntity.setDescricao(produto.getDescricao());
-        produtoEntity.setImagem(produto.getImagem());
-
-        return produtoEntity;
-    }
-
     public UUID getId() {
         return id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public Produto.TipoDeProduto getCategoria() {
         return categoria;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public Float getPreco() {
         return preco;
     }
-
+    public String getDescricao() {
+        return descricao;
+    }
     public String getImagem() {
         return imagem;
     }
 
+
     public void setId(UUID id) {
         this.id = id;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public void setCategoria(Produto.TipoDeProduto categoria) {
-        this.categoria = categoria;
-    }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
     public void setPreco(Float preco) {
         this.preco = preco;
     }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setCategoria(Produto.TipoDeProduto categoria) {
+        this.categoria = categoria;
     }
 }

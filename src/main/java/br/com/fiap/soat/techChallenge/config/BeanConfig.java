@@ -9,11 +9,7 @@ import br.com.fiap.soat.techChallenge.core.ports.inbound.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 
-import br.com.fiap.soat.techChallenge.core.usecases.CadastrarClienteUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.CadastrarProdutoUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.FazerPedidoUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.IdentificarClienteUseCase;
-import br.com.fiap.soat.techChallenge.core.usecases.ObterProdutosPorCategoriaUseCase;
+import br.com.fiap.soat.techChallenge.core.usecases.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +30,11 @@ public class BeanConfig {
     @Bean
     public CadastrarProdutoUseCase cadastrarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
         return new CadastrarProdutoUseCase(produtoRepositoryPort);
+    }
+
+    @Bean
+    public EditarProdutoUseCase editarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+        return new EditarProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
