@@ -1,21 +1,8 @@
 package br.com.fiap.soat.techChallenge.core.domain;
-import br.com.fiap.soat.techChallenge.adapter.outbound.entities.ProdutoEntity;
 
 import java.util.UUID;
 
 public class Produto {
-    public static Produto toDomain(ProdutoEntity produtoEntity) {
-        UUID id = produtoEntity.getId();
-        String nome = produtoEntity.getNome();
-        TipoDeProduto categoria = produtoEntity.getCategoria();
-        Float preço = produtoEntity.getPreço();
-        String descrição = produtoEntity.getDescrição();
-        String imagem = produtoEntity.getImagem();
-
-        Produto produto = new Produto(id, nome, categoria, preço, descrição, imagem);
-
-        return produto;
-    }
 
     public enum TipoDeProduto {
         LANCHE,
@@ -27,16 +14,16 @@ public class Produto {
     private UUID id;
     private String nome;
     private TipoDeProduto categoria;
-    private Float preço;
-    private String descrição;
+    private Float preco;
+    private String descricao;
     private String imagem;
 
-    public Produto(UUID id, String nome, TipoDeProduto categoria, Float preço, String descrição, String imagem) {
+    public Produto(UUID id, String nome, TipoDeProduto categoria, Float preco, String descricao, String imagem) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
-        this.preço = preço;
-        this.descrição = descrição;
+        this.preco = preco;
+        this.descricao = descricao;
         this.imagem = imagem;
     }
 
@@ -48,14 +35,14 @@ public class Produto {
         this.nome = nome;
     }
 
-    public void setPreço(Float preço) {
-        this.preço = preço;
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
 
     public void setCategoria(TipoDeProduto categoria) { this.categoria = categoria; }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public void setImagem(String imagem) {
@@ -70,16 +57,16 @@ public class Produto {
         return nome;
     }
 
-    public Float getPreço() {
-        return preço;
+    public Float getPreco() {
+        return preco;
     }
 
     public TipoDeProduto getCategoria() {
         return categoria;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
     public String getImagem() {

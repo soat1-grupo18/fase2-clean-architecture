@@ -30,16 +30,16 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
         pedido.setStatus(StatusDoPedido.PAGAMENTO_PENDENTE);
 
         for (ItemDoComandoDeNovoPedido itemSolicitado : comandoDeNovoPedido.getItens()) {
-            Produto produto = produtoRepositoryPort.identificaPorId(itemSolicitado.getProdutoId()).orElseThrow(() -> new ProdutoNaoEncontradoException());
+            Produto produto = produtoRepositoryPort.identificarPorId(itemSolicitado.getProdutoId()).orElseThrow(() -> new ProdutoNaoEncontradoException());
 
             ItemDoPedido item = new ItemDoPedido(
                     null,
                     produto.getNome(),
-                    produto.getDescrição(),
+                    produto.getDescricao(),
                     produto.getCategoria().toString(),
                     produto.getImagem(),
                     itemSolicitado.getQuantidade(),
-                    new BigDecimal(produto.getPreço())
+                    new BigDecimal(produto.getPreco())
             );
 
             pedido.adicionarItem(item);

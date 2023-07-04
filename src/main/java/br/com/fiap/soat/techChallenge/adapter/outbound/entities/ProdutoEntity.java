@@ -13,12 +13,25 @@ public class ProdutoEntity {
     private UUID id;
     private String nome;
     private Produto.TipoDeProduto categoria;
-    private Float preço;
-    private String descrição;
+    private Float preco;
+    private String descricao;
     private String imagem;
 
     public Produto toDomain() {
-        return new Produto(id, nome, categoria, preço, descrição, imagem);
+        return new Produto(id, nome, categoria, preco, descricao, imagem);
+    }
+
+    public static ProdutoEntity fromDomain(Produto produto) {
+        ProdutoEntity produtoEntity = new ProdutoEntity();
+
+        produtoEntity.setId(produto.getId());
+        produtoEntity.setNome(produto.getNome());
+        produtoEntity.setCategoria(produto.getCategoria());
+        produtoEntity.setPreco(produto.getPreco());
+        produtoEntity.setDescricao(produto.getDescricao());
+        produtoEntity.setImagem(produto.getImagem());
+
+        return produtoEntity;
     }
 
     public UUID getId() {
@@ -33,12 +46,12 @@ public class ProdutoEntity {
         return categoria;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public Float getPreço() {
-        return preço;
+    public Float getPreco() {
+        return preco;
     }
 
     public String getImagem() {
@@ -57,12 +70,12 @@ public class ProdutoEntity {
         this.categoria = categoria;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setPreço(Float preço) {
-        this.preço = preço;
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
 
     public void setImagem(String imagem) {

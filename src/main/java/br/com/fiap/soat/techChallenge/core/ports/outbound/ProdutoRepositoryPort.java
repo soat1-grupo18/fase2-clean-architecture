@@ -6,7 +6,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ProdutoRepositoryPort {
-    Produto cadastra(Produto produto);
-    List<Produto> identificaPor(Produto.TipoDeProduto categoria);
-    Optional<Produto> identificaPorId(UUID id);
+    Produto cadastrar(Produto produto);
+    List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria);
+    Optional<Produto> identificarPorId(UUID id);
+
+    Optional<Produto>  editar(Produto produto);
 }

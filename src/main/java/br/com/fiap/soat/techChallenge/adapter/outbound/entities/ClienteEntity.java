@@ -20,6 +20,16 @@ public class ClienteEntity {
         return new Cliente(id, nome, cpf, telefone);
     }
 
+    public static ClienteEntity fromDomain (Cliente cliente) {
+        ClienteEntity clienteEntity = new ClienteEntity();
+
+        clienteEntity.setNome(cliente.getNome());
+        clienteEntity.setCpf(cliente.getCpf());
+        clienteEntity.setTelefone(cliente.getTelefone());
+
+        return clienteEntity;
+    }
+
     public UUID getId() {
         return id;
     }

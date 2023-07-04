@@ -21,14 +21,8 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
     @Override
     @Transactional
     public Cliente cadastra(Cliente cliente) {
-        ClienteEntity clienteEntity = new ClienteEntity();
-
-        clienteEntity.setNome(cliente.getNome());
-        clienteEntity.setCpf(cliente.getCpf());
-        clienteEntity.setTelefone(cliente.getTelefone());
-
+        var clienteEntity = ClienteEntity.fromDomain(cliente);
         cliente.setId(clienteJpaRepository.save(clienteEntity).getId());
-
         return cliente;
     }
 
