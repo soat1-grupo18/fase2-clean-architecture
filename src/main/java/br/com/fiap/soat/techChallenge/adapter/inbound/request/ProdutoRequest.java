@@ -1,14 +1,10 @@
 package br.com.fiap.soat.techChallenge.adapter.inbound.request;
-
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
-public class EditarProdutoRequest {
-    @NotNull(message = "O campo ID é obrigatório.")
-    private UUID id;
-
+public class ProdutoRequest {
     @NotNull(message = "O campo Nome é obrigatório.")
     private String nome;
 
@@ -21,12 +17,8 @@ public class EditarProdutoRequest {
     private String descricao;
     private String imagem;
 
-    public Produto toDomain() {
+    public Produto toDomain(UUID id) {
         return new Produto(id, nome, categoria, preco, descricao, imagem);
-    }
-
-    public UUID getId() {
-        return id;
     }
     public String getNome() {
         return nome;
@@ -44,10 +36,6 @@ public class EditarProdutoRequest {
         return imagem;
     }
 
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
     public void setNome(String nome) {
         this.nome = nome;
     }
