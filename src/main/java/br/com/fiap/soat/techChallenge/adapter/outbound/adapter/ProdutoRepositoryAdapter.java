@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.adapter.outbound.adapter;
 import br.com.fiap.soat.techChallenge.adapter.outbound.entities.ProdutoEntity;
+import br.com.fiap.soat.techChallenge.adapter.outbound.entities.mappers.ProdutoMapper;
 import br.com.fiap.soat.techChallenge.adapter.outbound.repositories.ProdutoJpaRepository;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
 import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
@@ -24,7 +25,7 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     @Override
     @Transactional
     public Produto cadastrar(Produto produto) {
-        ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
+        ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produto);
 
         produtoJpaRepository.save(produtoEntity);
 
@@ -41,13 +42,13 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
         }
 
         return produtos.stream()
-                .map(ProdutoEntity::toDomain)
+                .map(ProdutoMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Produto> identificarPorId(UUID id) {
-        return produtoJpaRepository.findById(id).map(ProdutoEntity::toDomain);
+        return produtoJpaRepository.findById(id).map(ProdutoMapper::toDomain);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
         if (produtoO.isEmpty()) {
             throw new ProdutoNaoEncontradoException();
         }
-        ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
+        ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produto);
         produtoJpaRepository.save(produtoEntity);
         return produto;
     }

@@ -17,23 +17,6 @@ public class ProdutoEntity {
     private String descricao;
     private String imagem;
 
-    public Produto toDomain() {
-        return new Produto(id, nome, categoria, preco, descricao, imagem);
-    }
-
-    public static ProdutoEntity fromDomain(Produto produto) {
-        ProdutoEntity produtoEntity = new ProdutoEntity();
-
-        produtoEntity.setId(produto.getId());
-        produtoEntity.setNome(produto.getNome());
-        produtoEntity.setCategoria(produto.getCategoria());
-        produtoEntity.setPreco(produto.getPreco());
-        produtoEntity.setDescricao(produto.getDescricao());
-        produtoEntity.setImagem(produto.getImagem());
-
-        return produtoEntity;
-    }
-
     public UUID getId() {
         return id;
     }
