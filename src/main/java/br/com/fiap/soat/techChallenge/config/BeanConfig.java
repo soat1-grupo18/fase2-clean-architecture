@@ -1,13 +1,9 @@
 package br.com.fiap.soat.techChallenge.config;
 
+import br.com.fiap.soat.techChallenge.core.ports.inbound.*;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.ClienteRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.ProdutoRepositoryPort;
 import br.com.fiap.soat.techChallenge.core.ports.outbound.PedidoRepositoryPort;
-
-import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.FazerPedidoUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificarClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.core.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
 
 import br.com.fiap.soat.techChallenge.core.usecases.*;
 
@@ -50,5 +46,10 @@ public class BeanConfig {
     @Bean
     public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort) {
         return new FazerPedidoUseCase(pedidoRepositoryPort, produtoRepositoryPort);
+    }
+
+    @Bean
+    public ObterPedidosUseCasePort obterPedidosUseCasePort(PedidoRepositoryPort pedidoRepositoryPort) {
+        return new ObterPedidosUseCase(pedidoRepositoryPort);
     }
 }
