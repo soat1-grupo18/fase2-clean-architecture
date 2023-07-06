@@ -55,7 +55,7 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     public Produto editar(Produto produto) {
         var produtoO = produtoJpaRepository.findById(produto.getId());
         if (produtoO.isEmpty()) {
-            throw new ProdutoNaoEncontradoException();
+            throw ProdutoNaoEncontradoException.aPartirDeProdutoId(produto.getId());
         }
         ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produto);
         produtoJpaRepository.save(produtoEntity);
@@ -66,7 +66,7 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
     public void excluir(UUID id) {
         var produtoO = produtoJpaRepository.findById(id);
         if (produtoO.isEmpty()) {
-            throw new ProdutoNaoEncontradoException();
+            throw ProdutoNaoEncontradoException.aPartirDeProdutoId(id);
         }
         produtoJpaRepository.deleteById(id);
     }

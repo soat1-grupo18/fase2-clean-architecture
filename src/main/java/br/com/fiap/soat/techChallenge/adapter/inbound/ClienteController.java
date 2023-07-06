@@ -3,6 +3,7 @@ package br.com.fiap.soat.techChallenge.adapter.inbound;
 import br.com.fiap.soat.techChallenge.adapter.inbound.request.CadastrarClienteRequest;
 import br.com.fiap.soat.techChallenge.adapter.inbound.response.ClienteResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Cliente;
+import br.com.fiap.soat.techChallenge.core.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.IdentificarClienteUseCasePort;
 import jakarta.validation.Valid;
@@ -27,12 +28,10 @@ public class ClienteController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<Object> identificarCliente(@PathVariable String cpf) {
-        Optional<Cliente> clienteO = identificarClienteUseCase.execute(cpf);
-        if (clienteO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não identificado.");
-        }
-        return ResponseEntity.ok(ClienteResponse.fromDomain(clienteO.get()));
+    public ResponseEntity<ClienteResponse> identificarCliente(@PathVariable String cpf) {
+        Cliente cliente = identificarClienteUseCase.execute(cpf).orElseThrow(() -> ClienteNaoEncontradoException.aPartirDoCpf(cpf));
+
+        return ResponseEntity.ok(ClienteResponse.fromDomain(cliente));
     }
 
     @PostMapping("")
