@@ -1,4 +1,4 @@
-name: Run containers
+name: Build and test
 
 on:  
   push:
@@ -10,20 +10,20 @@ on:
 
     
 jobs:
-  deploy:
-    name: Run containers
+  build-and-test:
+    name: Build, run and test
     environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run containers
+      - name: Run docker compose
         run: |
           set -e
           docker compose up -d
 
-      - name: Wait for it become ready
+      - name: Wait the application becomes ready
         run: |
           set -e
 
@@ -45,7 +45,7 @@ jobs:
           echo "cliente-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
           echo "cliente-cpf=$(cat output.json | jq --raw-output '.telefone')" >> $GITHUB_OUTPUT
 
-      - name: Test - Retrevies the customer
+      - name: Test - Retrieves the customer
         id: test-retrieves-the-customer
         run: |
           set -e
@@ -138,6 +138,6 @@ jobs:
             --request GET \
             --url http://localhost:8080/pedidos | tee output.json
       
-      - name: Stops it
+      - name: Stop docker compose
         run: |
           docker compose stop
