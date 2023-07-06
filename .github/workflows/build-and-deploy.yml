@@ -32,8 +32,8 @@ jobs:
             do echo "Aguardando aplicação ficar online..."; sleep 5;
           done;
 
-      - name: App - Creates a customer
-        id: app-creates-a-customer
+      - name: Test - Creates a customer
+        id: test-creates-a-customer
         run: |
           set -e
 
@@ -46,17 +46,17 @@ jobs:
           echo "cliente-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
           echo "cliente-cpf=$(cat output.json | jq --raw-output '.telefone')" >> $GITHUB_OUTPUT
 
-      - name: App - Retrevies the customer
-        id: app-retrieves-the-customer
+      - name: Test - Retrevies the customer
+        id: test-retrieves-the-customer
         run: |
           set -e
 
           curl --fail \
             --request GET \
-            --url "http://localhost:8080/clientes/${{ steps.app-creates-a-customer.outputs.cliente-cpf }}" | tee output.json
+            --url "http://localhost:8080/clientes/${{ steps.test-creates-a-customer.outputs.cliente-cpf }}" | tee output.json
 
-      - name: App - Creates the first product
-        id: app-creates-the-first-product
+      - name: Test - Creates the first product
+        id: test-creates-the-first-product
         run: |
           set -e
 
@@ -68,8 +68,8 @@ jobs:
 
             echo "produto-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
 
-      - name: App - Creates the second product
-        id: app-creates-the-second-product
+      - name: Test - Creates the second product
+        id: test-creates-the-second-product
         run: |
           set -e
 
@@ -81,19 +81,19 @@ jobs:
 
           echo "produto-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
 
-      - name: App - Updates the second product
-        id: app-updates-the-second-product
+      - name: Test - Updates the second product
+        id: test-updates-the-second-product
         run: |
           set -e
 
           curl --fail \
             --request PUT \
-            --url "http://localhost:8080/produtos/${{ steps.app-creates-the-second-product.outputs.produto-id }}" \
+            --url "http://localhost:8080/produtos/${{ steps.test-creates-the-second-product.outputs.produto-id }}" \
             --header 'Content-Type: application/json' \
             --data '{ "nome": "Coca", "categoria": "BEBIDA", "preco": 7, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
 
-      - name: App - List "LANCHE" products
-        id: app-list-lanche-products
+      - name: Test - List "LANCHE" products
+        id: test-list-lanche-products
         run: |
           set -e
 
@@ -101,8 +101,8 @@ jobs:
             --request GET \
             --url http://localhost:8080/produtos/LANCHE | tee output.json
 
-      - name: App - List "BEBIDA" products
-        id: app-list-bebida-products
+      - name: Test - List "BEBIDA" products
+        id: test-list-bebida-products
         run: |
           set -e
 
@@ -110,8 +110,8 @@ jobs:
             --request GET \
             --url http://localhost:8080/produtos/BEBIDA | tee output.json
 
-      - name: App - Creates an order
-        id: app-creates-an-order
+      - name: Test - Creates an order
+        id: test-creates-an-order
         run: |
           set -e
 
@@ -119,25 +119,25 @@ jobs:
             --request POST \
             --url http://localhost:8080/pedidos \
             --header 'Content-Type: application/json' \
-            --data '{ "clienteId": "${{ steps.app-creates-a-customer.outputs.cliente-id }}", "itens": [ { "produtoId": "${{ steps.app-creates-the-first-product.outputs.produto-id }}", "quantidade": 2 }, { "produtoId": "${{ steps.app-creates-the-second-product.outputs.produto-id }}", "quantidade": 2 } ] }' | tee output.json
+            --data '{ "clienteId": "${{ steps.test-creates-a-customer.outputs.cliente-id }}", "itens": [ { "produtoId": "${{ steps.test-creates-the-first-product.outputs.produto-id }}", "quantidade": 2 }, { "produtoId": "${{ steps.test-creates-the-second-product.outputs.produto-id }}", "quantidade": 2 } ] }' | tee output.json
 
-      - name: App - Deletes the second product
-        id: app-delete-the-second-product
+      - name: Test - Deletes the second product
+        id: test-delete-the-second-product
         run: |
           set -e
 
           curl --fail \
             --request DELETE \
-            --url "http://localhost:8080/produtos/${{ steps.app-creates-the-second-product.outputs.produto-id }}" | tee output.json
+            --url "http://localhost:8080/produtos/${{ steps.test-creates-the-second-product.outputs.produto-id }}" | tee output.json
       
-      - name: App - List all orders
-        id: app-list-all-orders
+      - name: Test - List all orders
+        id: test-list-all-orders
         run: |
           set -e
 
           curl --fail \
             --request GET \
-            --url "http://localhost:8080/pedidos | tee output.json
+            --url http://localhost:8080/pedidos | tee output.json
       
       - name: Stop it
         run: |
