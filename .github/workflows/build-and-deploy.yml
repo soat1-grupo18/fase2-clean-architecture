@@ -21,10 +21,13 @@ jobs:
 
       - name: Run containers
         run: |
+          set -e
           docker compose up -d
 
       - name: Wait for it become ready
         run: |
+          set -e
+
           while ! curl --fail --url http://localhost:8080/actuator/health;
             do echo "Aguardando aplicação ficar online..."; sleep 5;
           done;
@@ -116,8 +119,26 @@ jobs:
             --request POST \
             --url http://localhost:8080/pedidos \
             --header 'Content-Type: application/json' \
-            --data '{ "clienteId": "${{ steps.app-creates-a-customer.outputs.cliente-cpf }}", "itens": [ { "produtoId": "${{ steps.app-creates-the-first-product.outputs.produto-id }}", "quantidade": 5 } ] }'
+            --data '{ "clienteId": "${{ steps.app-creates-a-customer.outputs.cliente-id }}", "itens": [ { "produtoId": "${{ steps.app-creates-the-first-product.outputs.produto-id }}", "quantidade": 2 }, { "produtoId": "${{ steps.app-creates-the-second-product.outputs.produto-id }}", "quantidade": 2 } ] }' | tee output.json
 
+      - name: App - Deletes the second product
+        id: app-delete-the-second-product
+        run: |
+          set -e
+
+          curl --fail \
+            --request DELETE \
+            --url "http://localhost:8080/produtos/${{ steps.app-creates-the-second-product.outputs.produto-id }}" | tee output.json
+      
+      - name: App - List all orders
+        id: app-list-all-orders
+        run: |
+          set -e
+
+          curl --fail \
+            --request GET \
+            --url "http://localhost:8080/pedidos | tee output.json
+      
       - name: Stop it
         run: |
           docker compose stop
