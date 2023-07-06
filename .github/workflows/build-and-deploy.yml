@@ -39,14 +39,14 @@ jobs:
             --data '{ "nome": "John Carmack", "cpf": "11122233344", "telefone": "11911114444" }' | tee output.json
 
           echo "cliente-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
-          echo "cliente-telefone=$(cat output.json | jq --raw-output '.telefone')" >> $GITHUB_OUTPUT
+          echo "cliente-cpf=$(cat output.json | jq --raw-output '.telefone')" >> $GITHUB_OUTPUT
 
       - name: App - Retrevies a customer
         id: app-retrieves-the-customer
         run: |
           curl --fail \
             --request GET \
-            --url "http://localhost:8080/clientes/${{ steps.app-creates-a-customer.outputs.cliente-telefone }}"
+            --url "http://localhost:8080/clientes/${{ steps.app-creates-a-customer.outputs.cliente-cpf }}" | tee output.json
 
       - name: App - Creates the first product
         id: app-creates-the-first-product
@@ -77,7 +77,14 @@ jobs:
             --request PUT \
             --url "http://localhost:8080/produtos/${{ steps.app-creates-the-second-product.outputs.produto-id }}" \
             --header 'Content-Type: application/json' \
-            --data '{ "nome": "Coca", "categoria": "BEBIDAS", "preco": 5, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
+            --data '{ "nome": "Coca", "categoria": "BEBIDAS", "preco": 7, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
+
+      - name: App - List "LANCHE" products
+        id: app-updates-the-second-product
+        run: |
+          curl --fail \
+            --request GET \
+            --url http://localhost:8080/produtos/LANCHE | tee output.json
 
       - name: Stop it
         run: |
