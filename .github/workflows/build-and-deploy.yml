@@ -4,8 +4,6 @@ on:
   pull_request:
     types:
       - opened
-    branches:
-      - main
     
 jobs:
   deploy:
@@ -136,6 +134,6 @@ jobs:
             --request GET \
             --url http://localhost:8080/pedidos | tee output.json
       
-      - name: Stop it
+      - name: Stops it
         run: |
           docker compose stop
