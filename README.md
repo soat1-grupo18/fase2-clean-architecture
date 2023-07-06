@@ -51,4 +51,3 @@ Há um arquivo [insomnia-collection.json](insomnia-collection.json) na raiz do r
 
 Nosso *event storming* está disponível em um [board do Miro](https://miro.com/app/board/uXjVMHS5nec=/).
 
-
