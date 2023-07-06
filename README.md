@@ -30,6 +30,8 @@ Projeto realizado durante o primeiro módulo da Pós Tech Software Architecture 
 - Postgres 15
 - Java 17
 - Docker
+- Github Actions
+  - Para validar o docker-compose.yaml e fazer alguns testes e2e
 
 ### Como rodar a aplicação
 
