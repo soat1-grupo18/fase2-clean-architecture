@@ -35,11 +35,12 @@ jobs:
           curl --fail --request POST \
             --url http://localhost:8080/clientes \
             --header 'Content-Type: application/json' \
-            --data '{ "nome": "John Carmack", "cpf": "11122233344", "telefone": "11911114444" }' > output.json
+            --data '{ "nome": "John Carmack", "cpf": "11122233344", "telefone": "11911114444" }' | tee output.json
 
-          echo "CLIENTE_ID=$(cat output.json | jq --raw-output 'id')" >> $GITHUB_OUTPUT
+          echo "CLIENTE_ID=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
 
       - name: App - Retrevies a customer
+        id: app-retrieves-the-customer
         run: |
           echo "CLIENTE_ID = ${{ steps.app-creates-a-customer.outputs.secret-number }}"
 
