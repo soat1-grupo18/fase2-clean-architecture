@@ -71,7 +71,7 @@ jobs:
           echo "produto-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
 
       - name: App - Updates the second product
-        id: app-creates-the-second-product
+        id: app-updates-the-second-product
         run: |
           curl --fail \
             --request PUT \
