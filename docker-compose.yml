@@ -9,8 +9,6 @@ services:
     restart: always
     ports:
       - 8080:8080
-    volumes:
-      - ./src:/app/src
     depends_on:
       - db
     environment:

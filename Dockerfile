@@ -1,11 +1,18 @@
-FROM eclipse-temurin:17-jdk-focal
+FROM maven:3-amazoncorretto-17 AS build
 
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
+WORKDIR /opt/app
 
 COPY src ./src
+COPY pom.xml .
 
-ENTRYPOINT ["./mvnw", "spring-boot:run"]
+RUN mvn package
+
+FROM amazoncorretto:17
+
+WORKDIR /opt/app
+
+COPY --from=build /opt/app/target/tech*.jar app.jar
+
+USER nobody
+
+CMD [ "java", "-jar", "app.jar" ]
