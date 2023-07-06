@@ -30,6 +30,7 @@ jobs:
           done;
 
       - name: App - Creates a customer
+        id: app-creates-a-customer
         run: |
           curl --fail --request POST \
             --url http://localhost:8080/clientes \
@@ -40,7 +41,7 @@ jobs:
 
       - name: App - Retrevies a customer
         run: |
-          echo "CLIENTE_ID = $CLIENTE_ID"
+          echo "CLIENTE_ID = ${{ steps.app-creates-a-customer.outputs.secret-number }}"
 
       - name: Stop it
         run: |
