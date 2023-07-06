@@ -39,6 +39,7 @@ jobs:
             --data '{ "nome": "John Carmack", "cpf": "11122233344", "telefone": "11911114444" }' | tee output.json
 
           echo "CLIENTE_ID=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
+          cat "$GITHUB_OUTPUT"
 
       - name: App - Retrevies a customer
         id: app-retrieves-the-customer
