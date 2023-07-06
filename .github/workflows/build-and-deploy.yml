@@ -32,7 +32,8 @@ jobs:
       - name: App - Creates a customer
         id: app-creates-a-customer
         run: |
-          curl --fail --request POST \
+          curl --fail \
+            --request POST \
             --url http://localhost:8080/clientes \
             --header 'Content-Type: application/json' \
             --data '{ "nome": "John Carmack", "cpf": "11122233344", "telefone": "11911114444" }' | tee output.json
@@ -43,6 +44,10 @@ jobs:
         id: app-retrieves-the-customer
         run: |
           echo "CLIENTE_ID = ${{ steps.app-creates-a-customer.outputs.secret-number }}"
+
+          curl --fail \
+            --request GET \
+            --url http://localhost:8080/clientes/11122233344
 
       - name: Stop it
         run: |
