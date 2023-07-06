@@ -80,7 +80,7 @@ jobs:
             --data '{ "nome": "Coca", "categoria": "BEBIDAS", "preco": 7, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
 
       - name: App - List "LANCHE" products
-        id: app-updates-the-second-product
+        id: app-list-lanche-products
         run: |
           curl --fail \
             --request GET \
