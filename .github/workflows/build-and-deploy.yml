@@ -32,6 +32,8 @@ jobs:
       - name: App - Creates a customer
         id: app-creates-a-customer
         run: |
+          set -e
+
           curl --fail \
             --request POST \
             --url http://localhost:8080/clientes \
@@ -41,9 +43,11 @@ jobs:
           echo "cliente-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
           echo "cliente-cpf=$(cat output.json | jq --raw-output '.telefone')" >> $GITHUB_OUTPUT
 
-      - name: App - Retrevies a customer
+      - name: App - Retrevies the customer
         id: app-retrieves-the-customer
         run: |
+          set -e
+
           curl --fail \
             --request GET \
             --url "http://localhost:8080/clientes/${{ steps.app-creates-a-customer.outputs.cliente-cpf }}" | tee output.json
@@ -51,6 +55,8 @@ jobs:
       - name: App - Creates the first product
         id: app-creates-the-first-product
         run: |
+          set -e
+
           curl --fail \
             --request POST \
             --url http://localhost:8080/produtos \
@@ -62,29 +68,55 @@ jobs:
       - name: App - Creates the second product
         id: app-creates-the-second-product
         run: |
+          set -e
+
           curl --fail \
             --request POST \
             --url http://localhost:8080/produtos \
             --header 'Content-Type: application/json' \
-            --data '{ "nome": "Coca", "categoria": "BEBIDAS", "preco": 5, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
+            --data '{ "nome": "Coca", "categoria": "BEBIDA", "preco": 5, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
 
           echo "produto-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
 
       - name: App - Updates the second product
         id: app-updates-the-second-product
         run: |
+          set -e
+
           curl --fail \
             --request PUT \
             --url "http://localhost:8080/produtos/${{ steps.app-creates-the-second-product.outputs.produto-id }}" \
             --header 'Content-Type: application/json' \
-            --data '{ "nome": "Coca", "categoria": "BEBIDAS", "preco": 7, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
+            --data '{ "nome": "Coca", "categoria": "BEBIDA", "preco": 7, "descricao": "Coca-cola geladinha!", "imagem": "https://s.yimg.com/os/creatr-uploaded-images/2022-01/3b6a08d0-7942-11ec-87e5-832af36f65e8" }' | tee output.json
 
       - name: App - List "LANCHE" products
         id: app-list-lanche-products
         run: |
+          set -e
+
           curl --fail \
             --request GET \
             --url http://localhost:8080/produtos/LANCHE | tee output.json
+
+      - name: App - List "BEBIDA" products
+        id: app-list-bebida-products
+        run: |
+          set -e
+
+          curl --fail \
+            --request GET \
+            --url http://localhost:8080/produtos/BEBIDA | tee output.json
+
+      - name: App - Creates an order
+        id: app-list-bebida-products
+        run: |
+          set -e
+          
+          curl --fail \
+            --request POST \
+            --url http://localhost:8080/pedidos \
+            --header 'Content-Type: application/json' \
+            --data '{ "clienteId": "${{ steps.app-creates-a-customer.outputs.cliente-cpf }}", "itens": [ { "produtoId": "${{ steps.app-creates-the-first-product.outputs.produto-id }}", "quantidade": 5 } ] }'
 
       - name: Stop it
         run: |
