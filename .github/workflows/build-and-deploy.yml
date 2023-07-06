@@ -108,10 +108,10 @@ jobs:
             --url http://localhost:8080/produtos/BEBIDA | tee output.json
 
       - name: App - Creates an order
-        id: app-list-bebida-products
+        id: app-creates-an-order
         run: |
           set -e
-          
+
           curl --fail \
             --request POST \
             --url http://localhost:8080/pedidos \
