@@ -1,0 +1,28 @@
+name: Run containers
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+    
+jobs:
+  deploy:
+    name: Run containers
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run containers
+        run: |
+          docker compose up -d
+
+      - name: Wait for it become ready
+        run: |
+          while ! curl --fail http://localhost:8080/actuator/health;
+            do echo "Aguardando aplicação ficar online"; sleep 1;
+          done;
+
+      - name: Stop it
+        run: |
+          docker compose stop
