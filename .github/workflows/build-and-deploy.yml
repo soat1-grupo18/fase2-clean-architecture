@@ -1,9 +1,10 @@
 name: Run containers
 
-on:
+on:  
+  push:
   pull_request:
-    types:
-      - opened
+    branches:
+      - master
     
 jobs:
   deploy:
