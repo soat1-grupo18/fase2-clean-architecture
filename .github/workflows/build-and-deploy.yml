@@ -6,9 +6,6 @@ on:
       - opened
     branches:
       - main
-  push:
-    branches:
-      - 'feature/*'
     
 jobs:
   deploy:
