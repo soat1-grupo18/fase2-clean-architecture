@@ -44,8 +44,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort) {
-        return new FazerPedidoUseCase(pedidoRepositoryPort, produtoRepositoryPort);
+    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort, ClienteRepositoryPort clienteRepositoryPort) {
+        return new FazerPedidoUseCase(pedidoRepositoryPort, produtoRepositoryPort, clienteRepositoryPort);
     }
 
     @Bean

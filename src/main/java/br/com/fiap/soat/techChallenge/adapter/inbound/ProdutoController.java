@@ -1,8 +1,8 @@
 package br.com.fiap.soat.techChallenge.adapter.inbound;
+
 import br.com.fiap.soat.techChallenge.adapter.inbound.request.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.adapter.inbound.response.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.core.domain.Produto;
-import br.com.fiap.soat.techChallenge.core.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.EditarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.core.ports.inbound.ExcluirProdutoUseCasePort;
@@ -36,12 +36,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/{categoria}")
-    public ResponseEntity<Object> obterProdutosPorCategoria(@PathVariable Produto.TipoDeProduto categoria) {
+    public ResponseEntity<List<ProdutoResponse>> obterProdutosPorCategoria(@PathVariable Produto.TipoDeProduto categoria) {
         List<Produto> produtos = obterProdutosPorCategoriaUseCase.execute(categoria);
-
-        if (produtos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foram encontrados produtos nessa categoria.");
-        }
 
         return ResponseEntity.ok(produtos.stream().map(ProdutoResponse::fromDomain).collect(Collectors.toList()));
     }
@@ -52,24 +48,17 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> editarProduto(@PathVariable(value="id") UUID id,
-                                                @Valid @RequestBody ProdutoRequest produtoRequest) {
+    public ResponseEntity<ProdutoResponse> editarProduto(
+            @PathVariable(value="id") UUID id,
+            @Valid @RequestBody ProdutoRequest produtoRequest
+    ) {
+        var produto = editarProdutoUseCase.execute(produtoRequest.toDomain(id));
 
-        try {
-            var produto = editarProdutoUseCase.execute(produtoRequest.toDomain(id));
-            return ResponseEntity.ok(ProdutoResponse.fromDomain(produto));
-        } catch (ProdutoNaoEncontradoException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
-        }
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(produto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirProduto(@PathVariable(value="id") UUID id) {
-        try {
-            excluirProdutoUseCase.execute(id);
-            return ResponseEntity.ok("Produto excluído com sucesso.");
-        } catch (ProdutoNaoEncontradoException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
-        }
+    public void excluirProduto(@PathVariable(value="id") UUID id) {
+        excluirProdutoUseCase.execute(id);
     }
 }

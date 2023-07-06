@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
@@ -34,5 +35,10 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
         }
         var cliente = clientes.get(0);
         return Optional.of(cliente.toDomain());
+    }
+
+    @Override
+    public Optional<Cliente> identificaPorId(UUID id) {
+        return clienteJpaRepository.findById(id).map(cliente -> cliente.toDomain());
     }
 }
