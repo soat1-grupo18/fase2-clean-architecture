@@ -3,8 +3,11 @@ name: Run containers
 on:  
   push:
   pull_request:
+    types:
+      - opened
     branches:
-      - main
+      - 'main'
+
     
 jobs:
   deploy:
