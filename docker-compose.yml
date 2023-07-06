@@ -20,7 +20,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   db:
-    image: 'postgres'
+    image: postgres:15
     restart: always
     container_name: db
     environment:
