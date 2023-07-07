@@ -1,6 +1,8 @@
 <!-- omit from toc -->
 # FIAT - SOAT1 - GRUPO 18
 
+![](https://github.com/pabloldias/soat1-grupo18/actions/workflows/build-and-test.yml/badge.svg)
+
 - [Tech Challenge](#tech-challenge)
   - [Alunos](#alunos)
   - [Tecnologias utilizadas](#tecnologias-utilizadas)
