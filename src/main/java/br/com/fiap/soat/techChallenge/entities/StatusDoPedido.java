@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.domain.entity;
+package br.com.fiap.soat.techChallenge.entities;
 
 public enum StatusDoPedido {
     PAGAMENTO_PENDENTE,

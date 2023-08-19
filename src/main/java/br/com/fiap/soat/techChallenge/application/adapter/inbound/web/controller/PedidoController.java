@@ -2,7 +2,7 @@ package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controlle
 
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.PedidoRequest;
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.PedidoResponse;
-import br.com.fiap.soat.techChallenge.domain.entity.Pedido;
+import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.ObterPedidosUseCasePort;
 import org.springframework.http.ResponseEntity;

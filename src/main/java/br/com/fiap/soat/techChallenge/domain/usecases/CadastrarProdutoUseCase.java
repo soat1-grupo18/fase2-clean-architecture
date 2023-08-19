@@ -1,5 +1,5 @@
 package br.com.fiap.soat.techChallenge.domain.usecases;
-import br.com.fiap.soat.techChallenge.domain.entity.Produto;
+import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
 

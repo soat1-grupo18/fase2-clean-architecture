@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response;
 
-import br.com.fiap.soat.techChallenge.domain.entity.Pedido;
-import br.com.fiap.soat.techChallenge.domain.entity.StatusDoPedido;
+import br.com.fiap.soat.techChallenge.entities.Pedido;
+import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 
 import java.math.BigDecimal;
 import java.util.List;

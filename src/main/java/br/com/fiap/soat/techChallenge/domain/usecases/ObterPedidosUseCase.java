@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.domain.usecases;
 
-import br.com.fiap.soat.techChallenge.domain.entity.Pedido;
+import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.ObterPedidosUseCasePort;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.PedidoRepositoryPort;
 

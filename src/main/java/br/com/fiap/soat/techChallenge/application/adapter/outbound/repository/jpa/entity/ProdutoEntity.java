@@ -1,5 +1,5 @@
 package br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity;
-import br.com.fiap.soat.techChallenge.domain.entity.Produto;
+import br.com.fiap.soat.techChallenge.entities.Produto;
 import jakarta.persistence.*;
 
 import java.util.UUID;

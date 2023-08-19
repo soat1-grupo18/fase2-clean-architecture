@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.domain.ports.outbound;
 
-import br.com.fiap.soat.techChallenge.domain.entity.Cliente;
+import br.com.fiap.soat.techChallenge.entities.Cliente;
 
 import java.util.Optional;
 import java.util.UUID;

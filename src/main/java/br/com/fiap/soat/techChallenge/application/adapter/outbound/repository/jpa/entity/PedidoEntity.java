@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity;
 
-import br.com.fiap.soat.techChallenge.domain.entity.Pedido;
-import br.com.fiap.soat.techChallenge.domain.entity.StatusDoPedido;
+import br.com.fiap.soat.techChallenge.entities.Pedido;
+import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

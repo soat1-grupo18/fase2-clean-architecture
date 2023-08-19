@@ -1,6 +1,5 @@
 package br.com.fiap.soat.techChallenge.domain.usecases;
 
-import br.com.fiap.soat.techChallenge.domain.entity.*;
 import br.com.fiap.soat.techChallenge.domain.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPort;
@@ -9,6 +8,7 @@ import br.com.fiap.soat.techChallenge.domain.usecases.model.ComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.domain.usecases.model.ItemDoComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.PedidoRepositoryPort;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.entities.*;
 
 import java.math.BigDecimal;
 

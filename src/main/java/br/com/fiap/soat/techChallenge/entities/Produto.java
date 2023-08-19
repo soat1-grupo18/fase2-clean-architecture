@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.domain.entity;
+package br.com.fiap.soat.techChallenge.entities;
 
 import java.util.UUID;
 

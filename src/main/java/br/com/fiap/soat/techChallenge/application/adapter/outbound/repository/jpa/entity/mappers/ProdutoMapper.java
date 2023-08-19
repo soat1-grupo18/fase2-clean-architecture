@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.mappers;
 
 import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.ProdutoEntity;
-import br.com.fiap.soat.techChallenge.domain.entity.Produto;
+import br.com.fiap.soat.techChallenge.entities.Produto;
 
 public class ProdutoMapper {
 

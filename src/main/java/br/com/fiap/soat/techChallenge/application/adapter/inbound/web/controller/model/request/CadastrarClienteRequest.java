@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request;
 
-import br.com.fiap.soat.techChallenge.domain.entity.Cliente;
+import br.com.fiap.soat.techChallenge.entities.Cliente;
 import jakarta.validation.constraints.NotNull;
 
 public class CadastrarClienteRequest {
