@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request;
 
-import br.com.fiap.soat.techChallenge.domain.usecases.model.ItemDoComandoDeNovoPedido;
-import br.com.fiap.soat.techChallenge.domain.usecases.model.ComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.usecases.model.ItemDoComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
 
 import java.util.List;
 import java.util.UUID;

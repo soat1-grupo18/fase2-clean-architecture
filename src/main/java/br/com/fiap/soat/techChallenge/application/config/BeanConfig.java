@@ -5,8 +5,7 @@ import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPor
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.PedidoRepositoryPort;
 
-import br.com.fiap.soat.techChallenge.domain.usecases.*;
-
+import br.com.fiap.soat.techChallenge.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

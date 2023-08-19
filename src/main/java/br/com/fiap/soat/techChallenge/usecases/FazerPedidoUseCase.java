@@ -1,11 +1,11 @@
-package br.com.fiap.soat.techChallenge.domain.usecases;
+package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.domain.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPort;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
-import br.com.fiap.soat.techChallenge.domain.usecases.model.ComandoDeNovoPedido;
-import br.com.fiap.soat.techChallenge.domain.usecases.model.ItemDoComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
+import br.com.fiap.soat.techChallenge.usecases.model.ItemDoComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.PedidoRepositoryPort;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.entities.*;
