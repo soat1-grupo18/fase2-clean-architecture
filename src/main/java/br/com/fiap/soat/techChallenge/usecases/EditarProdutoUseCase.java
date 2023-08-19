@@ -1,8 +1,8 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.entities.Produto;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.EditarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
 
 public class EditarProdutoUseCase implements EditarProdutoUseCasePort {
 

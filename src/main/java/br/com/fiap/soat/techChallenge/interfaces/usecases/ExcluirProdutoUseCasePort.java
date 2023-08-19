@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.domain.ports.inbound;
+package br.com.fiap.soat.techChallenge.interfaces.usecases;
 
 import java.util.UUID;
 

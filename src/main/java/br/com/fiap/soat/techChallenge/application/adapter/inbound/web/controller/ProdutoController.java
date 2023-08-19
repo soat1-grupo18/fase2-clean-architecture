@@ -3,10 +3,10 @@ package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controlle
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.entities.Produto;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.CadastrarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.EditarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.ExcluirProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.ObterProdutosPorCategoriaUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.ExcluirProdutoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterProdutosPorCategoriaUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

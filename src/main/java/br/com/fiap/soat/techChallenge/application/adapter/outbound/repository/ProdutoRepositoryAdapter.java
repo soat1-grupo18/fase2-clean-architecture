@@ -4,7 +4,7 @@ import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jp
 import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.mappers.ProdutoMapper;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
-import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.IdentificarClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.IdentificarClienteUseCasePort;
 
 import java.util.Optional;
 

@@ -3,7 +3,7 @@ package br.com.fiap.soat.techChallenge.application.adapter.outbound.repository;
 import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.ClienteEntity;
 import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.ClienteJpaRepository;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
-import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 

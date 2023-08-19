@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.domain.ports.outbound;
+package br.com.fiap.soat.techChallenge.interfaces.gateways;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 

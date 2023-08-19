@@ -4,8 +4,8 @@ import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.CadastrarClienteRequest;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.CadastrarClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.IdentificarClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarClienteUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.IdentificarClienteUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

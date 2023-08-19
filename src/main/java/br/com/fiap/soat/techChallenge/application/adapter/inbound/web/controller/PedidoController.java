@@ -3,8 +3,8 @@ package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controlle
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.PedidoRequest;
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.PedidoResponse;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.FazerPedidoUseCasePort;
-import br.com.fiap.soat.techChallenge.domain.ports.inbound.ObterPedidosUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosUseCasePort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
