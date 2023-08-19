@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
-import br.com.fiap.soat.techChallenge.domain.exceptions.ClienteNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.domain.exceptions.ProdutoNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ClienteRepositoryPort;
 import br.com.fiap.soat.techChallenge.domain.ports.outbound.ProdutoRepositoryPort;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;

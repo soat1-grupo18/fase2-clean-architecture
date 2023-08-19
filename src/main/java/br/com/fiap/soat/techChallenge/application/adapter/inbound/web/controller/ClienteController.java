@@ -3,7 +3,7 @@ package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controlle
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.ClienteResponse;
 import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.CadastrarClienteRequest;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
-import br.com.fiap.soat.techChallenge.domain.exceptions.ClienteNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.CadastrarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.domain.ports.inbound.IdentificarClienteUseCasePort;
 import jakarta.validation.Valid;

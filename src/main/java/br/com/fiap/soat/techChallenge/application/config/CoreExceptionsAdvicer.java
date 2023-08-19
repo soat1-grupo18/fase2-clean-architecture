@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.application.config;
 
-import br.com.fiap.soat.techChallenge.domain.exceptions.ClienteNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.domain.exceptions.ProdutoNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
