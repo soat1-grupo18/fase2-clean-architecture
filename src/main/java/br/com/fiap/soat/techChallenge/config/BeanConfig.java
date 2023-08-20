@@ -1,9 +1,9 @@
 package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.interfaces.usecases.*;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 
 import br.com.fiap.soat.techChallenge.usecases.*;
 import org.springframework.context.annotation.Bean;
@@ -13,42 +13,42 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfig {
 
     @Bean
-    public CadastrarClienteUseCasePort cadastrarClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+    public CadastrarClienteUseCasePort cadastrarClienteUseCasePort(ClienteGatewayPort clienteRepositoryPort) {
         return new CadastrarClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public IdentificarClienteUseCasePort identificarClienteUseCasePort(ClienteRepositoryPort clienteRepositoryPort) {
+    public IdentificarClienteUseCasePort identificarClienteUseCasePort(ClienteGatewayPort clienteRepositoryPort) {
         return new IdentificarClienteUseCase(clienteRepositoryPort);
     }
 
     @Bean
-    public CadastrarProdutoUseCase cadastrarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+    public CadastrarProdutoUseCase cadastrarProdutoUseCasePort(ProdutoGatewayPort produtoRepositoryPort) {
         return new CadastrarProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public EditarProdutoUseCase editarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+    public EditarProdutoUseCase editarProdutoUseCasePort(ProdutoGatewayPort produtoRepositoryPort) {
         return new EditarProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public ExcluirProdutoUseCase excluirProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+    public ExcluirProdutoUseCase excluirProdutoUseCasePort(ProdutoGatewayPort produtoRepositoryPort) {
         return new ExcluirProdutoUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public ObterProdutosPorCategoriaUseCasePort identificarProdutoUseCasePort(ProdutoRepositoryPort produtoRepositoryPort) {
+    public ObterProdutosPorCategoriaUseCasePort identificarProdutoUseCasePort(ProdutoGatewayPort produtoRepositoryPort) {
         return new ObterProdutosPorCategoriaUseCase(produtoRepositoryPort);
     }
 
     @Bean
-    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoRepositoryPort pedidoRepositoryPort, ProdutoRepositoryPort produtoRepositoryPort, ClienteRepositoryPort clienteRepositoryPort) {
+    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoGatewayPort pedidoRepositoryPort, ProdutoGatewayPort produtoRepositoryPort, ClienteGatewayPort clienteRepositoryPort) {
         return new FazerPedidoUseCase(pedidoRepositoryPort, produtoRepositoryPort, clienteRepositoryPort);
     }
 
     @Bean
-    public ObterPedidosUseCasePort obterPedidosUseCasePort(PedidoRepositoryPort pedidoRepositoryPort) {
+    public ObterPedidosUseCasePort obterPedidosUseCasePort(PedidoGatewayPort pedidoRepositoryPort) {
         return new ObterPedidosUseCase(pedidoRepositoryPort);
     }
 }

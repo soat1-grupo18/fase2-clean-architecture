@@ -1,20 +1,20 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.IdentificarClienteUseCasePort;
 
 import java.util.Optional;
 
 public class IdentificarClienteUseCase implements IdentificarClienteUseCasePort {
-    private final ClienteRepositoryPort identificaClienteAdapterPort;
+    private final ClienteGatewayPort clienteGatewayPort;
 
-    public IdentificarClienteUseCase(ClienteRepositoryPort identificaClienteAdapterPort) {
+    public IdentificarClienteUseCase(ClienteGatewayPort clienteGatewayPort) {
 
-        this.identificaClienteAdapterPort = identificaClienteAdapterPort;
+        this.clienteGatewayPort = clienteGatewayPort;
     }
     @Override
     public Optional<Cliente> execute(String cpf) {
-        return identificaClienteAdapterPort.identificaPor(cpf);
+        return clienteGatewayPort.identificaPor(cpf);
     }
 }

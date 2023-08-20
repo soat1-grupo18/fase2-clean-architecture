@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.jpa.entity;
+package br.com.fiap.soat.techChallenge.jpa.entities;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "pedidos")
-public class PedidoEntity {
+public class PedidoJpaEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
@@ -19,7 +19,7 @@ public class PedidoEntity {
     private BigDecimal preco;
     private StatusDoPedido status;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemDoPedidoEntity> itens;
+    private List<ItemDoPedidoJpaEntity> itens;
 
     public UUID getId() {
         return id;
@@ -53,11 +53,11 @@ public class PedidoEntity {
         this.status = status;
     }
 
-    public List<ItemDoPedidoEntity> getItens() {
+    public List<ItemDoPedidoJpaEntity> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemDoPedidoEntity> itens) {
+    public void setItens(List<ItemDoPedidoJpaEntity> itens) {
         this.itens = itens;
     }
 
@@ -67,25 +67,25 @@ public class PedidoEntity {
             clienteId,
             preco,
             status,
-            itens.stream().map(ItemDoPedidoEntity::toDomain).collect(Collectors.toList())
+            itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList())
         );
     }
 
-    public static PedidoEntity fromDomain(Pedido pedido) {
-        PedidoEntity pedidoEntity = new PedidoEntity();
+    public static PedidoJpaEntity fromDomain(Pedido pedido) {
+        PedidoJpaEntity pedidoJpaEntity = new PedidoJpaEntity();
 
-        pedidoEntity.setId(pedido.getId());
-        pedidoEntity.setClienteId(pedido.getClienteId());
-        pedidoEntity.setPreco(pedido.getPreco());
-        pedidoEntity.setStatus(pedido.getStatus());
-        pedidoEntity.setItens(pedido.getItens().stream().map(itemDoPedido -> {
-            ItemDoPedidoEntity itemDoPedidoEntity = ItemDoPedidoEntity.fromDomain(itemDoPedido);
+        pedidoJpaEntity.setId(pedido.getId());
+        pedidoJpaEntity.setClienteId(pedido.getClienteId());
+        pedidoJpaEntity.setPreco(pedido.getPreco());
+        pedidoJpaEntity.setStatus(pedido.getStatus());
+        pedidoJpaEntity.setItens(pedido.getItens().stream().map(itemDoPedido -> {
+            ItemDoPedidoJpaEntity itemDoPedidoJpaEntity = ItemDoPedidoJpaEntity.fromDomain(itemDoPedido);
 
-            itemDoPedidoEntity.setPedido(pedidoEntity);
+            itemDoPedidoJpaEntity.setPedido(pedidoJpaEntity);
 
-            return itemDoPedidoEntity;
+            return itemDoPedidoJpaEntity;
         }).collect(Collectors.toList()));
 
-        return pedidoEntity;
+        return pedidoJpaEntity;
     }
 }

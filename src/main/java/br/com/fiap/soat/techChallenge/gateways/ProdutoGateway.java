@@ -1,10 +1,10 @@
 package br.com.fiap.soat.techChallenge.gateways;
-import br.com.fiap.soat.techChallenge.jpa.entity.ProdutoEntity;
-import br.com.fiap.soat.techChallenge.jpa.ProdutoJpaRepository;
-import br.com.fiap.soat.techChallenge.jpa.entity.mappers.ProdutoMapper;
+import br.com.fiap.soat.techChallenge.jpa.entities.ProdutoJpaEntity;
+import br.com.fiap.soat.techChallenge.jpa.repositories.ProdutoRepository;
+import br.com.fiap.soat.techChallenge.jpa.mappers.ProdutoMapper;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
@@ -15,28 +15,28 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
-    private final ProdutoJpaRepository produtoJpaRepository;
+public class ProdutoGateway implements ProdutoGatewayPort {
+    private final ProdutoRepository produtoRepository;
 
-    public ProdutoRepositoryAdapter(ProdutoJpaRepository produtoJpaRepository) {
-        this.produtoJpaRepository = produtoJpaRepository;
+    public ProdutoGateway(ProdutoRepository produtoRepository) {
+        this.produtoRepository = produtoRepository;
     }
 
     @Override
     @Transactional
     public Produto cadastrar(Produto produto) {
-        ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produto);
+        ProdutoJpaEntity produtoJpaEntity = ProdutoMapper.toEntity(produto);
 
-        produtoJpaRepository.save(produtoEntity);
+        produtoRepository.save(produtoJpaEntity);
 
-        produto.setId(produtoEntity.getId());
+        produto.setId(produtoJpaEntity.getId());
 
         return produto;
     }
 
     @Override
     public List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria) {
-        var produtos = produtoJpaRepository.findByCategoria(categoria);
+        var produtos = produtoRepository.findByCategoria(categoria);
         if (produtos.isEmpty()) {
             return Collections.emptyList();
         }
@@ -48,26 +48,26 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
 
     @Override
     public Optional<Produto> identificarPorId(UUID id) {
-        return produtoJpaRepository.findById(id).map(ProdutoMapper::toDomain);
+        return produtoRepository.findById(id).map(ProdutoMapper::toDomain);
     }
 
     @Override
     public Produto editar(Produto produto) {
-        var produtoO = produtoJpaRepository.findById(produto.getId());
+        var produtoO = produtoRepository.findById(produto.getId());
         if (produtoO.isEmpty()) {
             throw ProdutoNaoEncontradoException.aPartirDeProdutoId(produto.getId());
         }
-        ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produto);
-        produtoJpaRepository.save(produtoEntity);
+        ProdutoJpaEntity produtoJpaEntity = ProdutoMapper.toEntity(produto);
+        produtoRepository.save(produtoJpaEntity);
         return produto;
     }
 
     @Override
     public void excluir(UUID id) {
-        var produtoO = produtoJpaRepository.findById(id);
+        var produtoO = produtoRepository.findById(id);
         if (produtoO.isEmpty()) {
             throw ProdutoNaoEncontradoException.aPartirDeProdutoId(id);
         }
-        produtoJpaRepository.deleteById(id);
+        produtoRepository.deleteById(id);
     }
 }

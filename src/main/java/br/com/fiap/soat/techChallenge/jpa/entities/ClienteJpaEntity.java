@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.jpa.entity;
+package br.com.fiap.soat.techChallenge.jpa.entities;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "clientes")
-public class ClienteEntity {
+public class ClienteJpaEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
@@ -20,14 +20,14 @@ public class ClienteEntity {
         return new Cliente(id, nome, cpf, telefone);
     }
 
-    public static ClienteEntity fromDomain (Cliente cliente) {
-        ClienteEntity clienteEntity = new ClienteEntity();
+    public static ClienteJpaEntity fromDomain (Cliente cliente) {
+        ClienteJpaEntity clienteJpaEntity = new ClienteJpaEntity();
 
-        clienteEntity.setNome(cliente.getNome());
-        clienteEntity.setCpf(cliente.getCpf());
-        clienteEntity.setTelefone(cliente.getTelefone());
+        clienteJpaEntity.setNome(cliente.getNome());
+        clienteJpaEntity.setCpf(cliente.getCpf());
+        clienteJpaEntity.setTelefone(cliente.getTelefone());
 
-        return clienteEntity;
+        return clienteJpaEntity;
     }
 
     public UUID getId() {

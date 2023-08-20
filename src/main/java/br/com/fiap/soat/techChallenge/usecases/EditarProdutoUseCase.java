@@ -2,17 +2,17 @@ package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 
 public class EditarProdutoUseCase implements EditarProdutoUseCasePort {
 
-    private final ProdutoRepositoryPort produtoRepositoryPort;
+    private final ProdutoGatewayPort produtoGatewayPort;
 
-    public EditarProdutoUseCase(ProdutoRepositoryPort produtoRepositoryPort) {
-        this.produtoRepositoryPort = produtoRepositoryPort;
+    public EditarProdutoUseCase(ProdutoGatewayPort produtoGatewayPort) {
+        this.produtoGatewayPort = produtoGatewayPort;
     }
     @Override
     public Produto execute(Produto produto) {
-        return produtoRepositoryPort.editar(produto);
+        return produtoGatewayPort.editar(produto);
     }
 }

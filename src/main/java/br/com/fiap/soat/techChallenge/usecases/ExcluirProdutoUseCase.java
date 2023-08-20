@@ -1,20 +1,20 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ExcluirProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 
 import java.util.UUID;
 
 public class ExcluirProdutoUseCase implements ExcluirProdutoUseCasePort {
 
-    private final ProdutoRepositoryPort produtoRepositoryPort;
+    private final ProdutoGatewayPort produtoGatewayPort;
 
-    public ExcluirProdutoUseCase(ProdutoRepositoryPort produtoRepositoryPort) {
+    public ExcluirProdutoUseCase(ProdutoGatewayPort produtoGatewayPort) {
 
-        this.produtoRepositoryPort = produtoRepositoryPort;
+        this.produtoGatewayPort = produtoGatewayPort;
     }
     @Override
     public void execute(UUID id) {
-        produtoRepositoryPort.excluir(id);
+        produtoGatewayPort.excluir(id);
     }
 }

@@ -4,7 +4,7 @@ import br.com.fiap.soat.techChallenge.entities.Pedido;
 
 import java.util.List;
 
-public interface PedidoRepositoryPort {
+public interface PedidoGatewayPort {
     Pedido inserirPedido(Pedido pedido);
     List<Pedido> obterPedidos();
 }

@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.jpa.entity;
+package br.com.fiap.soat.techChallenge.jpa.entities;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "produtos")
-public class ProdutoEntity {
+public class ProdutoJpaEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 

@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.jpa.entity;
+package br.com.fiap.soat.techChallenge.jpa.entities;
 
 import br.com.fiap.soat.techChallenge.entities.ItemDoPedido;
 import jakarta.persistence.*;
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "itens_do_pedido")
-public class ItemDoPedidoEntity {
+public class ItemDoPedidoJpaEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
@@ -19,7 +19,7 @@ public class ItemDoPedidoEntity {
     private int quantidade;
     private BigDecimal precoUnitario;
     @ManyToOne
-    private PedidoEntity pedido;
+    private PedidoJpaEntity pedido;
 
     public UUID getId() {
         return id;
@@ -77,11 +77,11 @@ public class ItemDoPedidoEntity {
         this.precoUnitario = precoUnitario;
     }
 
-    public PedidoEntity getPedido() {
+    public PedidoJpaEntity getPedido() {
         return pedido;
     }
 
-    public void setPedido(PedidoEntity pedido) {
+    public void setPedido(PedidoJpaEntity pedido) {
         this.pedido = pedido;
     }
 
@@ -97,8 +97,8 @@ public class ItemDoPedidoEntity {
         );
     }
 
-    public static ItemDoPedidoEntity fromDomain(ItemDoPedido itemDoPedido) {
-        ItemDoPedidoEntity itemEntity = new ItemDoPedidoEntity();
+    public static ItemDoPedidoJpaEntity fromDomain(ItemDoPedido itemDoPedido) {
+        ItemDoPedidoJpaEntity itemEntity = new ItemDoPedidoJpaEntity();
 
         itemEntity.setId(itemDoPedido.getId());
         itemEntity.setNome(itemDoPedido.getNome());

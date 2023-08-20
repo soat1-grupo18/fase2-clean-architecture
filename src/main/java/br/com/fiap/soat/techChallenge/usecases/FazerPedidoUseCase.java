@@ -2,29 +2,29 @@ package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.usecases.model.ItemDoComandoDeNovoPedido;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoRepositoryPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.entities.*;
 
 import java.math.BigDecimal;
 
 public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
-    private final PedidoRepositoryPort pedidoRepositoryPort;
-    private final ProdutoRepositoryPort produtoRepositoryPort;
-    private final ClienteRepositoryPort clienteRepositoryPort;
+    private final PedidoGatewayPort pedidoGatewayPort;
+    private final ProdutoGatewayPort produtoGatewayPort;
+    private final ClienteGatewayPort clienteGatewayPort;
 
     public FazerPedidoUseCase(
-            PedidoRepositoryPort pedidoRepositoryPort,
-            ProdutoRepositoryPort produtoRepositoryPort,
-            ClienteRepositoryPort clienteRepositoryPort
+            PedidoGatewayPort pedidoGatewayPort,
+            ProdutoGatewayPort produtoGatewayPort,
+            ClienteGatewayPort clienteGatewayPort
     ) {
-        this.pedidoRepositoryPort = pedidoRepositoryPort;
-        this.produtoRepositoryPort = produtoRepositoryPort;
-        this.clienteRepositoryPort = clienteRepositoryPort;
+        this.pedidoGatewayPort = pedidoGatewayPort;
+        this.produtoGatewayPort = produtoGatewayPort;
+        this.clienteGatewayPort = clienteGatewayPort;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
         pedido.setStatus(StatusDoPedido.PAGAMENTO_PENDENTE);
 
         if (comandoDeNovoPedido.getClienteId() != null) {
-            Cliente cliente = clienteRepositoryPort
+            Cliente cliente = clienteGatewayPort
                     .identificaPorId(comandoDeNovoPedido.getClienteId())
                     .orElseThrow(() -> ClienteNaoEncontradoException.aPartirDoId(comandoDeNovoPedido.getClienteId()));
 
@@ -43,7 +43,7 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
 
 
         for (ItemDoComandoDeNovoPedido itemSolicitado : comandoDeNovoPedido.getItens()) {
-            Produto produto = produtoRepositoryPort
+            Produto produto = produtoGatewayPort
                     .identificarPorId(itemSolicitado.getProdutoId())
                     .orElseThrow(() -> ProdutoNaoEncontradoException.aPartirDeProdutoId(itemSolicitado.getProdutoId()));
 
@@ -60,6 +60,6 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
             pedido.adicionarItem(item);
         }
 
-        return pedidoRepositoryPort.inserirPedido(pedido);
+        return pedidoGatewayPort.inserirPedido(pedido);
     }
 }

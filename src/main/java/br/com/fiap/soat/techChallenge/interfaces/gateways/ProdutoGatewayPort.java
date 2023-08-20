@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ProdutoRepositoryPort {
+public interface ProdutoGatewayPort {
     Produto cadastrar(Produto produto);
     List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria);
     Optional<Produto> identificarPorId(UUID id);
