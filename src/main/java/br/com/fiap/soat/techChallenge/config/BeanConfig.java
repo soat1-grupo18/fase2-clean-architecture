@@ -1,6 +1,7 @@
 package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.controllers.ClienteController;
+import br.com.fiap.soat.techChallenge.controllers.PedidoController;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.*;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
@@ -17,6 +18,11 @@ public class BeanConfig {
     public ClienteController clienteController(CadastrarClienteUseCasePort cadastrarClienteUseCase,
                                                IdentificarClienteUseCasePort identificarClienteUseCase) {
         return new ClienteController(cadastrarClienteUseCase, identificarClienteUseCase);
+    }
+
+    @Bean
+    public PedidoController pedidoController(FazerPedidoUseCasePort fazerPedidoUseCase, ObterPedidosUseCasePort obterPedidosUseCase) {
+        return new PedidoController(fazerPedidoUseCase, obterPedidosUseCase);
     }
 
     @Bean
