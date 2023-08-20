@@ -1,7 +1,7 @@
-package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller;
+package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.ClienteResponse;
-import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.CadastrarClienteRequest;
+import br.com.fiap.soat.techChallenge.api.model.response.ClienteResponse;
+import br.com.fiap.soat.techChallenge.api.model.request.CadastrarClienteRequest;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarClienteUseCasePort;

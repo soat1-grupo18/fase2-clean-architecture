@@ -1,7 +1,7 @@
-package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller;
+package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request.PedidoRequest;
-import br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response.PedidoResponse;
+import br.com.fiap.soat.techChallenge.api.model.request.PedidoRequest;
+import br.com.fiap.soat.techChallenge.api.model.response.PedidoResponse;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosUseCasePort;

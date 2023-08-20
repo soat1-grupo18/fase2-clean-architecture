@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.request;
+package br.com.fiap.soat.techChallenge.api.model.request;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import jakarta.validation.constraints.NotNull;

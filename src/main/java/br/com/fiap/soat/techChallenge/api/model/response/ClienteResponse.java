@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.application.adapter.inbound.web.controller.model.response;
+package br.com.fiap.soat.techChallenge.api.model.response;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 
