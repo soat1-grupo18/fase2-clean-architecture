@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.gateways;
 
-import br.com.fiap.soat.techChallenge.gateways.jpa.entity.ClienteEntity;
-import br.com.fiap.soat.techChallenge.gateways.jpa.ClienteJpaRepository;
+import br.com.fiap.soat.techChallenge.jpa.entity.ClienteEntity;
+import br.com.fiap.soat.techChallenge.jpa.ClienteJpaRepository;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
 import jakarta.transaction.Transactional;
