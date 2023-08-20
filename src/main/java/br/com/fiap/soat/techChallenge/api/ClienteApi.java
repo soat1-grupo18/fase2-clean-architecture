@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.api;
 
 import br.com.fiap.soat.techChallenge.responses.ClienteResponse;
-import br.com.fiap.soat.techChallenge.requests.CadastrarClienteRequest;
+import br.com.fiap.soat.techChallenge.api.requests.CadastrarClienteRequest;
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarClienteUseCasePort;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteController {
+public class ClienteApi {
 
     private final IdentificarClienteUseCasePort identificarClienteUseCase;
     private final CadastrarClienteUseCasePort cadastrarClienteUseCase;
 
-    public ClienteController(CadastrarClienteUseCasePort cadastrarClienteUseCase,
-                             IdentificarClienteUseCasePort identificarClienteUseCase) {
+    public ClienteApi(CadastrarClienteUseCasePort cadastrarClienteUseCase,
+                      IdentificarClienteUseCasePort identificarClienteUseCase) {
 
         this.cadastrarClienteUseCase = cadastrarClienteUseCase;
         this.identificarClienteUseCase = identificarClienteUseCase;

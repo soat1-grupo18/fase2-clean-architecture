@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.requests;
+package br.com.fiap.soat.techChallenge.api.requests;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import jakarta.validation.constraints.NotNull;
 

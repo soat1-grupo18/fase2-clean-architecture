@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.requests;
+package br.com.fiap.soat.techChallenge.api.requests;
 
 import br.com.fiap.soat.techChallenge.usecases.model.ItemDoComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;

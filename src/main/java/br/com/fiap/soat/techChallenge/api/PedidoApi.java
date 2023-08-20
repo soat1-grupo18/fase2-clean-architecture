@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.requests.PedidoRequest;
+import br.com.fiap.soat.techChallenge.api.requests.PedidoRequest;
 import br.com.fiap.soat.techChallenge.responses.PedidoResponse;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class PedidoController {
+public class PedidoApi {
 
     private final FazerPedidoUseCasePort fazerPedidoUseCasePort;
     private final ObterPedidosUseCasePort obterPedidosUseCasePort;
 
-    public PedidoController(FazerPedidoUseCasePort fazerPedidoUseCasePort, ObterPedidosUseCasePort obterPedidosUseCasePort) {
+    public PedidoApi(FazerPedidoUseCasePort fazerPedidoUseCasePort, ObterPedidosUseCasePort obterPedidosUseCasePort) {
         this.fazerPedidoUseCasePort = fazerPedidoUseCasePort;
         this.obterPedidosUseCasePort = obterPedidosUseCasePort;
     }

@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.api;
 
 import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
-import br.com.fiap.soat.techChallenge.requests.ProdutoRequest;
+import br.com.fiap.soat.techChallenge.api.requests.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
@@ -17,17 +17,17 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
-public class ProdutoController {
+public class ProdutoApi {
     private final ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase;
     private final CadastrarProdutoUseCasePort cadastrarProdutoUseCase;
     private final EditarProdutoUseCasePort editarProdutoUseCase;
 
     private final ExcluirProdutoUseCasePort excluirProdutoUseCase;
 
-    public ProdutoController(CadastrarProdutoUseCasePort cadastrarProdutoUseCase,
-                             EditarProdutoUseCasePort editarProdutoUseCase,
-                             ExcluirProdutoUseCasePort excluirProdutoUseCase,
-                             ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
+    public ProdutoApi(CadastrarProdutoUseCasePort cadastrarProdutoUseCase,
+                      EditarProdutoUseCasePort editarProdutoUseCase,
+                      ExcluirProdutoUseCasePort excluirProdutoUseCase,
+                      ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
         this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
         this.editarProdutoUseCase = editarProdutoUseCase;
         this.excluirProdutoUseCase = excluirProdutoUseCase;
