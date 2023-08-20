@@ -1,49 +1,35 @@
 package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.api.requests.ProdutoRequest;
+import br.com.fiap.soat.techChallenge.controllers.ProdutoController;
 import br.com.fiap.soat.techChallenge.entities.Produto;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.ExcluirProdutoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterProdutosPorCategoriaUseCasePort;
+import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoApi {
-    private final ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase;
-    private final CadastrarProdutoUseCasePort cadastrarProdutoUseCase;
-    private final EditarProdutoUseCasePort editarProdutoUseCase;
 
-    private final ExcluirProdutoUseCasePort excluirProdutoUseCase;
+    private final ProdutoController produtoController;
 
-    public ProdutoApi(CadastrarProdutoUseCasePort cadastrarProdutoUseCase,
-                      EditarProdutoUseCasePort editarProdutoUseCase,
-                      ExcluirProdutoUseCasePort excluirProdutoUseCase,
-                      ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
-        this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
-        this.editarProdutoUseCase = editarProdutoUseCase;
-        this.excluirProdutoUseCase = excluirProdutoUseCase;
-        this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
+    public ProdutoApi(ProdutoController produtoController) {
+
+        this.produtoController = produtoController;
     }
 
     @GetMapping("/{categoria}")
     public ResponseEntity<List<ProdutoResponse>> obterProdutosPorCategoria(@PathVariable Produto.TipoDeProduto categoria) {
-        List<Produto> produtos = obterProdutosPorCategoriaUseCase.execute(categoria);
-
-        return ResponseEntity.ok(produtos.stream().map(ProdutoResponse::fromDomain).collect(Collectors.toList()));
+        return ResponseEntity.ok(produtoController.obterProdutosPorCategoria(categoria));
     }
 
     @PostMapping("")
     public ResponseEntity<ProdutoResponse> cadastrarProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(cadastrarProdutoUseCase.execute(produtoRequest.toDomain(null))));
+        return ResponseEntity.ok(produtoController.cadastrarProduto(produtoRequest.toDomain(null)));
     }
 
     @PutMapping("/{id}")
@@ -51,13 +37,11 @@ public class ProdutoApi {
             @PathVariable(value="id") UUID id,
             @Valid @RequestBody ProdutoRequest produtoRequest
     ) {
-        var produto = editarProdutoUseCase.execute(produtoRequest.toDomain(id));
-
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(produto));
+        return ResponseEntity.ok(produtoController.editarProduto(produtoRequest.toDomain(id)));
     }
 
     @DeleteMapping("/{id}")
     public void excluirProduto(@PathVariable(value="id") UUID id) {
-        excluirProdutoUseCase.execute(id);
+        produtoController.excluirProduto(id);
     }
 }
