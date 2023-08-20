@@ -1,7 +1,7 @@
-package br.com.fiap.soat.techChallenge.application.adapter.outbound.repository;
-import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.ProdutoEntity;
-import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.ProdutoJpaRepository;
-import br.com.fiap.soat.techChallenge.application.adapter.outbound.repository.jpa.entity.mappers.ProdutoMapper;
+package br.com.fiap.soat.techChallenge.gateways;
+import br.com.fiap.soat.techChallenge.gateways.jpa.entity.ProdutoEntity;
+import br.com.fiap.soat.techChallenge.gateways.jpa.ProdutoJpaRepository;
+import br.com.fiap.soat.techChallenge.gateways.jpa.entity.mappers.ProdutoMapper;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoRepositoryPort;
