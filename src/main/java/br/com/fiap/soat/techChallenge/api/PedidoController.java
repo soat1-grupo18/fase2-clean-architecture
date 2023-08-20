@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.api.model.request.PedidoRequest;
+import br.com.fiap.soat.techChallenge.requests.PedidoRequest;
 import br.com.fiap.soat.techChallenge.api.model.response.PedidoResponse;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
