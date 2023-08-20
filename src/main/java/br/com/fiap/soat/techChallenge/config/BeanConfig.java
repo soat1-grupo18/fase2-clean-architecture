@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.application.config;
+package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.interfaces.usecases.*;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteRepositoryPort;
