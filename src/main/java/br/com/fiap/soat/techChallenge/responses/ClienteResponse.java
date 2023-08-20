@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.api.model.response;
+package br.com.fiap.soat.techChallenge.responses;
 
 import br.com.fiap.soat.techChallenge.entities.Cliente;
 

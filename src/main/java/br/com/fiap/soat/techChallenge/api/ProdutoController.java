@@ -1,6 +1,6 @@
 package br.com.fiap.soat.techChallenge.api;
 
-import br.com.fiap.soat.techChallenge.api.model.response.ProdutoResponse;
+import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
 import br.com.fiap.soat.techChallenge.requests.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCasePort;
