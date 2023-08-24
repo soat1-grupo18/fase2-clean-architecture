@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.controllers;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerCheckoutPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosUseCasePort;
 import br.com.fiap.soat.techChallenge.responses.PedidoResponse;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
@@ -11,16 +11,16 @@ import java.util.stream.Collectors;
 
 public class PedidoController {
 
-    private final FazerPedidoUseCasePort fazerPedidoUseCase;
+    private final FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase;
     private final ObterPedidosUseCasePort obterPedidosUseCase;
 
-    public PedidoController(FazerPedidoUseCasePort fazerPedidoUseCase, ObterPedidosUseCasePort obterPedidosUseCase) {
-        this.fazerPedidoUseCase = fazerPedidoUseCase;
+    public PedidoController(FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase, ObterPedidosUseCasePort obterPedidosUseCase) {
+        this.fazerCheckoutPedidoUseCase = fazerCheckoutPedidoUseCase;
         this.obterPedidosUseCase = obterPedidosUseCase;
     }
 
-    public PedidoResponse fazerPedido(ComandoDeNovoPedido comandoDeNovoPedido) {
-        Pedido pedido = fazerPedidoUseCase.execute(comandoDeNovoPedido);
+    public PedidoResponse fazerCheckoutPedido(ComandoDeNovoPedido comandoDeNovoPedido) {
+        Pedido pedido = fazerCheckoutPedidoUseCase.execute(comandoDeNovoPedido);
         return PedidoResponse.fromDomain(pedido);
     }
 

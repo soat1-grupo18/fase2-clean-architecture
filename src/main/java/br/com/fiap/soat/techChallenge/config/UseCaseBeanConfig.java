@@ -42,8 +42,8 @@ public class UseCaseBeanConfig {
     }
 
     @Bean
-    public FazerPedidoUseCasePort fazerPedidoUseCasePort(PedidoGatewayPort pedidoGatewayPort, ProdutoGatewayPort produtoGatewayPort, ClienteGatewayPort clienteGatewayPort) {
-        return new FazerPedidoUseCase(pedidoGatewayPort, produtoGatewayPort, clienteGatewayPort);
+    public FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCasePort(PedidoGatewayPort pedidoGatewayPort, ProdutoGatewayPort produtoGatewayPort, ClienteGatewayPort clienteGatewayPort) {
+        return new FazerCheckoutPedidoUseCase(pedidoGatewayPort, produtoGatewayPort, clienteGatewayPort);
     }
 
     @Bean

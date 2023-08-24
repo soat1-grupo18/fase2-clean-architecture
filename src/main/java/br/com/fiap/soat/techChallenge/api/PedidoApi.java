@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class PedidoApi {
@@ -22,8 +21,8 @@ public class PedidoApi {
     }
 
     @PostMapping("/pedidos")
-    public ResponseEntity<PedidoResponse> fazerPedido(@RequestBody PedidoRequest pedidoRequest) {
-        return ResponseEntity.ok(pedidoController.fazerPedido(pedidoRequest.toDomain()));
+    public ResponseEntity<PedidoResponse> fazerCheckoutPedido(@RequestBody PedidoRequest pedidoRequest) {
+        return ResponseEntity.ok(pedidoController.fazerCheckoutPedido(pedidoRequest.toDomain()));
     }
 
     @GetMapping("/pedidos")

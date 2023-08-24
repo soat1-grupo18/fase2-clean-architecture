@@ -7,17 +7,17 @@ import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.usecases.model.ItemDoComandoDeNovoPedido;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerPedidoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerCheckoutPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.entities.*;
 
 import java.math.BigDecimal;
 
-public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
+public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePort {
     private final PedidoGatewayPort pedidoGatewayPort;
     private final ProdutoGatewayPort produtoGatewayPort;
     private final ClienteGatewayPort clienteGatewayPort;
 
-    public FazerPedidoUseCase(
+    public FazerCheckoutPedidoUseCase(
             PedidoGatewayPort pedidoGatewayPort,
             ProdutoGatewayPort produtoGatewayPort,
             ClienteGatewayPort clienteGatewayPort
@@ -31,7 +31,7 @@ public class FazerPedidoUseCase implements FazerPedidoUseCasePort {
     public Pedido execute(ComandoDeNovoPedido comandoDeNovoPedido) {
         Pedido pedido = new Pedido();
 
-        pedido.setStatus(StatusDoPedido.PAGAMENTO_PENDENTE);
+        pedido.setStatus(StatusDoPedido.RECEBIDO);
 
         if (comandoDeNovoPedido.getClienteId() != null) {
             Cliente cliente = clienteGatewayPort
