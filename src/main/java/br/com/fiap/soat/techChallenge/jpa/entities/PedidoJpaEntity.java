@@ -1,6 +1,7 @@
 package br.com.fiap.soat.techChallenge.jpa.entities;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
+import br.com.fiap.soat.techChallenge.entities.StatusDoPagamento;
 import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 import jakarta.persistence.*;
 
@@ -17,7 +18,9 @@ public class PedidoJpaEntity {
     private UUID id;
     private UUID clienteId;
     private BigDecimal preco;
-    private StatusDoPedido status;
+    private StatusDoPedido statusDoPedido;
+
+    private StatusDoPagamento statusDoPagamento;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDoPedidoJpaEntity> itens;
 
@@ -45,12 +48,20 @@ public class PedidoJpaEntity {
         this.preco = preco;
     }
 
-    public StatusDoPedido getStatus() {
-        return status;
+    public StatusDoPedido getStatusDoPedido() {
+        return statusDoPedido;
     }
 
-    public void setStatus(StatusDoPedido status) {
-        this.status = status;
+    public void setStatusDoPedido(StatusDoPedido statusDoPedido) {
+        this.statusDoPedido = statusDoPedido;
+    }
+
+    public StatusDoPagamento getStatusDoPagamento() {
+        return statusDoPagamento;
+    }
+
+    public void setStatusDoPagamento(StatusDoPagamento statusDoPagamento) {
+        this.statusDoPagamento = statusDoPagamento;
     }
 
     public List<ItemDoPedidoJpaEntity> getItens() {
@@ -66,7 +77,8 @@ public class PedidoJpaEntity {
             id,
             clienteId,
             preco,
-            status,
+            statusDoPedido,
+            statusDoPagamento,
             itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList())
         );
     }
@@ -77,7 +89,8 @@ public class PedidoJpaEntity {
         pedidoJpaEntity.setId(pedido.getId());
         pedidoJpaEntity.setClienteId(pedido.getClienteId());
         pedidoJpaEntity.setPreco(pedido.getPreco());
-        pedidoJpaEntity.setStatus(pedido.getStatus());
+        pedidoJpaEntity.setStatusDoPedido(pedido.getStatusDoPedido());
+        pedidoJpaEntity.setStatusDoPagamento(pedido.getStatusDoPagamento());
         pedidoJpaEntity.setItens(pedido.getItens().stream().map(itemDoPedido -> {
             ItemDoPedidoJpaEntity itemDoPedidoJpaEntity = ItemDoPedidoJpaEntity.fromDomain(itemDoPedido);
 

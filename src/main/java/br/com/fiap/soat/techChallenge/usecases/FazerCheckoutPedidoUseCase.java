@@ -31,7 +31,8 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
     public Pedido execute(ComandoDeNovoPedido comandoDeNovoPedido) {
         Pedido pedido = new Pedido();
 
-        pedido.setStatus(StatusDoPedido.RECEBIDO);
+        pedido.setStatusDoPedido(StatusDoPedido.RECEBIDO);
+        pedido.setStatusDoPagamento(StatusDoPagamento.PENDENTE);
 
         if (comandoDeNovoPedido.getClienteId() != null) {
             Cliente cliente = clienteGatewayPort
@@ -54,7 +55,7 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
                     produto.getCategoria().toString(),
                     produto.getImagem(),
                     itemSolicitado.getQuantidade(),
-                    new BigDecimal(produto.getPreco())
+                    BigDecimal.valueOf(produto.getPreco())
             );
 
             pedido.adicionarItem(item);
