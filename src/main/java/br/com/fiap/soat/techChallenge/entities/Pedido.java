@@ -9,14 +9,21 @@ public class Pedido {
     private UUID id;
     private UUID clienteId;
     private BigDecimal preco;
-    private StatusDoPedido status;
+    private StatusDoPedido statusDoPedido;
+    private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedido> itens;
 
-    public Pedido(UUID id, UUID clienteId, BigDecimal preco, StatusDoPedido status, List<ItemDoPedido> itens) {
+    public Pedido(UUID id,
+                  UUID clienteId,
+                  BigDecimal preco,
+                  StatusDoPedido statusDoPedido,
+                  StatusDoPagamento statusDoPagamento,
+                  List<ItemDoPedido> itens) {
         this.id = id;
         this.clienteId = clienteId;
         this.preco = preco;
-        this.status = status;
+        this.statusDoPedido = statusDoPedido;
+        this.statusDoPagamento = statusDoPagamento;
         this.itens = itens;
     }
 
@@ -46,12 +53,12 @@ public class Pedido {
         this.preco = this.preco.add(item.getPrecoUnitario().multiply(new BigDecimal(item.getQuantidade())));
     }
 
-    public StatusDoPedido getStatus() {
-        return status;
+    public StatusDoPedido getStatusDoPedido() {
+        return statusDoPedido;
     }
 
-    public void setStatus(StatusDoPedido status) {
-        this.status = status;
+    public void setStatusDoPedido(StatusDoPedido statusDoPedido) {
+        this.statusDoPedido = statusDoPedido;
     }
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
@@ -66,5 +73,13 @@ public class Pedido {
     }
     public List<ItemDoPedido> getItens() {
         return itens;
+    }
+
+    public StatusDoPagamento getStatusDoPagamento() {
+        return statusDoPagamento;
+    }
+
+    public void setStatusDoPagamento(StatusDoPagamento statusDoPagamento) {
+        this.statusDoPagamento = statusDoPagamento;
     }
 }
