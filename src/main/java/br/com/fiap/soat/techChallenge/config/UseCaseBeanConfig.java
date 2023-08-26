@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.config;
 
+import br.com.fiap.soat.techChallenge.interfaces.gateways.PagamentoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
@@ -49,5 +50,10 @@ public class UseCaseBeanConfig {
     @Bean
     public ObterPedidosUseCasePort obterPedidosUseCasePort(PedidoGatewayPort pedidoGatewayPort) {
         return new ObterPedidosUseCase(pedidoGatewayPort);
+    }
+
+    @Bean
+    public ConsultarStatusPagamentoUseCasePort consultarStatusPagamentoUseCasePort(PagamentoGatewayPort pagamentoGatewayPort) {
+        return new ConsultarStatusPagamentoUseCase(pagamentoGatewayPort);
     }
 }

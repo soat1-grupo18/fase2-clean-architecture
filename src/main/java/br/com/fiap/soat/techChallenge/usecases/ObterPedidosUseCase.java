@@ -7,15 +7,15 @@ import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import java.util.List;
 
 public class ObterPedidosUseCase implements ObterPedidosUseCasePort {
-    private final PedidoGatewayPort pedidoGatewayPort;
+    private final PedidoGatewayPort pedidoGateway;
 
-    public ObterPedidosUseCase(PedidoGatewayPort pedidoGatewayPort) {
-        this.pedidoGatewayPort = pedidoGatewayPort;
+    public ObterPedidosUseCase(PedidoGatewayPort pedidoGateway) {
+        this.pedidoGateway = pedidoGateway;
     }
 
     @Override
     public List<Pedido> execute() {
-        List<Pedido> pedidos = pedidoGatewayPort.obterPedidos();
+        List<Pedido> pedidos = pedidoGateway.obterPedidos();
 
         return pedidos;
     }

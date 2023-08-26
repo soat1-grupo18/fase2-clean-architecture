@@ -5,14 +5,14 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarClienteUseCas
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
 
 public class CadastrarClienteUseCase implements CadastrarClienteUseCasePort {
-    private final ClienteGatewayPort clienteGatewayPort;
+    private final ClienteGatewayPort clienteGateway;
 
-    public CadastrarClienteUseCase(ClienteGatewayPort clienteGatewayPort) {
-        this.clienteGatewayPort = clienteGatewayPort;
+    public CadastrarClienteUseCase(ClienteGatewayPort clienteGateway) {
+        this.clienteGateway = clienteGateway;
     }
 
     @Override
     public Cliente execute(Cliente cliente) {
-        return clienteGatewayPort.cadastra(cliente);
+        return clienteGateway.cadastra(cliente);
     }
 }

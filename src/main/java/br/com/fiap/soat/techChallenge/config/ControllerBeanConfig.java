@@ -1,6 +1,7 @@
 package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.controllers.ClienteController;
+import br.com.fiap.soat.techChallenge.controllers.PagamentoController;
 import br.com.fiap.soat.techChallenge.controllers.PedidoController;
 import br.com.fiap.soat.techChallenge.controllers.ProdutoController;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.*;
@@ -27,5 +28,10 @@ public class ControllerBeanConfig {
                                                ExcluirProdutoUseCasePort excluirProdutoUseCase,
                                                ObterProdutosPorCategoriaUseCasePort obterProdutosPorCategoriaUseCase) {
         return new ProdutoController(cadastrarProdutoUseCase, editarProdutoUseCase, excluirProdutoUseCase, obterProdutosPorCategoriaUseCase);
+    }
+
+    @Bean
+    public PagamentoController pagamentoController(ConsultarStatusPagamentoUseCasePort consultarStatusPagamentoUseCase) {
+        return new PagamentoController(consultarStatusPagamentoUseCase);
     }
 }

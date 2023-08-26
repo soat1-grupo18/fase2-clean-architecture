@@ -6,13 +6,13 @@ import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 
 public class EditarProdutoUseCase implements EditarProdutoUseCasePort {
 
-    private final ProdutoGatewayPort produtoGatewayPort;
+    private final ProdutoGatewayPort produtoGateway;
 
-    public EditarProdutoUseCase(ProdutoGatewayPort produtoGatewayPort) {
-        this.produtoGatewayPort = produtoGatewayPort;
+    public EditarProdutoUseCase(ProdutoGatewayPort produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
     @Override
     public Produto execute(Produto produto) {
-        return produtoGatewayPort.editar(produto);
+        return produtoGateway.editar(produto);
     }
 }
