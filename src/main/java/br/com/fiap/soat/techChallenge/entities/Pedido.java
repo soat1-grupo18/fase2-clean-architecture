@@ -82,4 +82,8 @@ public class Pedido {
     public void setStatusDoPagamento(StatusDoPagamento statusDoPagamento) {
         this.statusDoPagamento = statusDoPagamento;
     }
+
+    public boolean isPagamentoAprovado() {
+        return this.statusDoPagamento == StatusDoPagamento.APROVADO;
+    }
 }

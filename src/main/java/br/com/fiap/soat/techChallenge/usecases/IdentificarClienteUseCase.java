@@ -7,14 +7,14 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.IdentificarClienteUseC
 import java.util.Optional;
 
 public class IdentificarClienteUseCase implements IdentificarClienteUseCasePort {
-    private final ClienteGatewayPort clienteGatewayPort;
+    private final ClienteGatewayPort clienteGateway;
 
-    public IdentificarClienteUseCase(ClienteGatewayPort clienteGatewayPort) {
+    public IdentificarClienteUseCase(ClienteGatewayPort clienteGateway) {
 
-        this.clienteGatewayPort = clienteGatewayPort;
+        this.clienteGateway = clienteGateway;
     }
     @Override
     public Optional<Cliente> execute(String cpf) {
-        return clienteGatewayPort.identificaPor(cpf);
+        return clienteGateway.identificaPor(cpf);
     }
 }

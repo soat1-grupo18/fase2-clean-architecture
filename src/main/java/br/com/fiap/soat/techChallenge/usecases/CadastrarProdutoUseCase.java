@@ -4,14 +4,14 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCas
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 
 public class CadastrarProdutoUseCase implements CadastrarProdutoUseCasePort {
-    private final ProdutoGatewayPort produtoGatewayPort;
+    private final ProdutoGatewayPort produtoGateway;
 
-    public CadastrarProdutoUseCase(ProdutoGatewayPort produtoGatewayPort) {
-        this.produtoGatewayPort = produtoGatewayPort;
+    public CadastrarProdutoUseCase(ProdutoGatewayPort produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
 
     @Override
     public Produto execute(Produto produto) {
-        return produtoGatewayPort.cadastrar(produto);
+        return produtoGateway.cadastrar(produto);
     }
 }

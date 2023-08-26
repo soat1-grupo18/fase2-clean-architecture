@@ -13,18 +13,18 @@ import br.com.fiap.soat.techChallenge.entities.*;
 import java.math.BigDecimal;
 
 public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePort {
-    private final PedidoGatewayPort pedidoGatewayPort;
-    private final ProdutoGatewayPort produtoGatewayPort;
-    private final ClienteGatewayPort clienteGatewayPort;
+    private final PedidoGatewayPort pedidoGateway;
+    private final ProdutoGatewayPort produtoGateway;
+    private final ClienteGatewayPort clienteGateway;
 
     public FazerCheckoutPedidoUseCase(
-            PedidoGatewayPort pedidoGatewayPort,
-            ProdutoGatewayPort produtoGatewayPort,
-            ClienteGatewayPort clienteGatewayPort
+            PedidoGatewayPort pedidoGateway,
+            ProdutoGatewayPort produtoGateway,
+            ClienteGatewayPort clienteGateway
     ) {
-        this.pedidoGatewayPort = pedidoGatewayPort;
-        this.produtoGatewayPort = produtoGatewayPort;
-        this.clienteGatewayPort = clienteGatewayPort;
+        this.pedidoGateway = pedidoGateway;
+        this.produtoGateway = produtoGateway;
+        this.clienteGateway = clienteGateway;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
         pedido.setStatusDoPagamento(StatusDoPagamento.PENDENTE);
 
         if (comandoDeNovoPedido.getClienteId() != null) {
-            Cliente cliente = clienteGatewayPort
+            Cliente cliente = clienteGateway
                     .identificaPorId(comandoDeNovoPedido.getClienteId())
                     .orElseThrow(() -> ClienteNaoEncontradoException.aPartirDoId(comandoDeNovoPedido.getClienteId()));
 
@@ -44,7 +44,7 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
 
 
         for (ItemDoComandoDeNovoPedido itemSolicitado : comandoDeNovoPedido.getItens()) {
-            Produto produto = produtoGatewayPort
+            Produto produto = produtoGateway
                     .identificarPorId(itemSolicitado.getProdutoId())
                     .orElseThrow(() -> ProdutoNaoEncontradoException.aPartirDeProdutoId(itemSolicitado.getProdutoId()));
 
@@ -61,6 +61,6 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
             pedido.adicionarItem(item);
         }
 
-        return pedidoGatewayPort.inserirPedido(pedido);
+        return pedidoGateway.inserirPedido(pedido);
     }
 }

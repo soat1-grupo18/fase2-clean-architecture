@@ -6,15 +6,15 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterProdutosPorCatego
 import java.util.List;
 
 public class ObterProdutosPorCategoriaUseCase implements ObterProdutosPorCategoriaUseCasePort {
-    private final ProdutoGatewayPort produtoGatewayPort;
+    private final ProdutoGatewayPort produtoGateway;
 
-    public ObterProdutosPorCategoriaUseCase(ProdutoGatewayPort produtoGatewayPort) {
+    public ObterProdutosPorCategoriaUseCase(ProdutoGatewayPort produtoGateway) {
 
-        this.produtoGatewayPort = produtoGatewayPort;
+        this.produtoGateway = produtoGateway;
     }
 
     @Override
     public List<Produto> execute(Produto.TipoDeProduto categoria) {
-        return produtoGatewayPort.obterProdutosPor(categoria);
+        return produtoGateway.obterProdutosPor(categoria);
     }
 }

@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public class ExcluirProdutoUseCase implements ExcluirProdutoUseCasePort {
 
-    private final ProdutoGatewayPort produtoGatewayPort;
+    private final ProdutoGatewayPort produtoGateway;
 
-    public ExcluirProdutoUseCase(ProdutoGatewayPort produtoGatewayPort) {
+    public ExcluirProdutoUseCase(ProdutoGatewayPort produtoGateway) {
 
-        this.produtoGatewayPort = produtoGatewayPort;
+        this.produtoGateway = produtoGateway;
     }
     @Override
     public void execute(UUID id) {
-        produtoGatewayPort.excluir(id);
+        produtoGateway.excluir(id);
     }
 }
