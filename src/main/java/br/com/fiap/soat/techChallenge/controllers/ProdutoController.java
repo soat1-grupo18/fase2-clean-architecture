@@ -1,6 +1,7 @@
 package br.com.fiap.soat.techChallenge.controllers;
 
 import br.com.fiap.soat.techChallenge.entities.Produto;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ExcluirProdutoUseCasePort;
@@ -29,7 +30,7 @@ public class ProdutoController {
         this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
     }
 
-    public List<ProdutoResponse> obterProdutosPorCategoria(Produto.TipoDeProduto categoria) {
+    public List<ProdutoResponse> obterProdutosPorCategoria(TipoDeProduto categoria) {
         List<Produto> produtos = obterProdutosPorCategoriaUseCase.execute(categoria);
         return produtos.stream().map(ProdutoResponse::fromDomain).collect(Collectors.toList());
     }

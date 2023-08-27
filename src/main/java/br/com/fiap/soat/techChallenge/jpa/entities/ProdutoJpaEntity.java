@@ -1,5 +1,5 @@
 package br.com.fiap.soat.techChallenge.jpa.entities;
-import br.com.fiap.soat.techChallenge.entities.Produto;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -12,7 +12,7 @@ public class ProdutoJpaEntity {
 
     private UUID id;
     private String nome;
-    private Produto.TipoDeProduto categoria;
+    private TipoDeProduto categoria;
     private Float preco;
     private String descricao;
     private String imagem;
@@ -25,7 +25,7 @@ public class ProdutoJpaEntity {
         return nome;
     }
 
-    public Produto.TipoDeProduto getCategoria() {
+    public TipoDeProduto getCategoria() {
         return categoria;
     }
 
@@ -49,7 +49,7 @@ public class ProdutoJpaEntity {
         this.nome = nome;
     }
 
-    public void setCategoria(Produto.TipoDeProduto categoria) {
+    public void setCategoria(TipoDeProduto categoria) {
         this.categoria = categoria;
     }
 
