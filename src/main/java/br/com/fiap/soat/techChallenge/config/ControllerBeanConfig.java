@@ -31,7 +31,8 @@ public class ControllerBeanConfig {
     }
 
     @Bean
-    public PagamentoController pagamentoController(ConsultarStatusPagamentoUseCasePort consultarStatusPagamentoUseCase) {
-        return new PagamentoController(consultarStatusPagamentoUseCase);
+    public PagamentoController pagamentoController(ConsultarStatusPagamentoUseCasePort consultarStatusPagamentoUseCase,
+                                                   ReceberConfirmacaoPagamentoUseCasePort receberConfirmacaoPagamentoUseCase) {
+        return new PagamentoController(consultarStatusPagamentoUseCase, receberConfirmacaoPagamentoUseCase);
     }
 }
