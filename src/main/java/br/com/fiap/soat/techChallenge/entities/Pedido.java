@@ -1,5 +1,8 @@
 package br.com.fiap.soat.techChallenge.entities;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,9 @@ public class Pedido {
     private UUID id;
     private UUID clienteId;
     private BigDecimal preco;
+    @Enumerated(EnumType.STRING)
     private StatusDoPedido statusDoPedido;
+    @Enumerated(EnumType.STRING)
     private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedido> itens;
 
