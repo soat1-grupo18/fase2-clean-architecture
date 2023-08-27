@@ -11,6 +11,7 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerCheckoutPedidoUse
 import br.com.fiap.soat.techChallenge.entities.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePort {
     private final PedidoGatewayPort pedidoGateway;
@@ -33,6 +34,9 @@ public class FazerCheckoutPedidoUseCase implements FazerCheckoutPedidoUseCasePor
 
         pedido.setStatusDoPedido(StatusDoPedido.RECEBIDO);
         pedido.setStatusDoPagamento(StatusDoPagamento.PENDENTE);
+
+        // TODO Integrar com Mercado Pago para obter ID de pagamento
+        pedido.setPagamentoId(UUID.randomUUID());
 
         if (comandoDeNovoPedido.getClienteId() != null) {
             Cliente cliente = clienteGateway

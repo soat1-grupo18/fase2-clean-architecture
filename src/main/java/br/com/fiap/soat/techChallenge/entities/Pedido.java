@@ -17,19 +17,22 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedido> itens;
+    private UUID pagamentoId;
 
     public Pedido(UUID id,
                   UUID clienteId,
                   BigDecimal preco,
                   StatusDoPedido statusDoPedido,
                   StatusDoPagamento statusDoPagamento,
-                  List<ItemDoPedido> itens) {
+                  List<ItemDoPedido> itens,
+                  UUID pagamentoId) {
         this.id = id;
         this.clienteId = clienteId;
         this.preco = preco;
         this.statusDoPedido = statusDoPedido;
         this.statusDoPagamento = statusDoPagamento;
         this.itens = itens;
+        this.pagamentoId = pagamentoId;
     }
 
     public Pedido() {
@@ -90,5 +93,13 @@ public class Pedido {
 
     public boolean isPagamentoAprovado() {
         return this.statusDoPagamento == StatusDoPagamento.APROVADO;
+    }
+
+    public UUID getPagamentoId() {
+        return pagamentoId;
+    }
+
+    public void setPagamentoId(UUID pagamentoId) {
+        this.pagamentoId = pagamentoId;
     }
 }

@@ -1,19 +1,19 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
-import br.com.fiap.soat.techChallenge.interfaces.gateways.PagamentoGatewayPort;
+import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ConsultarStatusPagamentoUseCasePort;
 
 import java.util.UUID;
 
 public class ConsultarStatusPagamentoUseCase implements ConsultarStatusPagamentoUseCasePort {
-    private final PagamentoGatewayPort pagamentoGateway;
+    private final PedidoGatewayPort pedidoGateway;
 
-    public ConsultarStatusPagamentoUseCase(PagamentoGatewayPort pagamentoGateway) {
-        this.pagamentoGateway = pagamentoGateway;
+    public ConsultarStatusPagamentoUseCase(PedidoGatewayPort pedidoGateway) {
+        this.pedidoGateway = pedidoGateway;
     }
 
     @Override
     public Boolean execute(UUID pedidoId) {
-        return pagamentoGateway.consultarStatusPagamento(pedidoId);
+        return pedidoGateway.consultarStatusPagamento(pedidoId);
     }
 }

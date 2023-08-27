@@ -21,6 +21,7 @@ public class PedidoJpaEntity {
     private StatusDoPedido statusDoPedido;
 
     private StatusDoPagamento statusDoPagamento;
+    private UUID pagamentoId;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDoPedidoJpaEntity> itens;
 
@@ -79,7 +80,8 @@ public class PedidoJpaEntity {
             preco,
             statusDoPedido,
             statusDoPagamento,
-            itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList())
+            itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
+            pagamentoId
         );
     }
 
@@ -91,6 +93,7 @@ public class PedidoJpaEntity {
         pedidoJpaEntity.setPreco(pedido.getPreco());
         pedidoJpaEntity.setStatusDoPedido(pedido.getStatusDoPedido());
         pedidoJpaEntity.setStatusDoPagamento(pedido.getStatusDoPagamento());
+        pedidoJpaEntity.setPagamentoId(pedido.getPagamentoId());
         pedidoJpaEntity.setItens(pedido.getItens().stream().map(itemDoPedido -> {
             ItemDoPedidoJpaEntity itemDoPedidoJpaEntity = ItemDoPedidoJpaEntity.fromDomain(itemDoPedido);
 
@@ -100,5 +103,13 @@ public class PedidoJpaEntity {
         }).collect(Collectors.toList()));
 
         return pedidoJpaEntity;
+    }
+
+    public UUID getPagamentoId() {
+        return pagamentoId;
+    }
+
+    public void setPagamentoId(UUID pagamentoId) {
+        this.pagamentoId = pagamentoId;
     }
 }

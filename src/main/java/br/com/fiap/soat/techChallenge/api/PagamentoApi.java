@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.api;
 
+import br.com.fiap.soat.techChallenge.api.requests.ConfirmacaoPagamentoRequest;
 import br.com.fiap.soat.techChallenge.controllers.PagamentoController;
 import br.com.fiap.soat.techChallenge.presenters.PagamentoPresenter;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,7 @@ public class PagamentoApi {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> receberConfirmacaoPagamento() {
-        var message = "Pagamento confirmado";
-        return ResponseEntity.ok().body(message);
+    public ResponseEntity<String> receberConfirmacaoPagamento(@RequestBody ConfirmacaoPagamentoRequest confirmacaoPagamentoRequest) {
+        return ResponseEntity.ok(this.pagamentoController.receberConfirmacaoPagamento(confirmacaoPagamentoRequest.toDomain()));
     }
 }

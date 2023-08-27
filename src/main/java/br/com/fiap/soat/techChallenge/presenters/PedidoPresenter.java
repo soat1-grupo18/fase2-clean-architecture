@@ -15,6 +15,7 @@ public class PedidoPresenter {
     private StatusDoPedido statusDoPedido;
     private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedidoPresenter> itens;
+    private UUID pagamentoId;
 
     public UUID getId() {
         return id;
@@ -44,7 +45,12 @@ public class PedidoPresenter {
         pedidoPresenter.statusDoPedido = pedido.getStatusDoPedido();
         pedidoPresenter.statusDoPagamento = pedido.getStatusDoPagamento();
         pedidoPresenter.itens = pedido.getItens().stream().map(ItemDoPedidoPresenter::fromDomain).collect(Collectors.toList());
+        pedidoPresenter.pagamentoId = pedido.getPagamentoId();
 
         return pedidoPresenter;
+    }
+
+    public UUID getPagamentoId() {
+        return pagamentoId;
     }
 }

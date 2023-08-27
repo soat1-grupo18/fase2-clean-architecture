@@ -3,8 +3,16 @@ package br.com.fiap.soat.techChallenge.interfaces.gateways;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface PedidoGatewayPort {
     Pedido inserirPedido(Pedido pedido);
     List<Pedido> obterPedidos();
+
+    Boolean consultarStatusPagamento(UUID pedidoId);
+
+    void atualizarPedido(Pedido pedido);
+
+    Optional<Pedido> obterPedidoComPagamentoId(UUID pagamentoId);
 }

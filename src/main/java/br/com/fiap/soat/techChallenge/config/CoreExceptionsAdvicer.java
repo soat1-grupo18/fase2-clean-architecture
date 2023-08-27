@@ -1,6 +1,7 @@
 package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
+import br.com.fiap.soat.techChallenge.exceptions.ConfirmacaoDePagamentoInvalidaException;
 import br.com.fiap.soat.techChallenge.exceptions.PedidoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.exceptions.ProdutoNaoEncontradoException;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,11 @@ public class CoreExceptionsAdvicer {
 
     @ExceptionHandler(value = { PedidoNaoEncontradoException.class })
     protected ResponseEntity<String> handlePedidoNaoEncontradoException(PedidoNaoEncontradoException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(value = { ConfirmacaoDePagamentoInvalidaException.class })
+    protected ResponseEntity<String> handleConfirmacaoDePagamentoInvalidaException(ConfirmacaoDePagamentoInvalidaException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }
