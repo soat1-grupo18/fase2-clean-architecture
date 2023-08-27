@@ -1,10 +1,10 @@
-package br.com.fiap.soat.techChallenge.responses;
+package br.com.fiap.soat.techChallenge.presenters;
 import br.com.fiap.soat.techChallenge.entities.Produto;
 import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 
 import java.util.UUID;
 
-public class ProdutoResponse {
+public class ProdutoPresenter {
     private UUID id;
     private String nome;
     private String descricao;
@@ -12,7 +12,7 @@ public class ProdutoResponse {
     private Float preco;
     private TipoDeProduto categoria;
 
-    public ProdutoResponse(UUID id, String nome, String descricao, String imagem, Float preco, TipoDeProduto categoria) {
+    public ProdutoPresenter(UUID id, String nome, String descricao, String imagem, Float preco, TipoDeProduto categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -21,8 +21,8 @@ public class ProdutoResponse {
         this.categoria = categoria;
     }
 
-    public static ProdutoResponse fromDomain(Produto produto) {
-        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getImagem(), produto.getPreco(), produto.getCategoria());
+    public static ProdutoPresenter fromDomain(Produto produto) {
+        return new ProdutoPresenter(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getImagem(), produto.getPreco(), produto.getCategoria());
     }
 
     public UUID getId() {

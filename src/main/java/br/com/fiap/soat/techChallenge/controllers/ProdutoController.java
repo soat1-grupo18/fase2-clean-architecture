@@ -6,7 +6,7 @@ import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarProdutoUseCas
 import br.com.fiap.soat.techChallenge.interfaces.usecases.EditarProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ExcluirProdutoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterProdutosPorCategoriaUseCasePort;
-import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
+import br.com.fiap.soat.techChallenge.presenters.ProdutoPresenter;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,17 +30,17 @@ public class ProdutoController {
         this.obterProdutosPorCategoriaUseCase = obterProdutosPorCategoriaUseCase;
     }
 
-    public List<ProdutoResponse> obterProdutosPorCategoria(TipoDeProduto categoria) {
+    public List<ProdutoPresenter> obterProdutosPorCategoria(TipoDeProduto categoria) {
         List<Produto> produtos = obterProdutosPorCategoriaUseCase.execute(categoria);
-        return produtos.stream().map(ProdutoResponse::fromDomain).collect(Collectors.toList());
+        return produtos.stream().map(ProdutoPresenter::fromDomain).collect(Collectors.toList());
     }
 
-    public ProdutoResponse cadastrarProduto(Produto produto) {
-        return ProdutoResponse.fromDomain(cadastrarProdutoUseCase.execute(produto));
+    public ProdutoPresenter cadastrarProduto(Produto produto) {
+        return ProdutoPresenter.fromDomain(cadastrarProdutoUseCase.execute(produto));
     }
 
-    public ProdutoResponse editarProduto(Produto produto) {
-        return ProdutoResponse.fromDomain(editarProdutoUseCase.execute(produto));
+    public ProdutoPresenter editarProduto(Produto produto) {
+        return ProdutoPresenter.fromDomain(editarProdutoUseCase.execute(produto));
     }
 
     public void excluirProduto(UUID id) {

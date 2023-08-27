@@ -1,12 +1,9 @@
 package br.com.fiap.soat.techChallenge.api;
 
 import br.com.fiap.soat.techChallenge.controllers.PagamentoController;
-import br.com.fiap.soat.techChallenge.responses.PagamentoResponse;
+import br.com.fiap.soat.techChallenge.presenters.PagamentoPresenter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -21,7 +18,13 @@ public class PagamentoApi {
     }
 
     @GetMapping("/{pedidoId}")
-    public ResponseEntity<PagamentoResponse> consultarStatusPagamento(@PathVariable UUID pedidoId) {
+    public ResponseEntity<PagamentoPresenter> consultarStatusPagamento(@PathVariable UUID pedidoId) {
         return ResponseEntity.ok(this.pagamentoController.consultarStatusPagamento(pedidoId));
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<String> receberConfirmacaoPagamento() {
+        var message = "Pagamento confirmado";
+        return ResponseEntity.ok().body(message);
     }
 }

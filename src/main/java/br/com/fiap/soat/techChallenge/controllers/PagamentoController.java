@@ -1,7 +1,7 @@
 package br.com.fiap.soat.techChallenge.controllers;
 
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ConsultarStatusPagamentoUseCasePort;
-import br.com.fiap.soat.techChallenge.responses.PagamentoResponse;
+import br.com.fiap.soat.techChallenge.presenters.PagamentoPresenter;
 
 import java.util.UUID;
 
@@ -14,8 +14,8 @@ public class PagamentoController {
         this.consultarStatusPagamentoUseCase = consultarStatusPagamentoUseCase;
     }
 
-    public PagamentoResponse consultarStatusPagamento(UUID pedidoId) {
+    public PagamentoPresenter consultarStatusPagamento(UUID pedidoId) {
         Boolean pagamentoAprovado = consultarStatusPagamentoUseCase.execute(pedidoId);
-        return new PagamentoResponse(pagamentoAprovado);
+        return new PagamentoPresenter(pagamentoAprovado);
     }
 }

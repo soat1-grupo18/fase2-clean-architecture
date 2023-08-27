@@ -3,7 +3,7 @@ package br.com.fiap.soat.techChallenge.controllers;
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerCheckoutPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosUseCasePort;
-import br.com.fiap.soat.techChallenge.responses.PedidoResponse;
+import br.com.fiap.soat.techChallenge.presenters.PedidoPresenter;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
 
 import java.util.List;
@@ -19,13 +19,13 @@ public class PedidoController {
         this.obterPedidosUseCase = obterPedidosUseCase;
     }
 
-    public PedidoResponse fazerCheckoutPedido(ComandoDeNovoPedido comandoDeNovoPedido) {
+    public PedidoPresenter fazerCheckoutPedido(ComandoDeNovoPedido comandoDeNovoPedido) {
         Pedido pedido = fazerCheckoutPedidoUseCase.execute(comandoDeNovoPedido);
-        return PedidoResponse.fromDomain(pedido);
+        return PedidoPresenter.fromDomain(pedido);
     }
 
-    public List<PedidoResponse> obterPedidos() {
+    public List<PedidoPresenter> obterPedidos() {
         List<Pedido> pedidos = obterPedidosUseCase.execute();
-        return pedidos.stream().map(PedidoResponse::fromDomain).collect(Collectors.toList());
+        return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 }

@@ -2,7 +2,7 @@ package br.com.fiap.soat.techChallenge.api;
 
 import br.com.fiap.soat.techChallenge.api.requests.PedidoRequest;
 import br.com.fiap.soat.techChallenge.controllers.PedidoController;
-import br.com.fiap.soat.techChallenge.responses.PedidoResponse;
+import br.com.fiap.soat.techChallenge.presenters.PedidoPresenter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +21,12 @@ public class PedidoApi {
     }
 
     @PostMapping("/pedidos")
-    public ResponseEntity<PedidoResponse> fazerCheckoutPedido(@RequestBody PedidoRequest pedidoRequest) {
+    public ResponseEntity<PedidoPresenter> fazerCheckoutPedido(@RequestBody PedidoRequest pedidoRequest) {
         return ResponseEntity.ok(pedidoController.fazerCheckoutPedido(pedidoRequest.toDomain()));
     }
 
     @GetMapping("/pedidos")
-    public ResponseEntity<List<PedidoResponse>> obterPedidos() {
+    public ResponseEntity<List<PedidoPresenter>> obterPedidos() {
         return ResponseEntity.ok(pedidoController.obterPedidos());
     }
 }
