@@ -4,7 +4,7 @@ import br.com.fiap.soat.techChallenge.entities.Cliente;
 import br.com.fiap.soat.techChallenge.exceptions.ClienteNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.CadastrarClienteUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.IdentificarClienteUseCasePort;
-import br.com.fiap.soat.techChallenge.responses.ClienteResponse;
+import br.com.fiap.soat.techChallenge.presenters.ClientePresenter;
 
 public class ClienteController {
 
@@ -18,12 +18,12 @@ public class ClienteController {
         this.identificarClienteUseCase = identificarClienteUseCase;
     }
 
-    public ClienteResponse identificarCliente(String cpf) {
+    public ClientePresenter identificarCliente(String cpf) {
         Cliente cliente = identificarClienteUseCase.execute(cpf).orElseThrow(() -> ClienteNaoEncontradoException.aPartirDoCpf(cpf));
-        return ClienteResponse.fromDomain(cliente);
+        return ClientePresenter.fromDomain(cliente);
     }
 
-    public ClienteResponse cadastrarCliente(Cliente cliente) {
-        return ClienteResponse.fromDomain(cadastrarClienteUseCase.execute(cliente));
+    public ClientePresenter cadastrarCliente(Cliente cliente) {
+        return ClientePresenter.fromDomain(cadastrarClienteUseCase.execute(cliente));
     }
 }

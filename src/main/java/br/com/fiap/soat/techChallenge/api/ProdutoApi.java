@@ -3,7 +3,7 @@ package br.com.fiap.soat.techChallenge.api;
 import br.com.fiap.soat.techChallenge.api.requests.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.controllers.ProdutoController;
 import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
-import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
+import br.com.fiap.soat.techChallenge.presenters.ProdutoPresenter;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,17 +23,17 @@ public class ProdutoApi {
     }
 
     @GetMapping("/{categoria}")
-    public ResponseEntity<List<ProdutoResponse>> obterProdutosPorCategoria(@PathVariable TipoDeProduto categoria) {
+    public ResponseEntity<List<ProdutoPresenter>> obterProdutosPorCategoria(@PathVariable TipoDeProduto categoria) {
         return ResponseEntity.ok(produtoController.obterProdutosPorCategoria(categoria));
     }
 
     @PostMapping("")
-    public ResponseEntity<ProdutoResponse> cadastrarProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
+    public ResponseEntity<ProdutoPresenter> cadastrarProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
         return ResponseEntity.ok(produtoController.cadastrarProduto(produtoRequest.toDomain(null)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> editarProduto(
+    public ResponseEntity<ProdutoPresenter> editarProduto(
             @PathVariable(value="id") UUID id,
             @Valid @RequestBody ProdutoRequest produtoRequest
     ) {

@@ -1,4 +1,4 @@
-package br.com.fiap.soat.techChallenge.responses;
+package br.com.fiap.soat.techChallenge.presenters;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.entities.StatusDoPagamento;
@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class PedidoResponse {
+public class PedidoPresenter {
     private UUID id;
     private BigDecimal preco;
     private StatusDoPedido statusDoPedido;
     private StatusDoPagamento statusDoPagamento;
-    private List<ItemDoPedidoResponse> itens;
+    private List<ItemDoPedidoPresenter> itens;
 
     public UUID getId() {
         return id;
@@ -32,19 +32,19 @@ public class PedidoResponse {
         return statusDoPagamento;
     }
 
-    public List<ItemDoPedidoResponse> getItens() {
+    public List<ItemDoPedidoPresenter> getItens() {
         return itens;
     }
 
-    public static PedidoResponse fromDomain(Pedido pedido) {
-        PedidoResponse pedidoResponse = new PedidoResponse();
+    public static PedidoPresenter fromDomain(Pedido pedido) {
+        PedidoPresenter pedidoPresenter = new PedidoPresenter();
 
-        pedidoResponse.id = pedido.getId();
-        pedidoResponse.preco = pedido.getPreco();
-        pedidoResponse.statusDoPedido = pedido.getStatusDoPedido();
-        pedidoResponse.statusDoPagamento = pedido.getStatusDoPagamento();
-        pedidoResponse.itens = pedido.getItens().stream().map(ItemDoPedidoResponse::fromDomain).collect(Collectors.toList());
+        pedidoPresenter.id = pedido.getId();
+        pedidoPresenter.preco = pedido.getPreco();
+        pedidoPresenter.statusDoPedido = pedido.getStatusDoPedido();
+        pedidoPresenter.statusDoPagamento = pedido.getStatusDoPagamento();
+        pedidoPresenter.itens = pedido.getItens().stream().map(ItemDoPedidoPresenter::fromDomain).collect(Collectors.toList());
 
-        return pedidoResponse;
+        return pedidoPresenter;
     }
 }
