@@ -1,4 +1,5 @@
 package br.com.fiap.soat.techChallenge.gateways;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import br.com.fiap.soat.techChallenge.jpa.entities.ProdutoJpaEntity;
 import br.com.fiap.soat.techChallenge.jpa.repositories.ProdutoRepository;
 import br.com.fiap.soat.techChallenge.jpa.mappers.ProdutoMapper;
@@ -35,7 +36,7 @@ public class ProdutoGateway implements ProdutoGatewayPort {
     }
 
     @Override
-    public List<Produto> obterProdutosPor(Produto.TipoDeProduto categoria) {
+    public List<Produto> obterProdutosPor(TipoDeProduto categoria) {
         var produtos = produtoRepository.findByCategoria(categoria);
         if (produtos.isEmpty()) {
             return Collections.emptyList();

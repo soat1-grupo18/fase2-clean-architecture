@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.usecases;
 import br.com.fiap.soat.techChallenge.entities.Produto;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterProdutosPorCategoriaUseCasePort;
 
@@ -14,7 +15,7 @@ public class ObterProdutosPorCategoriaUseCase implements ObterProdutosPorCategor
     }
 
     @Override
-    public List<Produto> execute(Produto.TipoDeProduto categoria) {
+    public List<Produto> execute(TipoDeProduto categoria) {
         return produtoGateway.obterProdutosPor(categoria);
     }
 }

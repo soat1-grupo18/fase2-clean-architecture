@@ -1,18 +1,15 @@
 package br.com.fiap.soat.techChallenge.entities;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 import java.util.UUID;
 
 public class Produto {
 
-    public enum TipoDeProduto {
-        LANCHE,
-        ACOMPANHAMENTO,
-        BEBIDA,
-        SOBREMESA
-    }
-
     private UUID id;
     private String nome;
+    @Enumerated(EnumType.STRING)
     private TipoDeProduto categoria;
     private Float preco;
     private String descricao;

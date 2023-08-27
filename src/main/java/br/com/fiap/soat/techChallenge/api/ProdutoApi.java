@@ -2,7 +2,7 @@ package br.com.fiap.soat.techChallenge.api;
 
 import br.com.fiap.soat.techChallenge.api.requests.ProdutoRequest;
 import br.com.fiap.soat.techChallenge.controllers.ProdutoController;
-import br.com.fiap.soat.techChallenge.entities.Produto;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import br.com.fiap.soat.techChallenge.responses.ProdutoResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class ProdutoApi {
     }
 
     @GetMapping("/{categoria}")
-    public ResponseEntity<List<ProdutoResponse>> obterProdutosPorCategoria(@PathVariable Produto.TipoDeProduto categoria) {
+    public ResponseEntity<List<ProdutoResponse>> obterProdutosPorCategoria(@PathVariable TipoDeProduto categoria) {
         return ResponseEntity.ok(produtoController.obterProdutosPorCategoria(categoria));
     }
 

@@ -1,5 +1,6 @@
 package br.com.fiap.soat.techChallenge.api.requests;
 import br.com.fiap.soat.techChallenge.entities.Produto;
+import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
@@ -9,7 +10,7 @@ public class ProdutoRequest {
     private String nome;
 
     @NotNull(message = "O campo Categoria é obrigatório.")
-    private Produto.TipoDeProduto categoria;
+    private TipoDeProduto categoria;
 
     @NotNull(message = "O campo Preço é obrigatório.")
     private Float preco;
@@ -23,7 +24,7 @@ public class ProdutoRequest {
     public String getNome() {
         return nome;
     }
-    public Produto.TipoDeProduto getCategoria() {
+    public TipoDeProduto getCategoria() {
         return categoria;
     }
     public Float getPreco() {
@@ -48,7 +49,7 @@ public class ProdutoRequest {
     public void setPreco(Float preco) {
         this.preco = preco;
     }
-    public void setCategoria(Produto.TipoDeProduto categoria) {
+    public void setCategoria(TipoDeProduto categoria) {
         this.categoria = categoria;
     }
 }
