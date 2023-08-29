@@ -2,7 +2,6 @@ package br.com.fiap.soat.techChallenge.config;
 
 import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ClienteGatewayPort;
-import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.gateways.ProdutoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.*;
 import br.com.fiap.soat.techChallenge.usecases.*;
@@ -48,8 +47,13 @@ public class UseCaseBeanConfig {
     }
 
     @Bean
-    public ObterPedidosUseCasePort obterPedidosUseCasePort(PedidoGatewayPort pedidoGatewayPort) {
-        return new ObterPedidosUseCase(pedidoGatewayPort);
+    public ObterTodosPedidosUseCasePort obterTodosPedidosUseCasePort(PedidoGatewayPort pedidoGatewayPort) {
+        return new ObterTodosPedidosUseCase(pedidoGatewayPort);
+    }
+
+    @Bean
+    public ObterPedidosEmAndamentoUseCasePort obterPedidosEmAndamentoUseCase(PedidoGatewayPort pedidoGatewayPort) {
+        return new ObterPedidosEmAndamentoUseCase(pedidoGatewayPort);
     }
 
     @Bean

@@ -25,8 +25,13 @@ public class PedidoApi {
         return ResponseEntity.ok(pedidoController.fazerCheckoutPedido(pedidoRequest.toDomain()));
     }
 
-    @GetMapping("/pedidos")
-    public ResponseEntity<List<PedidoPresenter>> obterPedidos() {
-        return ResponseEntity.ok(pedidoController.obterPedidos());
+    @GetMapping("/pedidos/todos")
+    public ResponseEntity<List<PedidoPresenter>> obterTodosPedidos() {
+        return ResponseEntity.ok(pedidoController.obterTodosPedidos());
+    }
+
+    @GetMapping("/pedidos/em_andamento")
+    public ResponseEntity<List<PedidoPresenter>> obterPedidosEmAndamento() {
+        return ResponseEntity.ok(pedidoController.obterPedidosEmAndamento());
     }
 }
