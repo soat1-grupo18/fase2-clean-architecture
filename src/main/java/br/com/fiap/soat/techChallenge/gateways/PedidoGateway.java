@@ -1,5 +1,7 @@
 package br.com.fiap.soat.techChallenge.gateways;
 
+import br.com.fiap.soat.techChallenge.entities.StatusDoPagamento;
+import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 import br.com.fiap.soat.techChallenge.exceptions.PedidoNaoEncontradoException;
 import br.com.fiap.soat.techChallenge.jpa.entities.PedidoJpaEntity;
 import br.com.fiap.soat.techChallenge.jpa.repositories.PedidoRepository;
@@ -20,7 +22,7 @@ public class PedidoGateway implements PedidoGatewayPort {
         this.pedidoRepository = pedidoRepository;
     }
 
-    private PedidoRepository pedidoRepository;
+    private final PedidoRepository pedidoRepository;
 
     @Override
     @Transactional
@@ -33,8 +35,9 @@ public class PedidoGateway implements PedidoGatewayPort {
     }
 
     @Override
-    public List<Pedido> obterPedidos() {
-        return StreamSupport.stream(pedidoRepository.findAll().spliterator(), false).map(PedidoJpaEntity::toDomain).collect(Collectors.toList());
+    public List<Pedido> obterTodosPedidos() {
+        return StreamSupport.stream(pedidoRepository.findAll().spliterator(), false)
+                .map(PedidoJpaEntity::toDomain).collect(Collectors.toList());
     }
 
     @Override
@@ -57,5 +60,11 @@ public class PedidoGateway implements PedidoGatewayPort {
     public Optional<Pedido> obterPedidoComPagamentoId(UUID pagamentoId) {
         var pedidoO = pedidoRepository.findByPagamentoId(pagamentoId);
         return Optional.ofNullable(pedidoO.get(0).toDomain());
+    }
+
+    @Override
+    public List<Pedido> obterPedidosEmAndamento() {
+        return pedidoRepository.obterPedidosEmAndamento(StatusDoPedido.FINALIZADO, StatusDoPagamento.APROVADO).stream()
+                .map(PedidoJpaEntity::toDomain).collect(Collectors.toList());
     }
 }

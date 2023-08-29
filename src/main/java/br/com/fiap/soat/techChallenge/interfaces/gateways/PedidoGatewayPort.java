@@ -8,11 +8,14 @@ import java.util.UUID;
 
 public interface PedidoGatewayPort {
     Pedido inserirPedido(Pedido pedido);
-    List<Pedido> obterPedidos();
+
+    List<Pedido> obterTodosPedidos();
 
     Boolean consultarStatusPagamento(UUID pedidoId);
 
     void atualizarPedido(Pedido pedido);
 
     Optional<Pedido> obterPedidoComPagamentoId(UUID pagamentoId);
+
+    List<Pedido> obterPedidosEmAndamento();
 }

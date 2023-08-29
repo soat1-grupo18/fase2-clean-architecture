@@ -18,8 +18,10 @@ public class ControllerBeanConfig {
     }
 
     @Bean
-    public PedidoController pedidoController(FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase, ObterPedidosUseCasePort obterPedidosUseCase) {
-        return new PedidoController(fazerCheckoutPedidoUseCase, obterPedidosUseCase);
+    public PedidoController pedidoController(FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase,
+                                             ObterTodosPedidosUseCasePort obterTodosPedidosUseCase,
+                                             ObterPedidosEmAndamentoUseCasePort obterPedidosEmAndamentoUseCase) {
+        return new PedidoController(fazerCheckoutPedidoUseCase, obterTodosPedidosUseCase, obterPedidosEmAndamentoUseCase);
     }
 
     @Bean
