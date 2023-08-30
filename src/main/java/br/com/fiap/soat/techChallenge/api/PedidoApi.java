@@ -34,7 +34,7 @@ public class PedidoApi {
         return ResponseEntity.ok(pedidoController.obterPedidosEmAndamento());
     }
 
-    @PutMapping("/pedidos/:pedidoId/:statusDoPedido")
+    @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}")
     public ResponseEntity<PedidoPresenter> atualizarStatusPedido(@PathVariable UUID pedidoId, @PathVariable StatusDoPedido statusDoPedido) {
         return ResponseEntity.ok(pedidoController.atualizarStatusPedido(pedidoId, statusDoPedido));
     }
