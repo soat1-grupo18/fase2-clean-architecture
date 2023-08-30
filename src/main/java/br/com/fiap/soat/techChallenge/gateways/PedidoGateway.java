@@ -35,6 +35,15 @@ public class PedidoGateway implements PedidoGatewayPort {
     }
 
     @Override
+    public Pedido obterPedido(UUID pedidoId) {
+        var pedidoO = pedidoRepository.findById(pedidoId);
+        if (pedidoO.isEmpty()) {
+            throw PedidoNaoEncontradoException.aPartirDoId(pedidoId);
+        }
+        return pedidoO.get().toDomain();
+    }
+
+    @Override
     public List<Pedido> obterTodosPedidos() {
         return StreamSupport.stream(pedidoRepository.findAll().spliterator(), false)
                 .map(PedidoJpaEntity::toDomain).collect(Collectors.toList());
@@ -42,11 +51,7 @@ public class PedidoGateway implements PedidoGatewayPort {
 
     @Override
     public Boolean consultarStatusPagamento(UUID pedidoId) {
-        var pedidoO = pedidoRepository.findById(pedidoId);
-        if (pedidoO.isEmpty()) {
-            throw PedidoNaoEncontradoException.aPartirDoId(pedidoId);
-        }
-        var pedido = pedidoO.get().toDomain();
+        var pedido = obterPedido(pedidoId);
         return pedido.isPagamentoAprovado();
     }
 
