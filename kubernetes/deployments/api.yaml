@@ -17,6 +17,7 @@ spec:
         app: food-api
     spec:
       containers:
+          env: 
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://db:5432/compose-postgres
             - name: SPRING_DATASOURCE_USERNAME
