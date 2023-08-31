@@ -24,14 +24,17 @@ public class PedidoApi {
         return ResponseEntity.ok(pedidoController.fazerCheckoutPedido(pedidoRequest.toDomain()));
     }
 
-    @GetMapping("/pedidos/todos")
-    public ResponseEntity<List<PedidoPresenter>> obterTodosPedidos() {
-        return ResponseEntity.ok(pedidoController.obterTodosPedidos());
-    }
+    @GetMapping("/pedidos")
+    public ResponseEntity<List<PedidoPresenter>> obterPedidos(@RequestParam(name = "status", required = false) String status) {
+        List<PedidoPresenter> pedidos;
 
-    @GetMapping("/pedidos/em_andamento")
-    public ResponseEntity<List<PedidoPresenter>> obterPedidosEmAndamento() {
-        return ResponseEntity.ok(pedidoController.obterPedidosEmAndamento());
+        if (status != null) {
+            pedidos = pedidoController.obterPedidosPorStatus(status);
+        } else {
+            pedidos = pedidoController.obterTodosPedidos();
+        }
+
+        return ResponseEntity.ok(pedidos);
     }
 
     @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}")
@@ -39,3 +42,4 @@ public class PedidoApi {
         return ResponseEntity.ok(pedidoController.atualizarStatusPedido(pedidoId, statusDoPedido));
     }
 }
+

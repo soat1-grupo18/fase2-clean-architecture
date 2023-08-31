@@ -19,5 +19,5 @@ public interface PedidoGatewayPort {
 
     Optional<Pedido> obterPedidoComPagamentoId(UUID pagamentoId);
 
-    List<Pedido> obterPedidosEmAndamento();
+    List<Pedido> obterPedidosPorStatus();
 }
