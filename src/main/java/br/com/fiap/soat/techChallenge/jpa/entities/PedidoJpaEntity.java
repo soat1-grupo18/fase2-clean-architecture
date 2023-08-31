@@ -6,6 +6,7 @@ import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -22,6 +23,8 @@ public class PedidoJpaEntity {
 
     private StatusDoPagamento statusDoPagamento;
     private UUID pagamentoId;
+    private LocalDateTime dataDeCriacao;
+
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDoPedidoJpaEntity> itens;
 
@@ -81,7 +84,8 @@ public class PedidoJpaEntity {
             statusDoPedido,
             statusDoPagamento,
             itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
-            pagamentoId
+            pagamentoId,
+            dataDeCriacao
         );
     }
 
@@ -101,6 +105,7 @@ public class PedidoJpaEntity {
 
             return itemDoPedidoJpaEntity;
         }).collect(Collectors.toList()));
+        pedidoJpaEntity.setDataDeCriacao(pedido.getDataDeCriacao());
 
         return pedidoJpaEntity;
     }
@@ -111,5 +116,13 @@ public class PedidoJpaEntity {
 
     public void setPagamentoId(UUID pagamentoId) {
         this.pagamentoId = pagamentoId;
+    }
+
+    public LocalDateTime getDataDeCriacao() {
+        return dataDeCriacao;
+    }
+
+    public void setDataDeCriacao(LocalDateTime dataDeCriacao) {
+        this.dataDeCriacao = dataDeCriacao;
     }
 }

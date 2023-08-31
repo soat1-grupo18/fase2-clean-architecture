@@ -23,7 +23,7 @@ public class PagamentoApi {
         return ResponseEntity.ok(this.pagamentoController.consultarStatusPagamento(pedidoId));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<String> receberConfirmacaoPagamento(@RequestBody ConfirmacaoPagamentoRequest confirmacaoPagamentoRequest) {
         return ResponseEntity.ok(this.pagamentoController.receberConfirmacaoPagamento(confirmacaoPagamentoRequest.toDomain()));
     }
