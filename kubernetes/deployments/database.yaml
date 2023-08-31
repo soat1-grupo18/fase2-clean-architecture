@@ -17,15 +17,12 @@ spec:
         app: database
     spec:
       containers:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://db:5432/compose-postgres
-            - name: SPRING_DATASOURCE_USERNAME
+          env: 
+            - name: POSTGRES_USER
               value: compose-postgres
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: POSTGRES_PASSWORD
               value: compose-postgres
-            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-              value: update
-          image: maven:3-amazoncorretto-17
+          image: postgres:15
           imagePullPolicy: IfNotPresent
           name: database
           resources: {}
