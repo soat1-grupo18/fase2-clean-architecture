@@ -26,7 +26,7 @@ spec:
               value: compose-postgres
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: update
-          image: <image>/<tag> # FIXME: add actual Dockerhub image
+          image: food-api-local-image:latest
           imagePullPolicy: IfNotPresent
           name: food-api
           resources: {}
