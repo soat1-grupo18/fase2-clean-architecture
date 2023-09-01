@@ -1,0 +1,49 @@
+Version: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: food-api
+  name: food-api
+  namespace: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: food-api
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: food-api
+    spec:
+      containers:
+          env: 
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://db:5432/compose-postgres
+            - name: SPRING_DATASOURCE_USERNAME
+              value: compose-postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: compose-postgres
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+          image: food-api-local-image:latest
+          imagePullPolicy: IfNotPresent
+          name: food-api
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /etc/config/secret
+              name: aws-credentials
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: aws-credentials
+          secret:
+            defaultMode: 420
+            secretName: aws-credentials
+

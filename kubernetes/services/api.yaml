@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: food-api
+  name: food-api
+  namespace: default
+spec:
+  allocateLoadBalancerNodePorts: true
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - nodePort: 31204
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: food-api
+  sessionAffinity: None
+  type: LoadBalancer
