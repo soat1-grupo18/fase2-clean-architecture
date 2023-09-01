@@ -117,6 +117,9 @@ jobs:
             --header 'Content-Type: application/json' \
             --data '{ "clienteId": "${{ steps.test-creates-a-customer.outputs.cliente-id }}", "itens": [ { "produtoId": "${{ steps.test-creates-the-first-product.outputs.produto-id }}", "quantidade": 2 }, { "produtoId": "${{ steps.test-creates-the-second-product.outputs.produto-id }}", "quantidade": 2 } ] }' | tee output.json
 
+            echo "pedido-id=$(cat output.json | jq --raw-output '.id')" >> $GITHUB_OUTPUT
+            echo "pagamento-id=$(cat output.json | jq --raw-output '.pagamentoId')" >> $GITHUB_OUTPUT
+
       - name: Test - Deletes the second product
         id: test-delete-the-second-product
         run: |
@@ -126,6 +129,35 @@ jobs:
             --request DELETE \
             --url "http://localhost:8080/produtos/${{ steps.test-creates-the-second-product.outputs.produto-id }}" | tee output.json
       
+      - name: Test - Makes the payment
+        id: test-makes-the-payment
+        run: |
+          set -e
+
+          curl --fail\
+            --request POST \
+            --url http://localhost:8080/pagamentos \
+            --header 'Content-Type: application/json' \
+            --data '{ "id": "", "live_mode": "", "type": "", "date_created": "", "user_id": "", "api_version": "", "action": "payment.created", "data": { "id": "${{ steps.test-creates-an-order.pagamento-id }}" } }' | tee output.json
+      
+      - name: Test - Sets the order as "PRONTO"
+        id: test-sets-the-order-as-pronto
+        run: |
+          set -e
+
+          curl --fail\
+            --request PUT \
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pagamento-id }}/PRONTO "| tee output.json
+
+      - name: Test - Sets the order as "FINALIZADO"
+        id: test-sets-the-order-as-finalizado
+        run: |
+          set -e
+
+          curl --fail\
+            --request PUT \
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pagamento-id }}/FINALIZADO "| tee output.json
+
       - name: Test - List all orders
         id: test-list-all-orders
         run: |
@@ -134,7 +166,7 @@ jobs:
           curl --fail \
             --request GET \
             --url http://localhost:8080/pedidos | tee output.json
-      
+
       - name: Stop docker compose
         run: |
           docker compose stop

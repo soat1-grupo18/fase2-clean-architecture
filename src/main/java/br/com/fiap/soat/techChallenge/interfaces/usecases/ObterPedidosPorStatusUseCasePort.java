@@ -6,5 +6,5 @@ import br.com.fiap.soat.techChallenge.entities.Pedido;
 import java.util.List;
 
 public interface ObterPedidosPorStatusUseCasePort {
-     List<Pedido> execute(StatusDoPedido[] statuses);
+     List<Pedido> execute(StatusDoPedido... statuses);
 }

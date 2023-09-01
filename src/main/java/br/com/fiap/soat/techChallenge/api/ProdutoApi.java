@@ -5,6 +5,7 @@ import br.com.fiap.soat.techChallenge.controllers.ProdutoController;
 import br.com.fiap.soat.techChallenge.entities.TipoDeProduto;
 import br.com.fiap.soat.techChallenge.presenters.ProdutoPresenter;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/produtos")
 public class ProdutoApi {
 
     private final ProdutoController produtoController;
@@ -22,17 +22,17 @@ public class ProdutoApi {
         this.produtoController = produtoController;
     }
 
-    @GetMapping("/{categoria}")
+    @GetMapping("/produtos/{categoria}")
     public ResponseEntity<List<ProdutoPresenter>> obterProdutosPorCategoria(@PathVariable TipoDeProduto categoria) {
         return ResponseEntity.ok(produtoController.obterProdutosPorCategoria(categoria));
     }
 
-    @PostMapping("")
+    @PostMapping("/produtos")
     public ResponseEntity<ProdutoPresenter> cadastrarProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
         return ResponseEntity.ok(produtoController.cadastrarProduto(produtoRequest.toDomain(null)));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/produtos/{id}")
     public ResponseEntity<ProdutoPresenter> editarProduto(
             @PathVariable(value="id") UUID id,
             @Valid @RequestBody ProdutoRequest produtoRequest
@@ -40,7 +40,8 @@ public class ProdutoApi {
         return ResponseEntity.ok(produtoController.editarProduto(produtoRequest.toDomain(id)));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/produtos/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluirProduto(@PathVariable(value="id") UUID id) {
         produtoController.excluirProduto(id);
     }

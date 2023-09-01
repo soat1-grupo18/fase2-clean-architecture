@@ -17,7 +17,7 @@ public class ObterPedidosPorStatusUseCase implements ObterPedidosPorStatusUseCas
     }
 
     @Override
-    public List<Pedido> execute(StatusDoPedido[] statuses) {
+    public List<Pedido> execute(StatusDoPedido... statuses) {
         return pedidoGateway.obterPedidosPorStatus(statuses);
     }
 }

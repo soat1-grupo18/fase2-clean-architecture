@@ -49,10 +49,8 @@ Para acessar o Swagger da aplicação, acesse o caminho [/swagger-ui/index.html]
 
 ### Insomnia
 
-Há um arquivo [insomnia-collection.json](insomnia-collection.json) na raiz do repositório.
+Há um arquivo [insomnia-collection.yml](insomnia-collection.yml) na raiz do repositório.
 
 ### Event Storming
 
 Nosso *event storming* está disponível em um [board do Miro](https://miro.com/app/board/uXjVMHS5nec=/).
-
-

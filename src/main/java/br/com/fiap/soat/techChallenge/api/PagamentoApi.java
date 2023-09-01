@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/pagamento")
 public class PagamentoApi {
 
     private final PagamentoController pagamentoController;
@@ -18,12 +17,12 @@ public class PagamentoApi {
         this.pagamentoController = pagamentoController;
     }
 
-    @GetMapping("/{pedidoId}")
+    @GetMapping("/pagamentos/{pedidoId}")
     public ResponseEntity<PagamentoPresenter> consultarStatusPagamento(@PathVariable UUID pedidoId) {
         return ResponseEntity.ok(this.pagamentoController.consultarStatusPagamento(pedidoId));
     }
 
-    @PostMapping("")
+    @PostMapping("/pagamentos")
     public ResponseEntity<String> receberConfirmacaoPagamento(@RequestBody ConfirmacaoPagamentoRequest confirmacaoPagamentoRequest) {
         return ResponseEntity.ok(this.pagamentoController.receberConfirmacaoPagamento(confirmacaoPagamentoRequest.toDomain()));
     }

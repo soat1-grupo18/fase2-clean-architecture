@@ -1,0 +1,352 @@
+_type: export
+__export_format: 4
+__export_date: 2023-09-01T12:23:08.059Z
+__export_source: insomnia.desktop.app:v2023.5.5
+resources:
+  - _id: req_0cb2c891dd4b445e9c0bd50376cae030
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1688603367699
+    created: 1687904640186
+    url: http://localhost:8080/clientes
+    name: /clientes
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+        	"nome": "John Carmack",
+        	"cpf": "11122233344",
+        	"telefone": "11911114444"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1687904630581.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_485f894b70144879b1e4abcaafb2913e
+    parentId: null
+    modified: 1693528962343
+    created: 1693528962343
+    name: FIAP - SOAT1 - Tech Challenge
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_e8e22ba0fe6147478c23e10d16a241ac
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693568138718
+    created: 1687905426113
+    url: http://localhost:8080/clientes/{% response 'body',
+      'req_0cb2c891dd4b445e9c0bd50376cae030', 'b64::JC5jcGY=::46b', 'never', 60
+      %}
+    name: /clientes/{cpf}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904630537.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_96c286558cc84e3b97bba7dea0777669
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693568211303
+    created: 1687906651697
+    url: http://localhost:8080/pedidos
+    name: /pedidos
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"clienteId": "{% response 'body', 'req_0cb2c891dd4b445e9c0bd50376cae030', 'b64::JC5pZA==::46b', 'never', 60 %}",
+        	"itens": [
+        		{
+        			"produtoId": "{% response 'body', 'req_2f5489c4aca0464d90495691df6bf877', 'b64::JC5pZA==::46b', 'never', 60 %}",
+        			"quantidade": 60
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1687904630493.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2f5489c4aca0464d90495691df6bf877
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1688599641590
+    created: 1688599573732
+    url: http://localhost:8080/produtos
+    name: /produtos
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"nome": "X-Tudo",
+        	"categoria": "LANCHE",
+        	"preco": 37,
+        	"descricao": "Hambúrguer com tudo que há de bom!",
+        	"imagem": "https://storage.googleapis.com/domain-images/917f20cf-8264-4464-bf5b-568562330312/products/gallery_d99517ae-188d-488a-83a5-3e6b786c2649.jpeg"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1687904630515.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_659eb547ad7f41d6be5d84c9b8a74b2f
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693523733045
+    created: 1688599653148
+    url: http://localhost:8080/produtos/LANCHE
+    name: /produtos/{categoria}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904630504.8125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_48cf12cfb14c4434bd2e68f926f09671
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693570517913
+    created: 1688599723170
+    url: http://localhost:8080/produtos/{% response 'body',
+      'req_2f5489c4aca0464d90495691df6bf877', 'b64::JC5pZA==::46b', 'never', 60
+      %}
+    name: /produtos/{id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"nome": "X-Salada",
+        	"categoria": "LANCHE",
+        	"preco": 30,
+        	"descricao": "Hambúrguer com uma saladinha fresca!",
+        	"imagem": "https://img.cybercook.com.br/receitas/151/x-salada-3-840x480.jpeg"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1687904630510.2812
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_69464a602e384991963cb96742df84cb
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693568232277
+    created: 1688600576551
+    url: http://localhost:8080/pedidos
+    name: /pedidos
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_7597dbf534fa4b2eb4311c520e4a6552
+        name: status
+        value: RECEBIDO
+        description: ""
+        disabled: false
+      - id: pair_95b33a645a354ea69b427c12b05e32c1
+        name: status
+        value: FINALIZADO
+        description: ""
+        disabled: true
+      - id: pair_d07b8277f1de4beea3a626c24b87a779
+        name: status
+        value: PRONTO
+        description: ""
+        disabled: false
+      - id: pair_df8fdbc453174dfa9aafde84b381669a
+        name: status
+        value: EM_PREPARACAO
+        description: ""
+        disabled: false
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904605352.0469
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_553302c56475496c9cdc1a94244133d6
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693570524433
+    created: 1688602994292
+    url: http://localhost:8080/produtos/{% response 'body',
+      'req_2f5489c4aca0464d90495691df6bf877', 'b64::JC5pZA==::46b', 'never', 60
+      %}
+    name: /produtos/{id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904613732.6562
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_859c9f7d086948ae94f9bff8cfef0758
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693570743187
+    created: 1693523953460
+    url: http://localhost:8080/pagamentos/{% response 'body',
+      'req_96c286558cc84e3b97bba7dea0777669', 'b64::JC5pZA==::46b', 'never', 60
+      %}
+    name: /pagamentos/{pedidoId}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904609542.3516
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ee85e0e7751b45368425a960f6b7c65b
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693570753952
+    created: 1693523995392
+    url: http://localhost:8080/pagamentos
+    name: /pagamentos
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"id": "",
+        	"live_mode": "",
+        	"type": "",
+        	"date_created": "",
+        	"user_id": "",
+        	"api_version": "",
+        	"action": "payment.created",
+        	"data": {
+        		"id": "{% response 'body', 'req_96c286558cc84e3b97bba7dea0777669', 'b64::JC5wYWdhbWVudG9JZA==::46b', 'never', 60 %}"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1687904607447.1992
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4097bc1349db439c8179e9db25a87c80
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693570731876
+    created: 1693524440706
+    url: http://localhost:8080/pedidos/{% response 'body',
+      'req_96c286558cc84e3b97bba7dea0777669', 'b64::JC5pZA==::46b', 'never', 60
+      %}/FINALIZADO
+    name: /pedidos/{id}/{novoStatus}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904584400.5234
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_9cf9d916a27e45fb9805cf88b1d258c3
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693521535538
+    created: 1693521535538
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1693521535539
+    _type: environment
+  - _id: jar_898d9a7097714efd8eca1ab6b5b820d7
+    parentId: wrk_485f894b70144879b1e4abcaafb2913e
+    modified: 1693521535545
+    created: 1693521535545
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
