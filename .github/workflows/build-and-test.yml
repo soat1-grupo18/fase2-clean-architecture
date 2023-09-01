@@ -145,18 +145,18 @@ jobs:
         run: |
           set -e
 
-          curl --fail\
+          curl --fail \
             --request PUT \
-            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pagamento-id }}/PRONTO "| tee output.json
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pedido-id }}/PRONTO "| tee output.json
 
       - name: Test - Sets the order as "FINALIZADO"
         id: test-sets-the-order-as-finalizado
         run: |
           set -e
 
-          curl --fail\
+          curl --fail \
             --request PUT \
-            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pagamento-id }}/FINALIZADO "| tee output.json
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pedido-id }}/FINALIZADO "| tee output.json
 
       - name: Test - List all orders
         id: test-list-all-orders
