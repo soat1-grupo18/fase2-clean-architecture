@@ -15,5 +15,5 @@ public interface PedidoRepository extends CrudRepository<PedidoJpaEntity, UUID> 
     @Query("select p from PedidoJpaEntity p " +
             "where p.statusDoPedido IN :statuses " +
             "order by p.dataDeCriacao asc, p.statusDoPedido desc")
-    List<PedidoJpaEntity> obterPedidosPorStatus(StatusDoPedido[] statuses);
+    List<PedidoJpaEntity> obterPedidosPorStatus(StatusDoPedido... statuses);
 }

@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/clientes")
 public class ClienteApi {
 
     private final ClienteController clienteController;
@@ -17,12 +16,12 @@ public class ClienteApi {
         this.clienteController = clienteController;
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/clientes/{cpf}")
     public ResponseEntity<ClientePresenter> identificarCliente(@PathVariable String cpf) {
         return ResponseEntity.ok(this.clienteController.identificarCliente(cpf));
     }
 
-    @PostMapping("")
+    @PostMapping("/clientes")
     public ResponseEntity<ClientePresenter> cadastrarCliente(@Valid @RequestBody CadastrarClienteRequest cadastrarClienteRequest) {
         return ResponseEntity.ok(this.clienteController.cadastrarCliente(cadastrarClienteRequest.toDomain()));
     }
