@@ -52,8 +52,8 @@ public class UseCaseBeanConfig {
     }
 
     @Bean
-    public ObterPedidosEmAndamentoUseCasePort obterPedidosEmAndamentoUseCase(PedidoGatewayPort pedidoGatewayPort) {
-        return new ObterPedidosEmAndamentoUseCase(pedidoGatewayPort);
+    public ObterPedidosPorStatusUseCasePort obterPedidosPorStatusUseCase(PedidoGatewayPort pedidoGatewayPort) {
+        return new ObterPedidosPorStatusUseCase(pedidoGatewayPort);
     }
 
     @Bean
