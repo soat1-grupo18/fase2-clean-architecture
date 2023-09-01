@@ -68,8 +68,8 @@ public class PedidoGateway implements PedidoGatewayPort {
     }
 
     @Override
-    public List<Pedido> obterPedidosPorStatus(StatusDoPedido statusDoPedido) {
-        return pedidoRepository.obterPedidosPorStatus(statusDoPedido).stream()
+    public List<Pedido> obterPedidosPorStatus(StatusDoPedido[] statuses) {
+        return pedidoRepository.obterPedidosPorStatus(statuses).stream()
                 .map(PedidoJpaEntity::toDomain).collect(Collectors.toList());
     }
 }
