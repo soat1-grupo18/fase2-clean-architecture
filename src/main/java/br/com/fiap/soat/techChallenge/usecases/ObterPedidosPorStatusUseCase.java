@@ -1,6 +1,8 @@
 package br.com.fiap.soat.techChallenge.usecases;
 
 import br.com.fiap.soat.techChallenge.entities.Pedido;
+import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
+
 import br.com.fiap.soat.techChallenge.interfaces.gateways.PedidoGatewayPort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosPorStatusUseCasePort;
 
@@ -15,8 +17,8 @@ public class ObterPedidosPorStatusUseCase implements ObterPedidosPorStatusUseCas
     }
 
     @Override
-    public List<Pedido> execute(String status) {
-        return pedidoGateway.obterPedidosPorStatus(status);
+    public List<Pedido> execute(StatusDoPedido statusDoPedido) {
+        return pedidoGateway.obterPedidosPorStatus(statusDoPedido);
     }
 }
 

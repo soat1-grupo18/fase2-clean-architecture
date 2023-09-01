@@ -25,11 +25,11 @@ public class PedidoApi {
     }
 
     @GetMapping("/pedidos")
-    public ResponseEntity<List<PedidoPresenter>> obterPedidos(@RequestParam(name = "status", required = false) String status) {
+    public ResponseEntity<List<PedidoPresenter>> obterPedidos(@RequestParam(name = "status", required = false) StatusDoPedido statusDoPedido) {
         List<PedidoPresenter> pedidos;
 
-        if (status != null) {
-            pedidos = pedidoController.obterPedidosPorStatus(status);
+        if (statusDoPedido != null) {
+            pedidos = pedidoController.obterPedidosPorStatus(statusDoPedido);
         } else {
             pedidos = pedidoController.obterTodosPedidos();
         }

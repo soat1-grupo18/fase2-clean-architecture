@@ -40,8 +40,8 @@ public class PedidoController {
         return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 
-    public List<PedidoPresenter> obterPedidosPorStatus(String status) {
-        List<Pedido> pedidos = obterPedidosPorStatusUseCase.execute(status);
+    public List<PedidoPresenter> obterPedidosPorStatus(StatusDoPedido statusDoPedido) {
+        List<Pedido> pedidos = obterPedidosPorStatusUseCase.execute(statusDoPedido);
         return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 
