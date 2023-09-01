@@ -13,8 +13,8 @@ public interface PedidoRepository extends CrudRepository<PedidoJpaEntity, UUID> 
     List<PedidoJpaEntity> findByPagamentoId(UUID pagamentoId);
 
     @Query("select p from PedidoJpaEntity p " +
-            "where p.statusDoPedido <> :statusFinalizado " +
-            "and p.statusDoPagamento = :statusAprovado " +
+            "where p.statusDoPedido <> :statusDoPedido " +
             "order by p.statusDoPedido desc")
-    List<PedidoJpaEntity> obterPedidosEmAndamento(StatusDoPedido statusFinalizado, StatusDoPagamento statusAprovado);
+
+    List<PedidoJpaEntity> obterPedidosPorStatus(StatusDoPedido statusDoPedido);
 }

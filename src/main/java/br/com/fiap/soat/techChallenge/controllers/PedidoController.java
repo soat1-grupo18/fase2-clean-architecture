@@ -4,7 +4,7 @@ import br.com.fiap.soat.techChallenge.entities.Pedido;
 import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.AtualizarStatusPedidoUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.FazerCheckoutPedidoUseCasePort;
-import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosEmAndamentoUseCasePort;
+import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterPedidosPorStatusUseCasePort;
 import br.com.fiap.soat.techChallenge.interfaces.usecases.ObterTodosPedidosUseCasePort;
 import br.com.fiap.soat.techChallenge.presenters.PedidoPresenter;
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeNovoPedido;
@@ -17,16 +17,16 @@ public class PedidoController {
 
     private final FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase;
     private final ObterTodosPedidosUseCasePort obterTodosPedidosUseCase;
-    private final ObterPedidosEmAndamentoUseCasePort obterPedidosEmAndamentoUseCase;
+    private final ObterPedidosPorStatusUseCasePort obterPedidosPorStatusUseCase;
     private final AtualizarStatusPedidoUseCasePort atualizarStatusPedidoUseCase;
 
     public PedidoController(FazerCheckoutPedidoUseCasePort fazerCheckoutPedidoUseCase,
                             ObterTodosPedidosUseCasePort obterTodosPedidosUseCase,
-                            ObterPedidosEmAndamentoUseCasePort obterPedidosEmAndamentoUseCase,
+                            ObterPedidosPorStatusUseCasePort obterPedidosPorStatusUseCase,
                             AtualizarStatusPedidoUseCasePort atualizarStatusPedidoUseCase) {
         this.fazerCheckoutPedidoUseCase = fazerCheckoutPedidoUseCase;
         this.obterTodosPedidosUseCase = obterTodosPedidosUseCase;
-        this.obterPedidosEmAndamentoUseCase = obterPedidosEmAndamentoUseCase;
+        this.obterPedidosPorStatusUseCase = obterPedidosPorStatusUseCase;
         this.atualizarStatusPedidoUseCase = atualizarStatusPedidoUseCase;
     }
 
@@ -40,8 +40,8 @@ public class PedidoController {
         return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 
-    public List<PedidoPresenter> obterPedidosEmAndamento() {
-        List<Pedido> pedidos = obterPedidosEmAndamentoUseCase.execute();
+    public List<PedidoPresenter> obterPedidosPorStatus(StatusDoPedido statusDoPedido) {
+        List<Pedido> pedidos = obterPedidosPorStatusUseCase.execute(statusDoPedido);
         return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 
