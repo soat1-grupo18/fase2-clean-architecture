@@ -138,7 +138,7 @@ jobs:
             --request POST \
             --url http://localhost:8080/pagamentos \
             --header 'Content-Type: application/json' \
-            --data '{ "id": "", "live_mode": "", "type": "", "date_created": "", "user_id": "", "api_version": "", "action": "payment.created", "data": { "id": "${{ steps.test-creates-an-order.pagamento-id }}" } }' | tee output.json
+            --data '{ "id": "", "live_mode": "", "type": "", "date_created": "", "user_id": "", "api_version": "", "action": "payment.created", "data": { "id": "${{ steps.test-creates-an-order.outputs.pagamento-id }}" } }' | tee output.json
       
       - name: Test - Sets the order as "PRONTO"
         id: test-sets-the-order-as-pronto
@@ -147,7 +147,7 @@ jobs:
 
           curl --fail \
             --request PUT \
-            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pedido-id }}/PRONTO" | tee output.json
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.outputs.pedido-id }}/PRONTO" | tee output.json
 
       - name: Test - Sets the order as "FINALIZADO"
         id: test-sets-the-order-as-finalizado
@@ -156,7 +156,7 @@ jobs:
 
           curl --fail \
             --request PUT \
-            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.pedido-id }}/FINALIZADO" | tee output.json
+            --url "http://localhost:8080/pedidos/${{ steps.test-creates-an-order.outputs.pedido-id }}/FINALIZADO" | tee output.json
 
       - name: Test - List all orders
         id: test-list-all-orders
