@@ -4,6 +4,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class Pedido {
     private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedido> itens;
     private UUID pagamentoId;
+    private LocalDateTime dataDeCriacao;
 
     public Pedido(UUID id,
                   UUID clienteId,
@@ -25,7 +27,8 @@ public class Pedido {
                   StatusDoPedido statusDoPedido,
                   StatusDoPagamento statusDoPagamento,
                   List<ItemDoPedido> itens,
-                  UUID pagamentoId) {
+                  UUID pagamentoId,
+                  LocalDateTime dataDeCriacao) {
         this.id = id;
         this.clienteId = clienteId;
         this.preco = preco;
@@ -33,6 +36,7 @@ public class Pedido {
         this.statusDoPagamento = statusDoPagamento;
         this.itens = itens;
         this.pagamentoId = pagamentoId;
+        this.dataDeCriacao = dataDeCriacao;
     }
 
     public Pedido() {
@@ -101,5 +105,13 @@ public class Pedido {
 
     public void setPagamentoId(UUID pagamentoId) {
         this.pagamentoId = pagamentoId;
+    }
+
+    public LocalDateTime getDataDeCriacao() {
+        return dataDeCriacao;
+    }
+
+    public void setDataDeCriacao(LocalDateTime dataDeCriacao) {
+        this.dataDeCriacao = dataDeCriacao;
     }
 }

@@ -5,6 +5,7 @@ import br.com.fiap.soat.techChallenge.entities.StatusDoPagamento;
 import br.com.fiap.soat.techChallenge.entities.StatusDoPedido;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class PedidoPresenter {
     private StatusDoPagamento statusDoPagamento;
     private List<ItemDoPedidoPresenter> itens;
     private UUID pagamentoId;
+    private LocalDateTime dataDeCriacao;
 
     public UUID getId() {
         return id;
@@ -46,11 +48,16 @@ public class PedidoPresenter {
         pedidoPresenter.statusDoPagamento = pedido.getStatusDoPagamento();
         pedidoPresenter.itens = pedido.getItens().stream().map(ItemDoPedidoPresenter::fromDomain).collect(Collectors.toList());
         pedidoPresenter.pagamentoId = pedido.getPagamentoId();
+        pedidoPresenter.dataDeCriacao = pedido.getDataDeCriacao();
 
         return pedidoPresenter;
     }
 
     public UUID getPagamentoId() {
         return pagamentoId;
+    }
+
+    public LocalDateTime getDataDeCriacao() {
+        return dataDeCriacao;
     }
 }
