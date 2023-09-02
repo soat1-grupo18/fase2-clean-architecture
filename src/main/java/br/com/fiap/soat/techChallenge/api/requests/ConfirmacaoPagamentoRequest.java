@@ -1,18 +1,27 @@
 package br.com.fiap.soat.techChallenge.api.requests;
 
 import br.com.fiap.soat.techChallenge.usecases.model.ComandoDeConfirmacaoDePagamento;
+import io.swagger.v3.oas.annotations.Parameter;
 
 import java.util.UUID;
 
 public class ConfirmacaoPagamentoRequest {
 
+    @Parameter(description = "Não utilizado")
     private String id;
+    @Parameter(description = "Não utilizado")
     private String live_mode;
+    @Parameter(description = "Não utilizado")
     private String type;
+    @Parameter(description = "Não utilizado")
     private String date_created;
+    @Parameter(description = "Não utilizado")
     private String user_id;
+    @Parameter(description = "Não utilizado")
     private String api_version;
+    @Parameter(description = "Ação a ser processada. Somente a confirmação de pagamento é aceita no momento", example = "payment.created")
     private String action;
+    @Parameter(description = "O id de pagamento registrado no checkout de pedido")
     private ConfirmacaoPagamentoDataRequest data;
 
     public ComandoDeConfirmacaoDePagamento toDomain() {
