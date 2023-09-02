@@ -6,7 +6,8 @@
 - [Tech Challenge](#tech-challenge)
   - [Alunos](#alunos)
   - [Tecnologias utilizadas](#tecnologias-utilizadas)
-  - [Como rodar a aplicação](#como-rodar-a-aplicação)
+  - [Como rodar a aplicação via docker-compose?](#como-rodar-a-aplicação-via-docker-compose)
+  - [Como rodar a aplicação via kubernetes?](#como-rodar-a-aplicação-via-kubernetes)
   - [Swagger](#swagger)
   - [Insomnia](#insomnia)
   - [Event Storming](#event-storming)
@@ -35,12 +36,20 @@ Projeto realizado durante o primeiro módulo da Pós Tech Software Architecture 
 - Github Actions
   - Para validar o docker-compose.yaml e fazer alguns testes e2e
 
-### Como rodar a aplicação
+### Como rodar a aplicação via docker-compose?
 
 Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
 
 ```bash
 docker compose up
+```
+
+### Como rodar a aplicação via kubernetes?
+
+Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
+
+```bash
+kubectl apply -f kubernetes/
 ```
 
 ### Swagger
