@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: food-api
-        image: olegon/soat1-grupo18-api:1.1.0
+        image: olegon/soat1-grupo18-api:1.1.1
         imagePullPolicy: IfNotPresent
         resources:
           requests:

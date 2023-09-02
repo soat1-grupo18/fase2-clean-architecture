@@ -52,6 +52,10 @@ Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
 kubectl apply -f kubernetes/
 ```
 
+> O kubernetes vai rodar a imagem `olegon/soat1-grupo18-api:1.1.1`.
+
+> Se tiver algum problema com o Service do tipo LoadBalancer, o comando `kubectl port-forward services/food-api 8080:80` pode ser útil.
+
 ### Swagger
 
 Para acessar o Swagger da aplicação, acesse o caminho [/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) da aplicação.
