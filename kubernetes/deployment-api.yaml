@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-api
+  labels:
+    name: food-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: food-api
+  template:
+    metadata:
+      labels:
+        app: food-api
+    spec:
+      containers:
+      - name: food-api
+        image: olegon/soat1-grupo18-api:1.1.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "2000m"
+        env: 
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://database:5432/postgres
+        - name: SPRING_DATASOURCE_USERNAME
+          value: postgres
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: postgres
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: update
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: AWS_ACCESS_KEY_ID 
+        ports:
+        - containerPort: 8080
